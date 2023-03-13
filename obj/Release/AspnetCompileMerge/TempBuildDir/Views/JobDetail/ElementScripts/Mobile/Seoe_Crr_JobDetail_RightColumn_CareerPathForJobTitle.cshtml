@@ -1,0 +1,134 @@
+﻿@{
+    Seom_Crr_CareerJob objBenchmarkJob = new Seom_Crr_CareerJob();
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    DataTable dtbJobPostingData = null;
+    DataSet dstBencharmkJobs = null;
+
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    string strJobTitle = dtbJobPostingData.Rows[0]["Title"].ToString();
+    string strSEOJobTitle = dtbJobPostingData.Rows[0]["SEOTitle"].ToString();
+    string strBenchmarkJobCode = hshPageParams["BenchmarkJobCode"] as string;
+    string strCareerPathJobTitle = string.Empty;
+    string strCareerPathJobCode = string.Empty;
+    string strCareerPathSEOFriendlyJobTitle = string.Empty;
+    string strCareerPathTXNYJobFocusCode = string.Empty;
+    string strLocation = string.Empty;
+    strLocation = hshPageParams["Location"]?.ToString();
+    int intMaxTreeSecondLevel = 0;
+
+    dstBencharmkJobs = objBenchmarkJob.SalGetJobsForCareerPathByBenchmarkJobCode(strBenchmarkJobCode);
+    if (!objData.SalIsEmptyDataSet(dstBencharmkJobs) && dstBencharmkJobs.Tables[0].Columns.Contains("TXNYJobFocusCode"))
+    {
+        <div class="crr-layout-section padding-top0 padding-left0 padding-right0" id="crr-careerpath-section">
+            <div class="carr-career-path-head flex-nowrap flex-div flex-justify-content-between flex-align-item-center" style="margin:0 10px;">
+                <h2 class="carr-h2 margin-bottom20 crr-careerpathhed" data-benchmarkjobcode="@(strBenchmarkJobCode)">Career Path for @(strJobTitle)</h2>
+                <a role="button" data-toggle="collapse" href="#carr-career-path-collapse" aria-expanded="true" aria-controls="carr-career-path-collapse" style="padding:0 30px;">
+                    <img style="height:15px;" src="~/Images/arrow-up.png" />
+                </a>
+            </div>
+            <div class="carr-career-path-body in" id="carr-career-path-collapse">
+                <div class="carr-content margin-bottom20 margin-left10">
+                    The following is the career advancement route for @(strJobTitle) positions,
+                    which can be used as a reference in future career path planning. As @(!objUtility.SalIsStartWithVowel(strJobTitle[0]) ? " a " : " an ") @(strJobTitle),
+                    it can be promoted into senior positions as @(!objUtility.SalIsStartWithVowel(dstBencharmkJobs.Tables[0].Rows[0]["SEOFriendlyJobTitle"].ToString()[0]) ? " a " : " an ") @(dstBencharmkJobs.Tables[0].Rows[0]["SEOFriendlyJobTitle"].ToString().Replace("-", " ")) that are expected to
+                    handle more key tasks, people in this role will get a higher salary paid than an ordinary
+                    @(strJobTitle). You can explore the career advancement for @(!objUtility.SalIsStartWithVowel(strJobTitle[0]) ? " a " : " an ") @(strJobTitle) below
+                    and select your interested title to get hiring information.
+                </div>
+                <div class="swiper-container">
+                    @*<div class="swiper-scrollbar"></div>*@
+                    <div class="swiper-wrapper">
+                        @foreach (DataRow drwJob in dstBencharmkJobs.Tables[0].Rows)
+                        {
+                            if (strCareerPathTXNYJobFocusCode != drwJob["TXNYJobFocusCode"].ToString() && intMaxTreeSecondLevel <= 3)
+                            {
+                                strCareerPathTXNYJobFocusCode = drwJob["TXNYJobFocusCode"].ToString();
+                                strCareerPathJobTitle = drwJob["JobTitle"].ToString();
+                                strCareerPathJobCode = drwJob["JobCode"].ToString();
+                                strCareerPathSEOFriendlyJobTitle = drwJob["SEOFriendlyJobTitle"].ToString();
+                                DataRow[] drwMoreJobs = dstBencharmkJobs.Tables[0].Select("JobCode <> '" + strCareerPathJobCode + "' AND TXNYJobFocusCode = '" + strCareerPathTXNYJobFocusCode + "'").OrderBy(x => x["ProgressionSeq"]).ToArray();
+                                int intMaxTreeThreeLevel = 0;
+
+                                <div class="swiper-slide">
+                                    <div class="career-path-div-mobile mobile-slide">
+                                        <img src="@Url.Content("~/Images/level-I-careerpathicon.svg")" class="crr-career-path-icon career-path-level1-bg" />
+                                        <span class="crr-career-path-text"><a class="carr-small-link" href="@objBenchmarkJob.SalGenerateCareerJobSearchUrl(strKeyword:strJobTitle, strLocation:strLocation, searchType:SearchKeywordType.CareerPath)" title="@(strJobTitle)">@(strJobTitle)</a></span>
+                                    </div>
+                                    <div class="mobile-svg-line">
+                                        <svg width="100%" height="60px">
+                                            <defs>
+                                                <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+                                                    <path d="M0,0 L0,6 L9,3 z" fill="#919191" />
+                                                </marker>
+                                            </defs>
+                                            <line x1="145" y1="5" x2="145" y2="40" class="mobile-stroke" marker-end="url(#arrow)" />
+                                        </svg>
+                                    </div>
+                                    @if (drwMoreJobs != null && drwMoreJobs.Count() > 0)
+                                    {
+                                        <div class="mobile-slide">
+                                            <div class="career-path-div-mobile">
+                                                <img src="@Url.Content("~/Images/level-II-careerpathicon.svg")" class="crr-career-path-icon career-path-level2-bg" />
+                                                <span class="crr-career-path-text"><a class="carr-small-link" href="@objBenchmarkJob.SalGenerateCareerJobSearchUrl(strKeyword:strCareerPathJobTitle, strLocation:strLocation, searchType:SearchKeywordType.CareerPath)" title="@(strCareerPathJobTitle)">@(strCareerPathJobTitle)</a></span>
+                                            </div>
+                                            <div class="mobile-svg-line">
+                                                <svg width="100%" height="60px">
+                                                    <line x1="140" y1="5" x2="140" y2="40" class="mobile-stroke" marker-end="url(#arrow)" />
+                                                </svg>
+                                            </div>
+
+                                            @foreach (DataRow drwMoreJob in drwMoreJobs)
+                                            {
+                                                string strLevel3CareerPathJobTitle = drwMoreJob["JobTitle"].ToString();
+                                                string strLevel3CareerPathSEOFriendlyJobTitle = drwMoreJob["SEOFriendlyJobTitle"].ToString();
+                                                if (intMaxTreeThreeLevel < 1)
+                                                {
+                                                    <div class="career-path-div-mobile">
+                                                        <img src="@Url.Content("~/Images/level-III-careerpathicon.svg")" class="crr-career-path-icon career-path-level3-bg" />
+                                                        <span class="crr-career-path-text"><a class="carr-small-link" href="@objBenchmarkJob.SalGenerateCareerJobSearchUrl(strKeyword:strLevel3CareerPathJobTitle, strLocation:strLocation, searchType:SearchKeywordType.CareerPath)" title="@(strLevel3CareerPathJobTitle)">@(strLevel3CareerPathJobTitle)</a></span>
+                                                    </div>
+                                                    intMaxTreeThreeLevel++;
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div style="margin-top:5px;" class="career-path-div-mobile">
+                                            <img src="@Url.Content("~/Images/level-II-careerpathicon.svg")" class="crr-career-path-icon career-path-level2-bg" />
+                                            <span class="crr-career-path-text"><a class="carr-small-link" href="@objBenchmarkJob.SalGenerateCareerJobSearchUrl(strKeyword:strCareerPathJobTitle, strLocation:strLocation, searchType:SearchKeywordType.CareerPath)" title="@(strCareerPathJobTitle)">@(strCareerPathJobTitle)</a></span>
+                                        </div>
+                                    }
+                                </div>
+                                intMaxTreeSecondLevel++;
+                            }
+                        }
+                    </div>
+                    <div class="@(intMaxTreeSecondLevel > 1 ? "swiper-pagination": "")"></div>
+                </div>
+            </div>
+        </div>
+        objData.SalCleanDataSet(ref dstBencharmkJobs);
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataSet(ref dstBencharmkJobs);
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+}

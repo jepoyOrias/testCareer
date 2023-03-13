@@ -1,0 +1,56 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    DataSet dstFeaturedJob = null;
+}
+
+@try
+{
+    dstFeaturedJob = objJob.SalGetFeaturedJob();
+    <div class="crr-featuredjob-wripper">
+        <h2 class="carr-h2">Featured Jobs</h2>
+        <div class="crr-featuredjob-item">
+            @if (!objData.SalIsEmptyDataSet(dstFeaturedJob))
+            {
+                foreach (DataRow drw in dstFeaturedJob.Tables[0].Rows)
+                {
+                    //string strLocation = string.Join(", ", @drw["City"], @drw["StateCode"]);
+                    string strEmploymentType = objUtility.SalUpperCaseFirstLetter(drw["EmploymentType"].ToString().Replace("-", " ").Replace("_", " ").Replace(",", " | ").Trim());
+
+                    <div class="crr-featuredjob-row">
+                        <div class="crr-featuredjob-item-header margin-bottom20">
+                            <div class="crr-featuredjob-item-title">
+                                <div class="margin-bottom10">@drw["JobPostingTitle"].ToString()</div>
+                                @*<div class="crr-favor icon-crr-heart" style="align-self:flex-start;margin-top:10px;"></div>*@
+                            </div>
+                            <div class="crr-featuredjob-item-location margin-bottom10">
+                                @drw["CompanyName"].ToString()
+                            </div>
+
+                            <div class="flex-div flex-justify-content-between text-gray text-size14">
+                                <div class="margin-bottom20">@drw["City"], @drw["StateCode"] | @strEmploymentType</div>
+                                <div class="font-bold crr-text-primary text-size16">@(objUtility.SalGetPostDateDesc(Convert.ToDateTime(drw["PostDate"])))</div>
+                            </div>
+
+                        </div>
+                        <div class="crr-featuredjob-item-bottom">
+                            <a href="@objJob.SalGenerateCareerJobPostingDetailUrl(drw["SEOCompanyName"].ToString(),drw["SEOTitle"].ToString(),drw["CareerJobPostingID"].ToString(),drw["City"].ToString(),drw["StateCode"].ToString())">
+                                <div class="crr-featuredjob-item-btn">
+                                    View Job Details<span class="icon-crr-arrow-right crr-arrow-color margin-left10"></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+
+}
+catch (Exception ex)
+{
+      objLog.SalError("Seoe_Crr_Index_FeaturedJob.cshtml", ex);
+}

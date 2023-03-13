@@ -1,0 +1,66 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+<div class="crr-global-job-item margin-top10 margin-left30 margin-right30">
+    <div class="flex-div flex-justify-content-end">
+        <div class="crr-global-job-title flex-div flex-justify-content-between flex-align-item-center">
+            <div class="text-navy text-size16 font-bold">Top Skills</div>
+            <img src="~/Images/icon-carousel.svg" class="crr-carousel-icon" />
+        </div>
+    </div>
+    <div class="crr-recommended-jobs-layout">
+        <div class="crr-job-list cursor-pointer border">
+            <div class="crr-adv-desc crr-adv-flex-col flex-grow-1">
+                <div class="crr-item-title crr-text-blue font-bold text-size17">Advertising</div>
+                <div>
+                    <div class="text-size16 text-charcoal crr-text-blue">2 jobs</div>
+                </div>
+            </div>
+        </div>
+        <div class="crr-job-list cursor-pointer border">
+            <div class="crr-adv-desc crr-adv-flex-col flex-grow-1">
+                <div class="crr-item-title crr-text-blue font-bold text-size17">Advertising</div>
+                <div>
+                    <div class="text-size16 text-charcoal crr-text-blue">2 jobs</div>
+                </div>
+            </div>
+        </div>
+        <div class="crr-job-list cursor-pointer border">
+            <div class="crr-adv-desc crr-adv-flex-col flex-grow-1">
+                <div class="crr-item-title crr-text-blue font-bold text-size17">Advertising</div>
+                <div>
+                    <div class="text-size16 text-charcoal crr-text-blue">2 jobs</div>
+                </div>
+            </div>
+        </div>
+        <div class="crr-job-list cursor-pointer border">
+            <div class="crr-adv-desc crr-adv-flex-col flex-grow-1">
+                <div class="crr-item-title crr-text-blue font-bold text-size17">Advertising</div>
+                <div>
+                    <div class="text-size16 text-charcoal crr-text-blue">2 jobs</div>
+                </div>
+            </div>
+        </div>
+        <div class="crr-job-list cursor-pointer border crr-job-list-item display-none">
+            <div class="crr-mobile-see-job crr-text-blue text-size17 font-bold text-center">
+                <span>See All Top Skills</span>
+                <span class="icon-arrow-right margin-left10"></span>
+            </div>
+        </div>
+    </div>
+    <div class="crr-show-more margin-top20 display-none">
+        <div class="flex-div flex-justify-content-center">
+            <div class="text-size13 crr-text-primary text-center crr-top-desc-line-height margin-right10">Show More</div>
+            <img src="~/Images/icon-expand.svg" />
+        </div>
+    </div>
+    <div class="crr-see-all-job margin-top10 crr-text-blue text-size16 flex-div flex-justify-content-end">See All Top Skills</div>
+</div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Search_TopSkills.cshtml", ex);
+}

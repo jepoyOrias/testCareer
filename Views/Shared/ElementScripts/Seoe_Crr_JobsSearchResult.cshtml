@@ -1,0 +1,78 @@
+﻿@using System.ComponentModel;
+@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+
+    DataSet dstData = null;
+    int intDataCount = 0;
+    string strKeyword = string.Empty;
+    SearchKeywordType SelectedSearchType = SearchKeywordType.JobTitle;
+    string strSearchTypeDesc = string.Empty;
+    string strJobField = string.Empty;
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+
+    strKeyword = hshPageParams["Keyword"].ToString();
+    if (hshPageParams.ContainsKey("SearchType"))
+    {
+        SelectedSearchType = (SearchKeywordType)hshPageParams["SearchType"];
+    }
+    switch (SelectedSearchType)
+    {
+        case SearchKeywordType.Company:
+            strJobField = "CompanyName";
+            break;
+        case SearchKeywordType.Skill:
+            strJobField = "CareerSkillName";
+            break;
+        case SearchKeywordType.JobTitle:
+        case SearchKeywordType.CareerPath:
+            strJobField = "HotJobTitle";
+            break;
+    }
+    foreach (SearchKeywordType SearchKeywordType in ((SearchKeywordType[])Enum.GetValues(typeof(SearchKeywordType))).Where(t => t != SearchKeywordType.JobTitleAndCompany))
+    {
+        strSearchTypeDesc = objUtility.SalGetEnumDescription(SearchKeywordType);
+        dstData = hshPageParams[$"{SearchKeywordType.ToString()}Data"] as DataSet;
+        intDataCount = int.Parse(hshPageParams[$"{SearchKeywordType.ToString()}Count"].ToString());
+        if (SelectedSearchType == SearchKeywordType)
+        {
+            <div class="crr-findjob-item">
+                @*<label class="lbl-category-name crr-text-navy">@strSearchTypeDesc</label>*@
+                <div class="crr-category-desc">
+                    @if (objData.SalIsEmptyDataSet(dstData))
+                    {
+                        <span class="margin5">No results found</span>
+                    }
+                    else
+                    {
+                        foreach (DataRow drwJob in dstData?.Tables[0]?.AsEnumerable().Take(5))
+                        {
+                            <a href="JavaScript:void(0);" onclick="javascript: SalSelectJobFromTypeahead(this);" class="crr-text-navy margin5">@Html.Raw(objUtility.SalBoldString(drwJob.FieldValue<string>(strJobField), strKeyword, StringComparison.OrdinalIgnoreCase, "matched"))</a>
+                        }
+                        objData.SalCleanDataSet(ref dstData);
+                    }
+
+                </div>
+            </div>
+        }
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataSet(ref dstData);
+}

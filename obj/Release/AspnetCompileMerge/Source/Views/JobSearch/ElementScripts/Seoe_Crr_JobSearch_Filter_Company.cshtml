@@ -1,0 +1,41 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    <div class="display-flex flex-justify-content-between">
+        <div class="crr-filter-buttons">
+            @{
+                var count = 1;
+                var isMobile = false;
+                if (!isMobile)
+                {
+                    count = 5;
+                }
+            }
+            <button class="btn btn-default border-blue">All</button>
+            <button class="btn btn-default border-blue">Microsoft</button>
+            @for (var i = 1; i <= count; i++)
+            {
+                <button class="btn btn-default border-blue">Company</button>
+                <button class="btn btn-default border-blue">Company words more than two</button>
+                <button class="btn btn-default border-blue">Company</button>
+                <button class="btn btn-default border-blue">Company</button>
+                <button class="btn btn-default border-blue">Company Name</button>
+                <button class="btn btn-default border-blue">Company Name More words</button>
+                <button class="btn btn-default border-blue">Company Name</button>
+                <button class="btn btn-default border-blue">Company</button>
+                <button class="btn btn-default border-blue">Company Name</button>
+            }
+        </div>
+        <div class="crr-view-more-filter-btn collapse-on-desktop">
+            <a href="#" class="crr-text-blue">view more</a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Search_FilterV2_DatePosted.cshtml", ex);
+}

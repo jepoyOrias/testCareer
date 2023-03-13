@@ -1,0 +1,109 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="modal" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="EditProfile">
+        <div class="modal-dialog modal-lg crr-modal-center" role="document">
+            <div class="modal-content">
+                <div class="modal-header padding-bottom0">
+                    <button type="button" class="close crr-modal-close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="text-bluedark text-size25 font-regular">×</span></button>
+                </div>
+                <div class="modal-header crr-modal-header-media padding-bottom0 padding-top0 padding-left15">
+                    <h3 class="crr-modal-title modal-title col-sm-7">Edit Profile</h3>
+                </div>
+                <div class="modal-header crr-modal-header-media padding-bottom0 padding-top10">
+                    <div class="text-size16">Please fill out the details below so that we can create the best experience for you.</div>
+                </div>
+
+                <div class="modal-body margin-bottom30">
+                    <div>
+                        <div class="crr-modal-flex-row crr-flex-wrap-modal crr-edit-profile-wrapper">
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">First Name</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Last Name</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Address Line 1</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Address Line 2</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">City</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">State</label>
+                                <div class="crr-select">
+                                    <select id="#" class="form-control crr-create-acc-input border-none text-gray text-size16">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Zip Code</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Country</label>
+                                <div class="crr-select">
+                                    <select id="#" class="form-control crr-create-acc-input border-none text-gray text-size16">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Phone Number</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Personal Website</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">LinkedIn</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+                            <div class="form-group crr-max-width margin-bottom25">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Twitter</label>
+                                <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                            </div>
+                            <div class="form-group crr-max-width crr-edit-profile-text-area-wrapper">
+                                <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Profile Headline</label>
+                                <textarea class="form-control border-none crr-edit-profile-text-area" rows="4"></textarea>
+                            </div>
+                        </div>                 
+                    </div>
+                    <div class="crr-modal-flex-col">
+                     
+                        <div class="display-flex margin-top20">
+                            <button class="btn btn-default  border-crr-blue crr-text-primary font-semibold margin-right15" type="submit" data-dismiss="modal" aria-label="Create Account" data-toggle="modal" data-target="">
+                                <div class="padding-left5 padding-right5">Cancel</div>
+                            </button>
+                            <button class="btn btn-cta font-semibold" type="submit" data-dismiss="modal" aria-label="Continue" data-toggle="modal" data-target="#GetJobAlertsModal"><div class="padding-left30 padding-right30">Save</div></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Account_Profile_EditProfile_Modal", ex);
+}

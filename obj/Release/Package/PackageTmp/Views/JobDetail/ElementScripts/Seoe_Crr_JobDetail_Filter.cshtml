@@ -1,0 +1,197 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    DataSet dstIndustry = null;
+    DataSet dstSkill = null;
+    DataTable dtbJobPostingData = null;
+    SearchKeywordType SelectedSearchKeywordType = SearchKeywordType.JobTitle;
+    DatePostedType SelectedDatePosted = DatePostedType.All;
+    EmploymentType SelectedEmploymentType = EmploymentType.All;
+    string strSelectedSkills = string.Empty;
+    string strSelectedIndustryFamilyCode = string.Empty;
+    string strSelectedIndustryFamilyDesc = "All";
+    string strKeyword = string.Empty;
+    string strLocation = string.Empty;
+    bool bolWFH = false;
+    string[] arrSelectedSkills = new string[0];
+    int intFiltersCount = 0;
+
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    dstSkill = objJob.SalGetAllCareerSkill();
+    dstIndustry = objJob.SalGetAllIndustries();
+    SelectedSearchKeywordType = (SearchKeywordType)int.Parse(string.IsNullOrEmpty(hshPageParams["SearchKeywordType"].ToString()) ? "1" : hshPageParams["SearchKeywordType"].ToString());
+    SelectedDatePosted = (DatePostedType)int.Parse(string.IsNullOrEmpty(hshPageParams["DatePostedType"].ToString()) ? "0" : hshPageParams["DatePostedType"].ToString());
+    SelectedEmploymentType = (EmploymentType)int.Parse(string.IsNullOrEmpty(hshPageParams["EmploymentType"].ToString()) ? "0" : hshPageParams["EmploymentType"].ToString());
+    strKeyword = hshPageParams["Keyword"]?.ToString();
+    strLocation = hshPageParams["Location"]?.ToString();
+    strSelectedSkills = hshPageParams["CareerSkillCodes"]?.ToString();
+    strSelectedIndustryFamilyCode = string.IsNullOrEmpty(hshPageParams["IndustryFamilyCode"]?.ToString()) ? "100" : hshPageParams["IndustryFamilyCode"]?.ToString();
+    bolWFH = !string.IsNullOrEmpty(hshPageParams["WorkForHome"]?.ToString()) && hshPageParams["WorkForHome"]?.ToString() == "1";
+    if (!string.IsNullOrEmpty(strSelectedSkills))
+    {
+        arrSelectedSkills = strSelectedSkills?.Split("|||".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+    }
+    if (!string.IsNullOrEmpty(hshPageParams["DatePostedType"].ToString()) && hshPageParams["DatePostedType"].ToString() != "0")
+    {
+        intFiltersCount += 1;
+    }
+    if (!string.IsNullOrEmpty(hshPageParams["EmploymentType"].ToString()) && hshPageParams["EmploymentType"].ToString() != "0")
+    {
+        intFiltersCount += 1;
+    }
+    if (!string.IsNullOrEmpty(hshPageParams["Skills"]?.ToString()))
+    {
+        intFiltersCount += 1;
+    }
+    if (!string.IsNullOrEmpty(hshPageParams["IndustryFamilyCode"]?.ToString()))
+    {
+        intFiltersCount += 1;
+    }
+    if (bolWFH)
+    {
+        intFiltersCount += 1;
+    }
+    if (!objData.SalIsEmptyDataSet(dstIndustry))
+    {
+        DataRow drwSelectedIndustry = dstIndustry.Tables[0].Select($"IndustryFamilyCode = '{strSelectedIndustryFamilyCode}'")?.FirstOrDefault();
+        if (drwSelectedIndustry != null)
+        {
+            strSelectedIndustryFamilyDesc = drwSelectedIndustry["IndustryFamilyName"].ToString();
+        }
+    }
+    <div class="flex-div">
+        <h2 class="crr-title-h2 flex-basis-fill crr-filter-title margin20" data-toggle="collapse" data-target="#crr-filter-wrapper" aria-expanded="false"><span class="text-size42">Job Listings</span><span class="icon-crr-filter collapse"><sup class="badge">@intFiltersCount</sup></span></h2>
+        <div id="crr-filter-wrapper" class="crr-filter-wrapper flex-basis-fill collapse">
+            <div class="crr-filter-reset display-flex flex-justify-content-between">
+                <div class="font-bold text-navy margin-right10">
+                    <div class="margin-right10 text-size24">Filters</div>
+                    <div>@($"{intFiltersCount} {(intFiltersCount == 1 ? "Filter" : "Filters")} Set")</div>
+                </div>
+                <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strKeyword,strLocation:strLocation,searchType:SelectedSearchKeywordType)" class="crr-reset-btn"><span class="icon-crr-refresh margin-right5"></span><span class="font-semibold">Reset All</span></a>
+            </div>
+            <div class="crr-filter-item">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown"><span class="margin-right10 @(SelectedDatePosted!=DatePostedType.All?"collapse":"")">Date Posted</span><span class="crr-jobfield @(SelectedDatePosted==DatePostedType.All?"collapse":"")">@objUtility.SalGetEnumDescription(SelectedDatePosted)</span></span>
+                    <ul class="dropdown-menu filters-single" onclick="event.stopPropagation();">
+                        <li class="crr-filter-subtitle">Date Posted</li>
+                        @foreach (DatePostedType datapostedtype in (DatePostedType[])Enum.GetValues(typeof(DatePostedType)))
+                        {
+                            string strSelectedClass = "";
+                            string strHref = objJob.SalGenerateCareerJobSearchUrl(strKeyword: strKeyword, strLocation: strLocation, datePostedType: datapostedtype, employmentType: SelectedEmploymentType, strCareerSkillCodes: strSelectedSkills, strIndustryFamilyCode: strSelectedIndustryFamilyCode, bolWFH: bolWFH, searchType: SelectedSearchKeywordType);
+                            if (datapostedtype == SelectedDatePosted)
+                            {
+                                strSelectedClass = "class=filters-selected";
+                            }
+                            if (datapostedtype != DatePostedType.JustPosted)
+                            {
+                                <li @strSelectedClass><a href="@strHref">@objUtility.SalGetEnumDescription(datapostedtype)</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="crr-filter-item">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown"><span class="margin-right10 @(SelectedEmploymentType!=EmploymentType.All?"collapse":"")">Job Type</span><span class="crr-jobfield @(SelectedEmploymentType==EmploymentType.All?"collapse":"")">@objUtility.SalGetEnumDescription(SelectedEmploymentType)</span></span>
+                    <ul class="dropdown-menu filters-single" onclick="event.stopPropagation();">
+                        <li class="crr-filter-subtitle">Job Type</li>
+                        @foreach (EmploymentType employmenttype in ((EmploymentType[])Enum.GetValues(typeof(EmploymentType))).Where(q => q != EmploymentType.None))
+                        {
+                            string strSelectedClass = "";
+                            string strHref = objJob.SalGenerateCareerJobSearchUrl(strKeyword: strKeyword, strLocation: strLocation, datePostedType: SelectedDatePosted, employmentType: employmenttype, strCareerSkillCodes: strSelectedSkills, strIndustryFamilyCode: strSelectedIndustryFamilyCode, bolWFH: bolWFH, searchType: SelectedSearchKeywordType);
+                            if (employmenttype == SelectedEmploymentType)
+                            {
+                                strSelectedClass = "class=filters-selected";
+                            }
+                            <li @strSelectedClass><a href="@strHref">@objUtility.SalGetEnumDescription(employmenttype)</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="crr-filter-item">
+                <div class="dropdown" id="crr-skill-dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="margin-right10">Skills</span>
+                        @if (arrSelectedSkills?.Length > 0)
+                        {
+                            <span class="crr-jobfield badge">@(arrSelectedSkills?.Length)</span>
+                        }
+                    </span>
+                    <div class="dropdown-menu filters-single" onclick="event.stopPropagation();">
+                        <div class="crr-filter-subtitle">Skills</div>
+                        <div class="crr-allskills-filter @(arrSelectedSkills?.Length == 0 ? "filters-selected" : "")"><a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword: strKeyword, strLocation: strLocation, datePostedType: SelectedDatePosted, employmentType: SelectedEmploymentType, strIndustryFamilyCode: strSelectedIndustryFamilyCode,bolWFH:bolWFH,searchType:SelectedSearchKeywordType)">All</a></div>
+                        <div role="separator" class="divider"></div>
+                        <div class="crr-skill-searchinput">
+                            <span class="icon-crr-search text-bluebright"></span>
+                            <input type="search" placeholder="Search" autocomplete="off" value="" />
+                        </div>
+                        <ul class="crr-skill-items"></ul>
+                        <div class="text-right">
+                            <button class="btn crr-btn crr-btn-bluedark font-semibold crr-skill-reset-btn" onclick="javascript: resetSelectedSkills(this);"><span class="margin0">Reset</span></button>
+                            <button class="btn crr-btn font-semibold" onclick="javascript: searchJobBySkills();"><span>Apply</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crr-filter-item">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown"><span class="margin-right10 @(strSelectedIndustryFamilyCode != "100"?"collapse":"")">Industry</span><span class="crr-jobfield @(strSelectedIndustryFamilyCode == "100"?"collapse":"")">@strSelectedIndustryFamilyDesc</span></span>
+                    <div class="dropdown-menu filters-single" onclick="event.stopPropagation();">
+                        <div class="crr-filter-subtitle">Industry</div>
+                        <ul>
+                            <li @(strSelectedIndustryFamilyCode == "100" ? "class=filters-selected" : "")><a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword: strKeyword, strLocation: strLocation, datePostedType: SelectedDatePosted, employmentType: SelectedEmploymentType, strCareerSkillCodes: strSelectedSkills,bolWFH:bolWFH,searchType:SelectedSearchKeywordType)">All</a></li>
+                            @if (!objData.SalIsEmptyDataSet(dstIndustry))
+                            {
+                                string strIndustryFamilyCode = string.Empty;
+                                string strIndustryFamilyName = string.Empty;
+                                foreach (DataRow drwIndustry in dstIndustry.Tables[0].Select())
+                                {
+                                    strIndustryFamilyCode = drwIndustry["IndustryFamilyCode"].ToString();
+                                    string strSelectedClass = "";
+                                    string strHref = objJob.SalGenerateCareerJobSearchUrl(strKeyword: strKeyword, strLocation: strLocation, datePostedType: SelectedDatePosted, employmentType: SelectedEmploymentType, strCareerSkillCodes: strSelectedSkills, strIndustryFamilyCode: strIndustryFamilyCode, bolWFH: bolWFH, searchType: SelectedSearchKeywordType);
+                                    if (string.Compare(strIndustryFamilyCode, strSelectedIndustryFamilyCode) == 0)
+                                    {
+                                        strSelectedClass = "class=filters-selected";
+                                    }
+                                    <li @strSelectedClass><a href="@strHref">@drwIndustry["IndustryFamilyName"]</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="crr-filter-item">
+                <a class="crr-checkbox" href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword: strKeyword, strLocation: strLocation, datePostedType: SelectedDatePosted, employmentType: SelectedEmploymentType, strCareerSkillCodes: strSelectedSkills, strIndustryFamilyCode: strSelectedIndustryFamilyCode, bolWFH: !bolWFH, searchType: SelectedSearchKeywordType)">
+                    <input type="checkbox" class="collapse" @(bolWFH ? "checked" : "") value="" /><span>Remote Only</span>
+                </a>
+            </div>
+            <div class="crr-filter-item crr-filter-reset-mobile-invisible">
+                <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strKeyword,strLocation:strLocation,searchType:SelectedSearchKeywordType)" class="crr-reset-btn"><span class="icon-crr-refresh margin-right5"></span><span class="font-semibold">Reset All</span></a>
+            </div>
+        </div>
+    </div>
+
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataSet(ref dstIndustry);
+    objData.SalCleanDataSet(ref dstSkill);
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+}

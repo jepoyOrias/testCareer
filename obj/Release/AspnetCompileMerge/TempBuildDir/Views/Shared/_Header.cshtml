@@ -1,0 +1,165 @@
+﻿
+<div class="crr-parent-header crr-header--sticky">
+    <div class="crr-emp-global-gradient">
+        <nav class="navbar navbar-static-top">
+            <div class="display-flex flex-justify-content-between flex-basis-fill">
+                <div class="crr-emp-navbar-header">
+                    <a class="crr-emp-navbar-brand" href="@ViewBag.EmployerBaseURL/"><img src="@Url.Content("~/Images/Career_logo.svg")" onerror="this.src='@Url.Content("~/Images/Career_logo.svg")'" width="200" alt="Career.com"></a>
+                    <button type="button" class="crr-emp-navbar-toggle" data-toggle="collapse" data-target="#nav-global-header-primary" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-drag-handle text-bluedark text-size22"></span>
+                    </button>
+                    <a href="#" class="crr-profile collapse-on-desktop" data-toggle="collapse" data-target="#nav-global-header-profile" aria-expanded="false">
+                        <img src="~/Images/profile-icon.svg" class="img-circle" width="36" height="36" />
+                    </a>
+                </div>
+                <div class="collapse crr-header-global-navcontainer navbar-right" id="nav-global-header-primary">
+                    <div class="crr-emp-header-global-menu-content">
+                        <a href="#" class="crr-emp-btn-modal-close" aria-label="Close" data-toggle="collapse" data-target="#nav-global-header-primary" aria-expanded="false">
+                            <img src="~/Images/icon-cancel.svg" />
+                        </a>
+                        <ul class="crr-header-global-nav nav navbar-nav clear-both margin-top0">
+                            <li class="collapse-on-desktop">
+                                <div class="crr-searchinput ">
+                                    <input type="search" name="q" id="txt_typeahead_findjob" class="crr-global-search-input font-italic tt-input" placeholder="" autocomplete="off">
+                                    <span class="icon-search text-blue text-size22" onclick="document.getElementById('form_findjob').submit()"></span>
+                                    <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);" style="display: none;"></span>
+                                    <div class="crr-findjob-typeahead-menu" style="display: none;"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <a id="crr-jobs-dropdown" href="#" class="dropdown-toggle crr-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span>Jobs</span>
+                                    <img src="~/Images/icon-big-expand.svg" class="collapse-on-desktop" width="16" height="16" />
+                                </a>
+                                <ul id="crr-jobs-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="jobs">
+                                    <li> <a class="crr-header-nav-link" href="#">Search Jobs</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">Browse</li>
+                                    <li> <a class="crr-header-nav-link" href="#">By Industry</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">By Location</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">By State</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">By Skill</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">By Job Category</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a id="crr-companies-dropdown" href="#" class="dropdown-toggle crr-header-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span>Companies</span>
+                                    <img src="~/Images/icon-big-expand.svg" class="collapse-on-desktop " width="16" height="16" />
+                                </a>
+                                <ul id="crr-companies-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="companies">
+                                    <li> <a class="crr-header-nav-link" href="#">Search Companies</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">Explore</li>
+                                    <li> <a class="crr-header-nav-link" href="#">Education</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Financial Services</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Healthcare</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Hospitality</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Logistics</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Manufacturing</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Retail</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Technology</a></li>
+                                    <li> <a class="crr-header-nav-link" href="#">Transportation</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        @{
+                            var bolUserSign = true;
+                        }
+
+                        @if (bolUserSign)
+                        {
+                            <div class=" crr-header-global-nav-btns crr-collapse-m">
+                                <button type="button" class="btn btn-default crr-bg-primary text-white text-size16 font-bold carr-title" data-toggle="modal" data-target="#SignInCreateAccount1stStepModal">Sign in</button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="display-flex flex-align-item-center">
+                                <div class="crr-header-global-nav-btns collapse-on-mobile margin-left20 margin-right10">
+                                    <div class="dropdown bg-grayfill" id="crr-profile-dropdown-btn">
+                                        <a href="#" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="icon-crr-profile text-size14"></span>
+                                            <span class="icon-crr-triangle-down crr-profile-icon"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right crr-profile-dropdown ">
+                                            <li class="list-group padding-bottom0">
+                                                <span class="icon-crr-profile"></span>
+                                                <a href="#" class="crr-header-nav-link">email@company.com</a>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li class="dropdown-header">Manage</li>
+                                            <li class="list-group">
+                                                <span class="icon-crr-ring"></span>
+                                                <a class="crr-header-nav-link" href="#">Job Alerts</a>
+                                            </li>
+                                            <li class="list-group">
+                                                <span class="icon-crr-heart"></span>
+                                                <a class="crr-header-nav-link" href="#">Saved Jobs</a>
+                                            </li>
+                                            <li class="list-group">
+                                                <span class="icon-crr-gears"></span>
+                                                <a class="crr-header-nav-link" href="#">Settings</a>
+                                            </li>
+                                            <li class="list-group">
+                                                <span class="icon-crr-out"></span>
+                                                <a class="crr-header-nav-link" href="#">Sign Out</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="collapse crr-header-global-navcontainer collapse-on-desktop navbar-right" id="nav-global-header-profile">
+                    <div class="crr-emp-header-global-menu-content">
+                        <a href="#" class="crr-emp-btn-modal-close" aria-label="Close" data-toggle="collapse" data-target="#nav-global-header-profile" aria-expanded="false">
+                            <img src="~/Images/icon-cancel.svg" />
+                        </a>
+                        <ul class="crr-header-global-nav nav navbar-nav crr-profile-dropdown">
+                            <li class="list-group  padding-bottom0">
+                                <span class="icon-crr-profile "></span>
+                                <a href="#" class="list-group-item active padding-bottom0">
+                                    <h4 class="list-group-item-heading text-size12 font-semibold margin-bottom0 text-uppercase text-gray">My Account</h4>
+                                    <p class="list-group-item-text text-blue">email@company.com</p>
+                                </a>
+                            </li>
+                            <li class="list-group">
+                                <span class="icon-crr-ring"></span>
+                                <a class="crr-header-nav-link" href="#">Job Alerts</a>
+                            </li>
+                            <li class="list-group">
+                                <span class="icon-crr-heart"></span>
+                                <a class="crr-header-nav-link" href="#">Saved Jobs</a>
+                            </li>
+                            <li class="list-group">
+                                <span class="icon-crr-gears"></span>
+                                <a class="crr-header-nav-link" href="#">Account Management</a>
+                            </li>
+                            <li class="list-group">
+                                <span class="icon-crr-out"></span>
+                                <a class="crr-header-nav-link" href="#">Sign Out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_SignIn_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_CreateAccount_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_ConfirmEmail_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_AccountConfirmed_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_ForgotPassword_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_ResetPassword_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Onboarding_AboutYourself_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Onboarding_AboutYourself_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Onboarding_GetJobAlerts_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Onboarding_CompleteProfile_Modal.cshtml")
+@Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Onboarding_AccountCreated_Modal.cshtml")

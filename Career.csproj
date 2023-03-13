@@ -1,0 +1,975 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{55DB57DC-E050-42DE-8840-F4D84CEC3A3E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Career</RootNamespace>
+    <AssemblyName>Career</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44322</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CareerJobBoardLuceneSearcher, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CareerJobBoardLuceneSearcher.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Kentor.OwinCookieSaver, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kentor.OwinCookieSaver.1.1.1\lib\net452\Kentor.OwinCookieSaver.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\packages\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.2.2\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.2.2\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.2.2\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.LinkedIn, Version=2.0.0.0, Culture=neutral, PublicKeyToken=1328b8c16b108c43, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.LinkedIn.2.26.0\lib\net45\Owin.Security.Providers.LinkedIn.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Claims, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Claims.4.3.0\lib\net46\System.Security.Claims.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="adsConfig.xml" />
+    <Content Include="bin\CareerJobBoardLuceneSearcher.dll" />
+    <Content Include="bin\Lucene.Net.dll" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\arrow-down.png" />
+    <Content Include="Images\arrow-up.png" />
+    <Content Include="Images\assets_circle_right.svg" />
+    <Content Include="Images\Assets_footer_bg.png" />
+    <Content Include="Images\Assets_footer_bg_mobile.svg" />
+    <Content Include="Images\best-fit-you.svg" />
+    <Content Include="Images\collapse-up.svg" />
+    <Content Include="Images\crr-down-icon.svg" />
+    <Content Include="Images\down-icon.svg" />
+    <Content Include="Images\icon-arrow-down-circle.svg" />
+    <Content Include="Images\icon-arrow-up-circle.svg" />
+    <Content Include="Images\icon-big-collapse.svg" />
+    <Content Include="Images\icon-big-expand.svg" />
+    <Content Include="Images\icon-bookmark-blank.svg" />
+    <Content Include="Images\icon-bookmark-blue.svg" />
+    <Content Include="Images\icon-cancel.svg" />
+    <Content Include="Images\career.ico" />
+    <Content Include="Images\Career_logo.svg" />
+    <Content Include="Images\footer-bg-mobile.svg" />
+    <Content Include="Images\ic-checked.svg" />
+    <Content Include="Images\ic-unchecked.svg" />
+    <Content Include="Images\icon-carousel.svg" />
+    <Content Include="Images\icon-expand.svg" />
+    <Content Include="Images\icon-location.svg" />
+    <Content Include="Images\icon-to_top.svg" />
+    <Content Include="Images\Banner\categoryDetail_IMG.png" />
+    <Content Include="Images\Banner\categoryLanding_IMG.png" />
+    <Content Include="Images\Banner\industryDetail_IMG.png" />
+    <Content Include="Images\Banner\industryLanding_img.png" />
+    <Content Include="Images\Banner\locationDetail_IMG.png" />
+    <Content Include="Images\Banner\locationLanding_IMG.png" />
+    <Content Include="Images\Banner\skillDetail_IMG.png" />
+    <Content Include="Images\Banner\skillLanding_IMG.png" />
+    <Content Include="Images\Banner\stateDetail_IMG.png" />
+    <Content Include="Images\Banner\stateLanding_IMG.jpg" />
+    <Content Include="Images\Banner\stateLanding_IMG.png" />
+    <Content Include="Images\level-I-careerpathicon.svg" />
+    <Content Include="Images\level-II-careerpathicon.svg" />
+    <Content Include="Images\level-III-careerpathicon.svg" />
+    <Content Include="Images\most-recent-job-postings.svg" />
+    <Content Include="Images\Navigation\close-panel.png" />
+    <Content Include="Images\Navigation\close-promo-bar.png" />
+    <Content Include="Images\Navigation\down-arrow-promo-bar.png" />
+    <Content Include="Images\Navigation\facebook-footer-mobile.svg" />
+    <Content Include="Images\Navigation\facebook-footer.png" />
+    <Content Include="Images\Navigation\facebook-footer.svg" />
+    <Content Include="Images\Navigation\404.svg" />
+    <Content Include="Images\Navigation\linked-in-footer-mobile.svg" />
+    <Content Include="Images\Navigation\linked-in-footer.png" />
+    <Content Include="Images\Navigation\linked-in-footer.svg" />
+    <Content Include="Images\Navigation\right-arrow.svg" />
+    <Content Include="Images\Navigation\search.png" />
+    <Content Include="Images\next-arrow.svg" />
+    <Content Include="Images\off-button-with-word.svg" />
+    <Content Include="Images\on-button-with-word.svg" />
+    <Content Include="Images\prev-arrow.svg" />
+    <Content Include="Images\profile-arrow-icon.svg" />
+    <Content Include="Images\profile-icon.svg" />
+    <Content Include="Images\profile-image.png" />
+    <Content Include="Images\profile.jpg" />
+    <Content Include="Images\search_BG_large.jpg" />
+    <Content Include="Images\search_BG_mobile.jpg" />
+    <Content Include="Images\social_icon_alpple.svg" />
+    <Content Include="Images\social_icon_facebook.svg" />
+    <Content Include="Images\social_icon_google.svg" />
+    <Content Include="Images\social_icon_linkedIn.svg" />
+    <Content Include="Images\social_icon_microsoft.svg" />
+    <Content Include="Images\spinner-typeahead.gif" />
+    <Content Include="Images\Navigation\twitter-footer-mobile.svg" />
+    <Content Include="Images\Navigation\twitter-footer.png" />
+    <Content Include="Images\Navigation\twitter-footer.svg" />
+    <Content Include="Images\top-company.svg" />
+    <Content Include="Images\turn-off-icon.svg" />
+    <Content Include="Images\turn-on-icon.svg" />
+    <Content Include="Images\up-icon.svg" />
+    <Content Include="Images\user_default_pic.png" />
+    <Content Include="Styles\Career\CSS\bootstrap-career-web.min.css">
+      <DependentUpon>bootstrap-career-web.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Career\fonts\SA-newicons.svg" />
+    <Content Include="Styles\ElementStyles\CSS\cookieconsent-3.0.3.min.css" />
+    <Content Include="Styles\ElementStyles\CSS\ElementStyles.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Account.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Account.min.css">
+      <DependentUpon>Seos_Crr_Account.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Company.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Company.min.css">
+      <DependentUpon>Seos_Crr_Company.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Dropdown.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Header_Global.min.css">
+      <DependentUpon>Seos_Crr_Header_Global.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Index.min.css">
+      <DependentUpon>Seos_Crr_Index.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_JobAlert.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_JobDetail.min.css">
+      <DependentUpon>Seos_Crr_JobDetail.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Jobs.min.css">
+      <DependentUpon>Seos_Crr_Jobs.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_JobSearch.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_JobSearch.min.css">
+      <DependentUpon>Seos_Crr_JobSearch.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal.min.css">
+      <DependentUpon>Seos_Crr_Legal.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_Accessibility.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_Accessibility.min.css">
+      <DependentUpon>Seos_Crr_Legal_Accessibility.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_DPA.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_DPA.min.css">
+      <DependentUpon>Seos_Crr_Legal_DPA.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_PP.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_PP.min.css">
+      <DependentUpon>Seos_Crr_Legal_PP.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_PrivacyControls.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Legal_PrivacyControls.min.css">
+      <DependentUpon>Seos_Crr_Legal_PrivacyControls.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Jobs.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Search.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_JobDetail.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Index.css" />
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Search.min.css">
+      <DependentUpon>Seos_Crr_Search.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\ElementStyles\CSS\Seos_Crr_Header_Global.css" />
+    <Content Include="Styles\ElementStyles\CSS\swiper.css" />
+    <Content Include="Styles\ElementStyles\CSS\swiper.min.css">
+      <DependentUpon>swiper.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Career\CSS\bootstrap-career-web.css" />
+    <Content Include="Styles\Career\fonts\iconfont.svg" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\OFL.txt" />
+    <Content Include="Styles\Career\icons\add.svg" />
+    <Content Include="Styles\Career\icons\adjust.svg" />
+    <Content Include="Styles\Career\icons\alert.svg" />
+    <Content Include="Styles\Career\icons\announcement.svg" />
+    <Content Include="Styles\Career\icons\arrow-circle-down.svg" />
+    <Content Include="Styles\Career\icons\arrow-circle-left.svg" />
+    <Content Include="Styles\Career\icons\arrow-circle-right.svg" />
+    <Content Include="Styles\Career\icons\arrow-circle-up.svg" />
+    <Content Include="Styles\Career\icons\arrow-down.svg" />
+    <Content Include="Styles\Career\icons\arrow-fill-down.svg" />
+    <Content Include="Styles\Career\icons\arrow-fill-up.svg" />
+    <Content Include="Styles\Career\icons\arrow-left.svg" />
+    <Content Include="Styles\Career\icons\arrow-right.svg" />
+    <Content Include="Styles\Career\icons\arrow-up.svg" />
+    <Content Include="Styles\Career\icons\articles.svg" />
+    <Content Include="Styles\Career\icons\bars.svg" />
+    <Content Include="Styles\Career\icons\block.svg" />
+    <Content Include="Styles\Career\icons\blocks.svg" />
+    <Content Include="Styles\Career\icons\books.svg" />
+    <Content Include="Styles\Career\icons\calendar.svg" />
+    <Content Include="Styles\Career\icons\career-path.svg" />
+    <Content Include="Styles\Career\icons\charts.svg" />
+    <Content Include="Styles\Career\icons\chat.svg" />
+    <Content Include="Styles\Career\icons\check-toggle.svg" />
+    <Content Include="Styles\Career\icons\check.svg" />
+    <Content Include="Styles\Career\icons\chevron-right.svg" />
+    <Content Include="Styles\Career\icons\circle.svg" />
+    <Content Include="Styles\Career\icons\cloud-data.svg" />
+    <Content Include="Styles\Career\icons\columns.svg" />
+    <Content Include="Styles\Career\icons\comment-filled.svg" />
+    <Content Include="Styles\Career\icons\comment.svg" />
+    <Content Include="Styles\Career\icons\company-size-1.svg" />
+    <Content Include="Styles\Career\icons\company-size-2.svg" />
+    <Content Include="Styles\Career\icons\company-size-3.svg" />
+    <Content Include="Styles\Career\icons\company-size-4.svg" />
+    <Content Include="Styles\Career\icons\company-size-5.svg" />
+    <Content Include="Styles\Career\icons\company-size-6.svg" />
+    <Content Include="Styles\Career\icons\company.svg" />
+    <Content Include="Styles\Career\icons\compare.svg" />
+    <Content Include="Styles\Career\icons\copy.svg" />
+    <Content Include="Styles\Career\icons\csv.svg" />
+    <Content Include="Styles\Career\icons\cursor.svg" />
+    <Content Include="Styles\Career\icons\customize.svg" />
+    <Content Include="Styles\Career\icons\dashboard.svg" />
+    <Content Include="Styles\Career\icons\dollar.svg" />
+    <Content Include="Styles\Career\icons\dots.svg" />
+    <Content Include="Styles\Career\icons\drag-handle.svg" />
+    <Content Include="Styles\Career\icons\edit.svg" />
+    <Content Include="Styles\Career\icons\education.svg" />
+    <Content Include="Styles\Career\icons\email.svg" />
+    <Content Include="Styles\Career\icons\employees.svg" />
+    <Content Include="Styles\Career\icons\event.svg" />
+    <Content Include="Styles\Career\icons\excel.svg" />
+    <Content Include="Styles\Career\icons\export.svg" />
+    <Content Include="Styles\Career\icons\factory.svg" />
+    <Content Include="Styles\Career\icons\family.svg" />
+    <Content Include="Styles\Career\icons\filter.svg" />
+    <Content Include="Styles\Career\icons\flight-risk.svg" />
+    <Content Include="Styles\Career\icons\gauge.svg" />
+    <Content Include="Styles\Career\icons\gear.svg" />
+    <Content Include="Styles\Career\icons\guage.svg" />
+    <Content Include="Styles\Career\icons\heart.svg" />
+    <Content Include="Styles\Career\icons\hybrid.svg" />
+    <Content Include="Images\icon-quote.svg" />
+    <Content Include="Styles\Career\icons\job-check.svg" />
+    <Content Include="Styles\Career\icons\job-matched.svg" />
+    <Content Include="Styles\Career\icons\job-new.svg" />
+    <Content Include="Styles\Career\icons\job.svg" />
+    <Content Include="Styles\Career\icons\lightning.svg" />
+    <Content Include="Styles\Career\icons\list.svg" />
+    <Content Include="Styles\Career\icons\magnet.svg" />
+    <Content Include="Styles\Career\icons\market-data.svg" />
+    <Content Include="Styles\Career\icons\match-jobs.svg" />
+    <Content Include="Styles\Career\icons\medical.svg" />
+    <Content Include="Styles\Career\icons\megamenu.svg" />
+    <Content Include="Styles\Career\icons\message.svg" />
+    <Content Include="Styles\Career\icons\monitor.svg" />
+    <Content Include="Styles\Career\icons\paymarket.svg" />
+    <Content Include="Styles\Career\icons\pdf.svg" />
+    <Content Include="Styles\Career\icons\people-send.svg" />
+    <Content Include="Styles\Career\icons\pharma.svg" />
+    <Content Include="Styles\Career\icons\play.svg" />
+    <Content Include="Styles\Career\icons\powerpoint.svg" />
+    <Content Include="Styles\Career\icons\price.svg" />
+    <Content Include="Styles\Career\icons\print.svg" />
+    <Content Include="Styles\Career\icons\range.svg" />
+    <Content Include="Styles\Career\icons\recent.svg" />
+    <Content Include="Styles\Career\icons\refresh.svg" />
+    <Content Include="Styles\Career\icons\remove.svg" />
+    <Content Include="Styles\Career\icons\report-arrow.svg" />
+    <Content Include="Styles\Career\icons\report-bolt.svg" />
+    <Content Include="Styles\Career\icons\report-check.svg" />
+    <Content Include="Styles\Career\icons\report-view.svg" />
+    <Content Include="Styles\Career\icons\rock.svg" />
+    <Content Include="Styles\Career\icons\satellite.svg" />
+    <Content Include="Styles\Career\icons\search.svg" />
+    <Content Include="Styles\Career\icons\security.svg" />
+    <Content Include="Styles\Career\icons\slot.svg" />
+    <Content Include="Styles\Career\icons\social-facebook.svg" />
+    <Content Include="Styles\Career\icons\social-linkedin.svg" />
+    <Content Include="Styles\Career\icons\social-twitter.svg" />
+    <Content Include="Styles\Career\icons\star.svg" />
+    <Content Include="Styles\Career\icons\structures.svg" />
+    <Content Include="Styles\Career\icons\surveys.svg" />
+    <Content Include="Styles\Career\icons\sync.svg" />
+    <Content Include="Styles\Career\icons\target.svg" />
+    <Content Include="Styles\Career\icons\trash.svg" />
+    <Content Include="Styles\Career\icons\trending.svg" />
+    <Content Include="Styles\Career\icons\triangle-down.svg" />
+    <Content Include="Styles\Career\icons\triangle-left.svg" />
+    <Content Include="Styles\Career\icons\triangle-right.svg" />
+    <Content Include="Styles\Career\icons\triangle-up.svg" />
+    <Content Include="Styles\Career\icons\zip.svg" />
+    <Content Include="Styles\Career\img\avatar-hardeman.jpg" />
+    <Content Include="Styles\Career\img\avatar-lee.jpg" />
+    <Content Include="Styles\Career\img\avatar-lirio.jpg" />
+    <Content Include="Styles\Career\img\avatar-placeholder.jpg" />
+    <Content Include="Styles\Career\img\avatar-ring.svg" />
+    <Content Include="Styles\Career\img\avatar-sturman.jpg" />
+    <Content Include="Styles\Career\img\avatar1.png" />
+    <Content Include="Styles\Career\img\avatar2.png" />
+    <Content Include="Styles\Career\img\basetcc-personalized-placeholder1.png" />
+    <Content Include="Styles\Career\img\basetcc-personalized-placeholder2.png" />
+    <Content Include="Styles\Career\img\basetcc-placeholder1.png" />
+    <Content Include="Styles\Career\img\basetcc-placeholder2.png" />
+    <Content Include="Styles\Career\img\bg-callout-grad.png" />
+    <Content Include="Styles\Career\img\bg-comparison-arrow.svg" />
+    <Content Include="Styles\Career\img\bg-comparison-new.svg" />
+    <Content Include="Styles\Career\img\bg-comparison-old.svg" />
+    <Content Include="Styles\Career\img\bg-line-dotted-h.png" />
+    <Content Include="Styles\Career\img\bg-line-dotted-v.png" />
+    <Content Include="Styles\Career\img\bg-photo-above.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-coffee.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-confident.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-group.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-manufacturing.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-meeting.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-office.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-stickynotes.jpg" />
+    <Content Include="Styles\Career\img\bg-photo-whiteboard.jpg" />
+    <Content Include="Styles\Career\img\btn-down-arrow.png" />
+    <Content Include="Styles\Career\img\btn-down-arrow.svg" />
+    <Content Include="Styles\Career\img\ca-btn.png" />
+    <Content Include="Styles\Career\img\ca-btn.svg" />
+    <Content Include="Styles\Career\img\cacta2.png" />
+    <Content Include="Styles\Career\img\carousel-sample-a.png" />
+    <Content Include="Styles\Career\img\carousel-sample-b.png" />
+    <Content Include="Styles\Career\img\chart-flightrisk.jpg" />
+    <Content Include="Styles\Career\img\chart-paymarkets.jpg" />
+    <Content Include="Styles\Career\img\chart-pricing.jpg" />
+    <Content Include="Styles\Career\img\chart-structure.jpg" />
+    <Content Include="Styles\Career\img\companalyst_logo-blue.png" />
+    <Content Include="Styles\Career\img\docs-photo-prep.png" />
+    <Content Include="Styles\Career\img\flight-risk-analysis.png" />
+    <Content Include="Styles\Career\img\geolocation.png" />
+    <Content Include="Styles\Career\img\geolocation.svg" />
+    <Content Include="Styles\Career\img\hero-gradient-smlscreen.jpg" />
+    <Content Include="Styles\Career\img\hero-gradient-widescreen.png" />
+    <Content Include="Styles\Career\img\hero-gradient.png" />
+    <Content Include="Styles\Career\img\icon-tab-benefits-selected.svg" />
+    <Content Include="Styles\Career\img\icon-tab-benefits.svg" />
+    <Content Include="Styles\Career\img\icon-tab-compare-selected.svg" />
+    <Content Include="Styles\Career\img\icon-tab-compare.svg" />
+    <Content Include="Styles\Career\img\icon-tab-jobinfo-selected.svg" />
+    <Content Include="Styles\Career\img\icon-tab-jobinfo.svg" />
+    <Content Include="Styles\Career\img\icon-tab-salary-selected.svg" />
+    <Content Include="Styles\Career\img\icon-tab-salary.svg" />
+    <Content Include="Styles\Career\img\icon-tab-similarjobs-selected.svg" />
+    <Content Include="Styles\Career\img\icon-tab-similarjobs.svg" />
+    <Content Include="Styles\Career\img\icon_salaryresearch.png" />
+    <Content Include="Styles\Career\img\industry-finance.jpg" />
+    <Content Include="Styles\Career\img\industry-healthcare.jpg" />
+    <Content Include="Styles\Career\img\industry-it.jpg" />
+    <Content Include="Styles\Career\img\industry-manufacturing.jpg" />
+    <Content Include="Styles\Career\img\industry-pharma.jpg" />
+    <Content Include="Styles\Career\img\integration-ready.png" />
+    <Content Include="Styles\Career\img\linkblock1.jpg" />
+    <Content Include="Styles\Career\img\linkblock2.jpg" />
+    <Content Include="Styles\Career\img\linkblock3.jpg" />
+    <Content Include="Styles\Career\img\Loading.gif" />
+    <Content Include="Styles\Career\img\logo-accenture.svg" />
+    <Content Include="Styles\Career\img\logo-christus.svg" />
+    <Content Include="Styles\Career\img\logo-companalyst.svg" />
+    <Content Include="Styles\Career\img\logo-compx.png" />
+    <Content Include="Styles\Career\img\logo-fujitsu.svg" />
+    <Content Include="Styles\Career\img\logo-hertz.svg" />
+    <Content Include="Styles\Career\img\logo-ncr.svg" />
+    <Content Include="Styles\Career\img\logo-nike.svg" />
+    <Content Include="Styles\Career\img\logo-stevie.svg" />
+    <Content Include="Styles\Career\img\logo-ventana.svg" />
+    <Content Include="Styles\Career\img\logo-wegmans.svg" />
+    <Content Include="Styles\Career\img\notebook.png" />
+    <Content Include="Styles\Career\img\photo-2col%402x.png" />
+    <Content Include="Styles\Career\img\photo-2col.png" />
+    <Content Include="Styles\Career\img\photo-busywork.png" />
+    <Content Include="Styles\Career\img\photo-export.png" />
+    <Content Include="Styles\Career\img\photo-group.jpg" />
+    <Content Include="Styles\Career\img\photo-healthcare.jpg" />
+    <Content Include="Styles\Career\img\photo-interview.jpg" />
+    <Content Include="Styles\Career\img\photo-phone.jpg" />
+    <Content Include="Styles\Career\img\photo-presentation.jpg" />
+    <Content Include="Styles\Career\img\photo-price.png" />
+    <Content Include="Styles\Career\img\photo-singlecol%402x.png" />
+    <Content Include="Styles\Career\img\photo-singlecol-mirror%402x.png" />
+    <Content Include="Styles\Career\img\photo-singlecol-mobile.png" />
+    <Content Include="Styles\Career\img\photo-singlecol.png" />
+    <Content Include="Styles\Career\img\placeholder-ai.png" />
+    <Content Include="Styles\Career\img\placeholder-estimate.png" />
+    <Content Include="Styles\Career\img\placeholder-map-sm.jpg" />
+    <Content Include="Styles\Career\img\placeholder-map-sm.png" />
+    <Content Include="Styles\Career\img\placeholder-map-sm.svg" />
+    <Content Include="Styles\Career\img\placeholder-map.jpg" />
+    <Content Include="Styles\Career\img\placeholder-map.png" />
+    <Content Include="Styles\Career\img\placeholder-map.svg" />
+    <Content Include="Styles\Career\img\placeholder-nav-promo-ventana.jpg" />
+    <Content Include="Styles\Career\img\placeholder-nav-promo-ventana.png" />
+    <Content Include="Styles\Career\img\placeholder-nav-promo.jpg" />
+    <Content Include="Styles\Career\img\placeholder-nav-promo.png" />
+    <Content Include="Styles\Career\img\placeholder-user.jpg" />
+    <Content Include="Styles\Career\img\sa-ca-cta-preview.png" />
+    <Content Include="Styles\Career\img\Salary-CompData-Surveys.jpg" />
+    <Content Include="Styles\Career\img\Salary-CompData-Surveys.png" />
+    <Content Include="Styles\Career\img\salary-logo-reversed.png" />
+    <Content Include="Styles\Career\img\salary-logo-reversed.svg" />
+    <Content Include="Styles\Career\img\salary-logo.png" />
+    <Content Include="Styles\Career\img\salary-logo.svg" />
+    <Content Include="Styles\Career\img\sample-screenshot.png" />
+    <Content Include="Styles\Career\img\UserPicture.jpg" />
+    <Content Include="Styles\Career\js\bootstrap-career-web.js" />
+    <Content Include="Styles\Career\js\crr_cookieconsent.js" />
+    <Content Include="UtilityScripts\adsjs\googleads-config.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Account - Copy.min - Copy.js">
+      <DependentUpon>Seou_Crr_FacebookSignIn.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_FacebookSignIn.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_GoogleSignIn.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Account - Copy.min.js">
+      <DependentUpon>Seou_Crr_GoogleSignIn.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_Account.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Account.min.js">
+      <DependentUpon>Seou_Crr_Account.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_CenterModal.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Company.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Company.min.js">
+      <DependentUpon>Seou_Crr_Company.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_Jobs.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Jobs.min.js">
+      <DependentUpon>Seou_Crr_Jobs.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_JobSearch.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_JobSearch.min.js">
+      <DependentUpon>Seou_Crr_JobSearch.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\lib\cookieconsent-3.0.3.min.js" />
+    <Content Include="UtilityScripts\lib\corejs-typeahead.bundle-1.2.1.min.js" />
+    <Content Include="UtilityScripts\lib\jquery-3.3.1.min.js" />
+    <Content Include="UtilityScripts\lib\swiper.js" />
+    <Content Include="UtilityScripts\lib\swiper.min.js">
+      <DependentUpon>swiper.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_Constant.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Common.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Dropdown.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Helper.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Index.min.js">
+      <DependentUpon>Seou_Crr_Index.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_JobDetail.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Index.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_JobDetail.min.js">
+      <DependentUpon>Seou_Crr_JobDetail.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_Scroll.min.js">
+      <DependentUpon>Seou_Crr_Scroll.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_Search.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Search.min.js">
+      <DependentUpon>Seou_Crr_Search.js</DependentUpon>
+    </Content>
+    <Content Include="UtilityScripts\Career\Seou_Crr_Header_Global.js" />
+    <Content Include="UtilityScripts\Career\Seou_Crr_Scroll.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthenticationAttribute.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\Common\Seoc_Crr_AdsController.cs" />
+    <Compile Include="Controllers\Common\Seoc_Crr_DataAPIController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_JobAlertController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_CompanyController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_JobsController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_AccountController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_JobSearchController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_LegalController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_LoginController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_SearchController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_JobDetailController.cs" />
+    <Compile Include="Controllers\Seoc_Crr_IndexController.cs" />
+    <Compile Include="Gadgets\Seog_Crr_ApplicationCache.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Constant.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Cookie.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Data.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Extension.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Json.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Log.cs" />
+    <Compile Include="Gadgets\Seog_Crr_LuceneSearch.cs" />
+    <Compile Include="Gadgets\Seog_Crr_Utility.cs" />
+    <Compile Include="Gadgets\Seog_Crr_XmlHelper.cs" />
+    <Compile Include="Models\Seom_Crr_CareerJob.cs" />
+    <Compile Include="Models\Seom_Crr_GPTAdsLibrary.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="bundleconfig.json" />
+    <None Include="packages.config" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index.cshtml" />
+    <Content Include="Views\Index\LayoutScripts\Seol_Crr_Index.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdsActiveScripts.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdsDefineAdsSlot.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdsDefineVariable.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdsDisplayDesktopAd.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdsDisplayMobileAd.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdsHeaderBidding.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Partial_AdobeTrackingData.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Styles\Career\fonts\icomoon.ttf" />
+    <Content Include="Styles\Career\fonts\icomoon.woff" />
+    <Content Include="Styles\Career\fonts\icomoon.woff2" />
+    <Content Include="Styles\Career\fonts\salary_glyphhanger_output" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-Black.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-BlackItalic.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-Bold.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-BoldItalic.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-ExtraLight.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-ExtraLightItalic.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-Italic.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-Light.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-LightItalic.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-Regular.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-Semibold.ttf" />
+    <Content Include="Styles\Career\fonts\Source Sans Pro\SourceSansPro-SemiboldItalic.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Black-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Black-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Black-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-BlackItalic-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-BlackItalic-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-BlackItalic-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Bold-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Bold-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Bold-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Bold.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Bold.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Bold.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-BoldItalic-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-BoldItalic-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-BoldItalic-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-ExtraLight-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-ExtraLight-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-ExtraLight-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-ExtraLightItalic-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-ExtraLightItalic-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-ExtraLightItalic-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Italic-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Italic-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Italic-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Light-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Light-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Light-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Light.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Light.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Light.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-LightItalic-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-LightItalic-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-LightItalic-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular-zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Regular.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Semibold-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Semibold-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Semibold-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Semibold.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Semibold.woff" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-Semibold.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-SemiboldItalic-subset.ttf" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-SemiboldItalic-subset.woff2" />
+    <Content Include="Styles\Career\fonts\SourceSansPro-SemiboldItalic-subset.zopfli.woff" />
+    <Content Include="Styles\Career\fonts\iconfont.eot" />
+    <Content Include="Styles\Career\fonts\iconfont.ttf" />
+    <Content Include="Styles\Career\fonts\iconfont.woff" />
+    <Content Include="Styles\Career\fonts\iconfont.woff2" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_GlobalSearch.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_PopularSection.cshtml" />
+    <Content Include="Views\Shared\ElementScripts\Seoe_Crr_JobsSearchResult.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail.cshtml" />
+    <Content Include="Views\JobDetail\LayoutScripts\Seol_Crr_JobDetail.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_Schema.Organization.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_Schema.StructuredData.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_GlobalSearch.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_Filter.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_LeftColumn_JobListing_HttpPost.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn_CompanyOverview.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn_JobDetail.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Mobile\Seoe_Crr_JobDetail_RightColumn_CareerPathForJobTitle.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_LeftColumn_JobListing_HttpGet.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn_HowToBecome.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn_SkillsForJobTitle.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn_CareerPathForJobTitle.cshtml" />
+    <Content Include="Views\Legal\Index\LayoutScripts\Seol_Crr_Legal_Index.cshtml" />
+    <Content Include="Views\Legal\Index\ElementScripts\Seoe_Crr_Legal_Index.cshtml" />
+    <Content Include="Views\Legal\PP\ElementScripts\Seoe_Crr_Legal_PP.cshtml" />
+    <Content Include="Views\Legal\PP\LayoutScripts\Seol_Crr_Legal_PP.cshtml" />
+    <Content Include="Views\Legal\Accessibility\ElementScripts\Seoe_Crr_Legal_Accessibility.cshtml" />
+    <Content Include="Views\Legal\Accessibility\LayoutScripts\Seol_Crr_Legal_Accessibility.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn.cshtml" />
+    <Content Include="Views\Legal\DSA\ElementScripts\Seoe_Crr_Legal_DSA.cshtml" />
+    <Content Include="Views\Legal\DSA\LayoutScripts\Seol_Crr_Legal_DSA.cshtml" />
+    <Content Include="Views\Legal\PP\LayoutScripts\Seol_Crr_Legal_PC.cshtml" />
+    <Content Include="Views\Legal\PP\ElementScripts\Seoe_Crr_Legal_PC.cshtml" />
+    <Content Include="Views\Legal\DPA\ElementScripts\Seoe_Crr_Legal_DPA.cshtml" />
+    <Content Include="Views\Search\LayoutScripts\Seol_Crr_Search.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_Filter.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_GlobalSearch.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn_CareerPathForJobTitle.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn_CompanyOverview.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn_SkillsForJobTitle.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_LeftColumn_JobListing_HttpGet.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn_JobDetail.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn_HowToBecome.cshtml" />
+    <Content Include="Views\JobDetail\ElementScripts\Seoe_Crr_JobDetail_RightColumn_HotSearch.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_RightColumn_HotSearch.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_NoResults.cshtml" />
+    <Content Include="Resources\Career.com_Data_Use_and_NDA_Standard.pdf" />
+    <Content Include="Views\Shared\ElementScripts\Seoe_Crr_Filter_SkillList.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_RecentSearches.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_RecommendedJobs.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_SignUpJobAlert.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_AdvanceCareer.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_SavedJob.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_SavedJob.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_JobAlert_Detail.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_Search.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_DrillIn_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_DrillIn_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_DrillIn_Overview.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_DrillIn_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_DrillIn_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByIndustry_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByCategory.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByCity.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByIndustry.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByIndustry_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_BySkill.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByState.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByState_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_DrillIn_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_DrillIn_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_DrillIn_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByState_DrillIn_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_DrillIn_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_DrillIn_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_DrillIn_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCity_DrillIn_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByCity_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_DrillIn_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_DrillIn_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_DrillIn_Overview.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_DrillIn_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_DrillIn_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_ByCategory_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_ByCategory_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\LayoutScripts\Seol_Crr_Jobs_BySkill_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_DrillIn.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_DrillIn_Banner.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_DrillIn_JobAlert.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_DrillIn_Overview.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_DrillIn_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_DrillIn_SearchResults.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_SearchBox.cshtml" />
+    <Content Include="Views\Jobs\ElementScripts\Seoe_Crr_Jobs_BySkill_SearchResults.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_Banner.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_DrillIn.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_DrillIn_Banner.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_DrillIn_SearchBox.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_DrillIn_SearchResults.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_SearchBox.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_ByIndustry_SearchResults.cshtml" />
+    <Content Include="Views\Company\LayoutScripts\Seol_Crr_Company_ByIndustry.cshtml" />
+    <Content Include="Views\Company\LayoutScripts\Seol_Crr_Company_ByIndustry_DrillIn.cshtml" />
+    <Content Include="Views\Company\LayoutScripts\Seol_Crr_Company_CompanyDetail.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_CompanyDetail.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_CompanyDetail_JobAlert.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_CompanyDetail_Overview.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_CompanyDetail_SearchBox.cshtml" />
+    <Content Include="Views\Company\ElementScripts\Seoe_Crr_Company_CompanyDetail_SearchResults.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_SearchFilters.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_JobAlertSetupModal.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_AdvanceCareer_RecommendedJobs.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_AdvanceCareer_TopCompanies.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_AdvanceCareer_JobPostings.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_LoggedIn.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_LoggedIn_Profile.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_LoggedIn_RecommendedJobs.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_LoggedIn_RecentSearches.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_LoggedIn_TopCompanies.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_LoggedIn_Mobile.cshtml" />
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_SearchFilters_Mobile.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_AccountConfirmed_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_AccountSetting.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_AccountSetting_ChangePassword.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_AccountSetting_EmailSettings.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_AccountSetting_JobMatchPreferences.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_AccountSetting_PrivacyAndSecurity.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_DeleteAccount_Confirm_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_DeleteAccount_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_JobAlerts.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_Profile.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_Profile_EditProfile_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_Profile_UploadPhoto_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_SavedJobs.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Account_SavedJobs_Detail.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_ConfirmEmail_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_CreateAccount_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_ForgotPassword_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_ResetPassword_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_SignIn_Modal.cshtml" />
+    <Content Include="Views\Account\LayoutScripts\Seol_Crr_Account.cshtml" />
+    <Content Include="Views\Account\LayoutScripts\Seol_Crr_AccountSetting.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Onboarding_AboutYourself_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Onboarding_AccountCreated_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Onboarding_CompleteProfile_Modal.cshtml" />
+    <Content Include="Views\Account\ElementScripts\Seoe_Crr_Onboarding_GetJobAlerts_Modal.cshtml" />
+    <Content Include="Styles\Career\fonts\SA-newicons.eot" />
+    <Content Include="Styles\Career\fonts\SA-newicons.ttf" />
+    <Content Include="Styles\Career\fonts\SA-newicons.woff" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_DatePosted.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_Industry.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_JobLevel.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_JobTitle.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_JobType.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_Location.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_Salary.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_Skill.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_GlobalSearch.cshtml" />
+    <Content Include="Views\JobSearch\LayoutScripts\Seol_Crr_JobSearch.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_MostRecentJobs.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_TopCompanies.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_TopIndustries.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_TopSkills.cshtml" />
+    <Content Include="Views\Search\ElementScripts\Seoe_Crr_Search_States.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel_CareerPath.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel_Header.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel_HowToBecome.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel_JobDetail.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel_JobDetail_CompanyOverview.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_RightPanel_Skills.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_SearchResult_Filter.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_SearchResult_JobCard.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_SearchResult_SetUpJobAlert.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_SearchResult_Title.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_Company.cshtml" />
+    <Content Include="Views\JobSearch\ElementScripts\Seoe_Crr_JobSearch_Filter_Distance.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Index\ElementScripts\Seoe_Crr_Index_FeaturedJob.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Legal\DPA\LayoutScripts\" />
+    <Folder Include="Views\Seoc_Crr_Login\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51563</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44322/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties bundleconfig_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

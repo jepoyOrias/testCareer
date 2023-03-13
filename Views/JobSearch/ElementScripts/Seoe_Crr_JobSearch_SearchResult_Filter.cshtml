@@ -1,0 +1,33 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    <div class="crr-sr-filter-wrapper margin-top20">
+        <div class="crr-sr-filter flex-div flex-align-item-center">
+            <p class=" margin-bottom0 text-gray text-uppercase">Sort By</p>
+            <div class="dropdown">
+                <a class="cursor-pointer margin-left10 text-black" href="javascript:void(0)" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Date
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_SearchResult_SetUpJobAlert.cshtml")
+
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_SearchResult_Filter.cshtml", ex);
+}

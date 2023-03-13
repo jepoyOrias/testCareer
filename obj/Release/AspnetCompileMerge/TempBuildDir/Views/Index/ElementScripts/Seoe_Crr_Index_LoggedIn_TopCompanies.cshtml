@@ -1,0 +1,51 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+<div class="crr-top-companies-layout">
+    <h5 class="crr-top-companies">Top companies</h5>
+    <div class="crr-search-results">
+        @{
+
+            string[] companies = { "360 Concept", "Microsoft", "Google" };
+            Random random = new Random();
+        }
+
+        @for (var count = 0; count <= 4; count++)
+        {
+            Int32 Index = random.Next(0, companies.Length);
+            var companyName = companies[Index];
+
+            //We need to create a url for each item here For now i will use a static url
+
+            <div class="crr-top-companies-lists crr-search-result-drill-in">
+                <div class="crr-company-info">
+                    <div>
+                        <a href="#">
+                            <img class="crr-company-logo" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xODFjY2ZjZDMwMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE4MWNjZmNkMzAxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzE4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true">
+                        </a>
+                    </div>
+                    <div class="crr-company-desc crr-adv-flex-col">
+                        <div class="crr-search-item-title crr-text-primary font-bold">@companyName</div>
+                        <p class="crr-search-job-counts text-size13 crr-text-blue">2 Jobs</p>
+                        <p class="text-size12"><span class="text-charcoal margin-right5">INDUSTRY </span>Advertising/Marketing/PR</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="display-flex flex-justify-content-center">
+        <button class="btn btn-default  text-blue font-bold show-more-btn collapse-on-desktop  margin-top30" type="submit">Show more <span class="icon-crr-expandArrow text-blue text-size12 margin-left20 "></span></button>
+    </div>
+    <div class="crr-top-companies-show-more collapse-on-mobile">
+        <a href="#" class="crr-text-blue text-center">Show more</a>
+    </div>
+</div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index_LoggedIn_TopCompanies.cshtml", ex);
+}

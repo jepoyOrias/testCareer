@@ -1,0 +1,87 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    SearchKeywordType SelectedSearchType = SearchKeywordType.JobTitle;
+    string strPlaceHolders = "e.g. Accountant";
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    if (hshPageParams.ContainsKey("SearchKeywordType"))
+    {
+        SelectedSearchType = (SearchKeywordType)Convert.ToInt32(hshPageParams["SearchKeywordType"].ToString());
+        switch (SelectedSearchType)
+        {
+            case SearchKeywordType.JobTitle:
+                strPlaceHolders = "e.g. Accountant";
+                break;
+            case SearchKeywordType.Company:
+                strPlaceHolders = "e.g. Dollar General";
+                break;
+            case SearchKeywordType.Skill:
+                strPlaceHolders = "e.g. Estimating";
+                break;
+            case SearchKeywordType.CareerPath:
+                strPlaceHolders = "e.g. Assistant Manager";
+                break;
+        }
+    }
+    <div class="crr-find-job-wrapper crr-find-job-wrapper-listing">
+        <form id="form_findjob" name="findjob_form" action="~/jobs">
+            <div class="crr-searchtype-wrapper">
+                <span class="crr-searchby-label">Search By</span>
+                <ul class="crr-input-searchtype">
+                    @foreach (var searchType in ((SearchKeywordType[])Enum.GetValues(typeof(SearchKeywordType))).Where(q => q != SearchKeywordType.JobTitleAndCompany))
+                    {
+                        string strSelectedClass = "";
+                        if (searchType == SelectedSearchType)
+                        {
+                            strSelectedClass = "class=filters-selected";
+                        }
+                        <li @strSelectedClass>
+                            <label class="text-transform-none text-size14" data-field="searchtype" data-searchtype="@((byte)searchType)" onclick="javascript: changeSearchType(this);">
+                                <input type="radio" class="collapse" name="qt" @(!string.IsNullOrEmpty(strSelectedClass) ? "checked" : "") value="@((byte)searchType)" />@objUtility.SalGetEnumDescription(searchType)
+                            </label>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="input-group form-group">
+                <div class="crr-searchinput crr-job-searchinput">
+                    <input type="search" class="crr-findjob-typeahead-hint" readonly="">
+                    <input type="search" name="q" id="txt_typeahead_findjob"
+                           class="crr-findjob-typeahead-input font-italic tt-input"
+                           placeholder="@strPlaceHolders" autocomplete="off" value="@hshPageParams["Keyword"]">
+                    <span class="icon-search text-bluebright text-size22" onclick="document.getElementById('form_findjob').submit()"></span>
+                    <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                    <img class="crr-findjob-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                    <div class="crr-findjob-typeahead-menu"></div>
+                </div>
+            </div>
+            <div class="input-group form-group">
+                <div class="crr-searchinput">
+                    <input type="search" class="crr-location-typeahead-hint" readonly="">
+                    <input type="search" name="l" id="txt_typeahead_location"
+                           class="crr-location-typeahead-input font-italic tt-input"
+                           placeholder="Location" autocomplete="off" value="@hshPageParams["Location"]">
+                    <span class="icon-crr-location text-bluebright text-size22"></span>
+                    <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                    <img class="crr-location-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                    <div class="crr-location-typeahead-menu"></div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default crr-bg-primary">Find</button>
+        </form>
+    </div>
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}

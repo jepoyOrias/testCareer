@@ -1,0 +1,37 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="display-flex flex-justify-content-center">
+            <div class="crr-job-filters margin-top30">
+                <div class="crr-filter-heading">
+                    <div class="crr-text-blue text-uppercase">SEARCH FILTERS BASED ON YOUR PROFILE</div>
+                    <button class="btn btn-default padding-left0 border-none collapse-on-mobile" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-left">&times;</span>Clear All</button>
+                    <button class="btn btn-default border-none collapse-on-mobile" type="submit"><span class="icon-crr-filter"></span>Edit Filters</button>
+                </div>
+                <div class="margin-top20">
+                    <div class="crr-filter-list">
+                        <button class="btn btn-default border-crr-blue" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Posted: Past 24 Hours</button>
+                        <button class="btn btn-default border-crr-blue" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Commute radius: 30 mi</button>
+                        <button class="btn btn-default border-crr-blue collapse-on-mobile" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Include Remote</button>
+                        <button class="btn btn-default border-crr-blue collapse-on-mobile" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Waltham, MA</button>
+                        <button class="btn btn-default border-crr-blue collapse-on-mobile" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Skill: HTML </button>
+                        <button class="btn btn-default border-crr-blue collapse-on-mobile" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Skill: Communication</button>
+                        <button class="btn btn-default border-crr-blue collapse-on-mobile" type="submit"> <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right">&times;</span>Skill: Organization</button>
+                    </div>
+                    <div class="margin-top20 collapse-on-mobile">
+                        <a href="#" class="crr-text-blue margin-top10">Show more</a>
+                    </div>
+                    <div class="margin-top20 collapse-on-desktop crr-more-filters">
+                        <a href="#" class="crr-text-blue margin-top10">More Filters...</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index_SearchFilters.cshtml", ex);
+}

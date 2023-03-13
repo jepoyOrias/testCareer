@@ -1,0 +1,126 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    DataTable dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    string strCompanyName = dtbJobPostingData.Rows[0]["CompanyName"] as string;
+    string strJobTitle = dtbJobPostingData.Rows[0]["Title"] as string;
+    string strCityName = dtbJobPostingData.Rows[0]["City"] as string;
+    string strStateCode = dtbJobPostingData.Rows[0]["State"] as string;
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+
+    ViewBag.PageTitle = $"{strCompanyName} {strJobTitle} Job in {string.Join(", ", strCityName, strStateCode)} ";
+    ViewBag.MetaDescription = $"Apply for the Job of {strJobTitle} at{string.Join(", ", strCityName, strStateCode)} in Career.com. View job description, responsibilities, and qualifications for this position. ";
+
+    ViewBag.PrimaryCategoryNameForAdobeTracking = "jboard";
+    ViewBag.PageNameForAdobeTracking = "jboard:jobdetails";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_JobDetail.css?RelNum={ViewBag.ReleaseNum}")
+    if (Request.Browser.IsMobileDevice)
+    {
+        @Styles.Render("~/Styles/ElementStyles/CSS/swiper.css?RelNum=" + ViewBag.ReleaseNum)
+    }
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_JobDetail.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+
+@try
+{
+    @section Canonical
+    {
+        @*<link rel="canonical" href="@($"https://www.career.com{Request.Url.AbsolutePath.ToLower()}")" />*@
+        <link rel="canonical" href="@($"https://www.career.com{Request.Url.PathAndQuery.ToLower()}")" />
+    }
+
+    <!-- Structure Data -->
+    @RenderPage("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_Schema.StructuredData.cshtml")
+
+    <!-- Organization-->
+    @*@RenderPage("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_Schema.Organization.cshtml")*@
+
+    <div class="crr-layout-container padding-top12">
+        @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_GlobalSearch.cshtml")
+        <div class="border-bottom margin-bottom30 crr-joblisting">
+            <div class="crr-layout">
+                @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_Filter.cshtml")
+            </div>
+        </div>
+        <div class="crr-layout">
+            <div class="crr-layout-2a-a">
+                @RenderPage("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail.cshtml")
+            </div>
+            <div class="crr-layout-2a-b">
+                @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn_HotSearch.cshtml")
+                @* @Html.Partial("~/Views/Shared/ElementScripts/Partial_AdsDisplayDesktopAd.cshtml", new AdsUnit { AdsPositionType = AdsPositionType.RightNavAd })*@
+            </div>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+<script src="~/UtilityScripts/lib/jquery-3.3.1.min.js"></script>
+
+@if (Request.Browser.IsMobileDevice)
+{
+    <script type="text/javascript" src="~/UtilityScripts/Career/Seou_Crr_Scroll.js?RelNum=@ViewBag.ReleaseNum"></script>
+    <script type="text/javascript">window.addEventListener('load', salLoadTouchEvent, false);</script>
+}
+
+<script type="text/javascript">
+    //Add a script element as a child of the body
+    function lazyDownloadJS(jsFilePath) {
+        var element = document.createElement("script");
+        element.src = jsFilePath;
+        document.body.appendChild(element);
+    }
+</script>
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    <script src="~/UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/lib/swiper.min.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/Styles/Career/js/bootstrap-career-web.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    @*<script src="~/UtilityScripts/Career/Seou_Crr_Header_Global.js?RelNum=@ViewBag.ReleaseNum" defer></script>*@
+    <script src="~/UtilityScripts/Career/Seou_Crr_Constant.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Helper.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Common.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_JobDetail.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+}
+else
+{
+    bool bolIsMobileDevice = Request.Browser.IsMobileDevice;
+    int intFirstContentfulPaint_Timeout = 1000;
+    if (bolIsMobileDevice)
+    {
+        intFirstContentfulPaint_Timeout = 2200;
+    }
+
+    <script type="text/javascript">
+        //Add a script element as a child of the body
+        function lazyDownload() {
+            lazyDownloadJS("@Url.Content($"~/UtilityScripts/Career/Seou_Crr_JobDetail.min.js?RelNum={ViewBag.ReleaseNum}")");
+        }
+    </script>
+
+    <script type='text/javascript'>
+        var firstContentfulPaint_Timeout = @intFirstContentfulPaint_Timeout;
+        window.setTimeout(function () {
+            lazyDownload();
+        }, firstContentfulPaint_Timeout);
+    </script>
+}

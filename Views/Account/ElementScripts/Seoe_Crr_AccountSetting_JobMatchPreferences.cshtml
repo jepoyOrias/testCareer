@@ -1,0 +1,273 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+        <div class="crr-change-boder-style border-radius3 flex-div flex-align-item-start flex-justify-content-between padding20 margin-bottom15">
+            <div class="flex-column crr-container">
+                <div class="crr-privacy-security-title display-flex flex-justify-content-between">
+                    <div>
+                        <div class="carr-h2 crr-text-primary">Job Match Preferences</div>
+                        <div class="margin-top10 crr-text-primarydark text-size14">Improve your job search results</div>
+                    </div>
+                    <div>
+                        <img src="~/Images/down-icon.svg" class="crr-down-icon align-self-center" />
+                        <img src="~/Images/up-icon.svg" class="crr-up-icon align-self-center display-none" />
+                    </div>
+                </div>
+                <div class="crr-container-main display-none margin-top30">
+                    <div class="text-size18 font-bold margin-bottom15">Auto-Filter</div>
+                    <div class="crr-job-match-item flex-div flex-justify-content-between">
+                        <span>Automatically filter my search results</span>
+                        <div class="crr-automatically-filter">
+                            <img class="crr-on-button on-button-with-word align-self-center" src="/Images/on-button-with-word.svg">
+                            <img class="crr-off-button off-button-with-word align-self-center display-none" src="/Images/off-button-with-word.svg">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="text-size18 font-bold">Filters which are being applied to my searches</div>
+                    <div class="margin-top30">
+                        <div class="display-flex flex-align-item-center margin-bottom30">
+                            <div>
+                                <input type="checkbox" id="crr-remote-only" name="crr-remote-only" value="">
+                                <span class="text-navy text-size18">Remote only</span>
+                            </div>
+                            <button type="button" class="btn crr-reset-all margin-left30">
+                                <span class="icon-refresh"></span>
+                                Reset All
+                            </button>
+                        </div>
+                        <div class="margin-top10">
+                            <div>
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Date Posted</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Job Type</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="submit">
+                                                Account
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Location</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Job Titie</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Salary</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Skills <span class="badge crr-bg-blue margin-left20">3</span></div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">Job Level</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="crr-job-match-item">
+                                    <div>
+                                        <div class="crr-date-posted-item display-flex flex-justify-content-between">
+                                            <div class="text-size16">In dustry</div>
+                                            <div>
+                                                <img class="crr-circle-down-icon align-self-center" src="~/Images/icon-arrow-down-circle.svg" />
+                                                <img class="crr-circle-up-icon align-self-center display-none" src="~/Images/icon-arrow-up-circle.svg" />
+                                            </div>
+                                        </div>
+                                        <div class="crr-container-item  display-none margin-top20">
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                All
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past 24 Hours
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Week
+                                            </button>
+                                            <button class="btn btn-default crr-container-click-here-cancel font-semibold crr-text-primary text-size16 margin-top10" type="button">
+                                                Past Month
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_AccountSetting_JobMatchPreferences.cshtml", ex);
+}                

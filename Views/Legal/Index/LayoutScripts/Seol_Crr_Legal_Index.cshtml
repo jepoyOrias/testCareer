@@ -1,0 +1,20 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "Legal";
+    ViewBag.MetaDescription = "Legal for Career.com, including website terms of use, privacy policy, data subscription agreement, and more.";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="crr-layout-container">
+    @RenderPage("~/Views/Legal/Index/ElementScripts/Seoe_Crr_Legal_Index.cshtml")
+</div>

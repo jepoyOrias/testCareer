@@ -1,0 +1,98 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    string companyName = "Micorsoft";
+    string desc = "Software Development | Redmond, WA | 1,000,000 followers";
+    string companyInitial = companyName.Substring(0, 1);
+    bool bolHasImage = false;
+
+}
+
+@try
+{
+    <div class="crr-company-info flex-align-item-center margin-top30">
+        <div>
+            @if (!bolHasImage)
+            {
+                <div class="crr-default-company-logo">@companyInitial</div>
+            }
+            else
+            {
+                <a href="#">
+                    <img class="crr-company-logo" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xODFjY2ZjZDMwMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE4MWNjZmNkMzAxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzE4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true">
+                </a>
+            }
+        </div>
+        <div class="crr-company-desc flex-grow-1">
+            <h1 class="crr-h1-title margin-top5  padding-bottom0 line-height-1">@companyName</h1>
+            <div class="text-size14">@desc</div>
+        </div>
+    </div>
+
+    <div class="crr-overview margin-top40">
+        <div class="crr-title-border text-size20 text-black font-bold">
+            Overview
+        </div>
+        <div class="crr-company-overview margin-top20">
+            <div class="crr-company-left">
+                <div class="crr-company-credentials flex-grow-1">
+
+                    <div class="crr-company-credential">
+                        <p>WEBSITE</p>
+                        <p>Microsoft.com</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>HEADQUARTERS</p>
+                        <p>Redmond, WA</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>SIZE</p>
+                        <p> >50,000</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>FOUNDED</p>
+                        <p>1976</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>CEO</p>
+                        <p>Satya Nadella</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>TYPE</p>
+                        <p>Public</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>REVENUE</p>
+                        <p> >$100B</p>
+                    </div>
+                    <div class="crr-company-credential">
+                        <p>INDUSTRY</p>
+                        <p>Software Development</p>
+                    </div>
+
+                </div>
+              
+                <div class="margin-top30">
+                    <div class="text-size14 margin-bottom10 font-semibold">Related Companies</div>
+                    <div class="crr-related-company">
+                        <a  href="#" class="crr-text-blue">Apple</a>
+                        <a  href="#" class="crr-text-blue">IBM</a>
+                        <a  href="#" class="crr-text-blue">Oracle</a>
+                    </div>
+                   
+                </div>
+                <div class="margin-top30">
+                    <div class="text-size14 margin-bottom20 font-semibold">About @companyName</div>
+                    <p class="crr-over-view-desc">Founded in Marseille in 1966 by Pierre Bellon, Sodexo is the global leader in services that improve Quality of Life, an essential factor in individual and organizational performance. Operating in 64 countries, Sodexo serves 100 million consumers each day through its unique combination of On-site Services, Benefits and Rewards Services and Personal and Home Services. Through its more than 100 services, Sodexo provides clients an integrated offering developed over 50 years of experience: from foodservices, reception, maintenance and cleaning more...</p>
+                </div>
+               
+            </div>
+            <div class="crr-company-right">
+                <img class="crr-company-overview-image" src="~/Images/Banner/skillDetail_IMG.png">
+             </div>
+        </div>
+       </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Company_CompanyDetail_Overview.cshtml", ex);
+}

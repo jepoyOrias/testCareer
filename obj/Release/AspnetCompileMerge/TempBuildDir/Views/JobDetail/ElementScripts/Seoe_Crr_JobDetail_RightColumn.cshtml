@@ -1,0 +1,84 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+@try
+{
+    @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn_JobDetail.cshtml")
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+
+
+@try
+{
+    @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn_CompanyOverview.cshtml")
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+
+@try
+{
+    @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn_SkillsForJobTitle.cshtml")
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+
+@try
+{
+    if (Request.Browser.IsMobileDevice)
+    {
+        @Html.Partial("~/Views/JobDetail/ElementScripts/Mobile/Seoe_Crr_JobDetail_RightColumn_CareerPathForJobTitle.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn_CareerPathForJobTitle.cshtml")
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+
+
+
+@try
+{
+    @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn_HowToBecome.cshtml")
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+
+

@@ -1,0 +1,101 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+    ViewBag.PageTitle = "Search Job by title, career path, skills, and company";
+    ViewBag.MetaDescription = "Search job openings in Career.com. Research job info, top skills, career path, and company overviews.";
+
+    ViewBag.PrimaryCategoryNameForAdobeTracking = "seo";
+    ViewBag.PageNameForAdobeTracking = "seo:jobsearch";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/swiper.css?RelNum=" + ViewBag.ReleaseNum)
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Index.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Search.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Company.css?RelNum={ViewBag.ReleaseNum}")    
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Search.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+@section noindex
+{
+    <meta name="robots" content="noindex">
+}
+
+@try
+{
+    <div class="crr-global-job margin-bottom30">
+        <div class="crr-layout-container padding-top12">
+            @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_States.cshtml")
+        </div>
+
+        <div class="crr-layout-container padding-top12">
+            @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_MostRecentJobs.cshtml")
+        </div>
+
+        <div class="crr-layout-container padding-top12">
+            @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_TopCompanies.cshtml")
+        </div>
+
+        <div class="crr-layout-container padding-top12">
+            @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_TopSkills.cshtml")
+        </div>
+
+        <div class="crr-layout-container padding-top12">
+            @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_TopIndustries.cshtml")
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+
+}
+
+<script src="~/UtilityScripts/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    //Add a script element as a child of the body
+    function lazyDownloadJS(jsFilePath) {
+        var element = document.createElement("script");
+        element.src = jsFilePath;
+        document.body.appendChild(element);
+    }
+</script>
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    <script src="~/Styles/Career/js/bootstrap-career-web.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Header_Global.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Constant.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Helper.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Common.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/Career/Seou_Crr_Search.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+    <script src="~/UtilityScripts/lib/swiper.js?RelNum=@ViewBag.ReleaseNum" defer></script>
+}
+else
+{
+    bool bolIsMobileDevice = Request.Browser.IsMobileDevice;
+    int intFirstContentfulPaint_Timeout = 1000;
+    if (bolIsMobileDevice)
+    {
+        intFirstContentfulPaint_Timeout = 2200;
+    }
+
+    <script type="text/javascript">
+        //Add a script element as a child of the body
+        function lazyDownload() {
+            lazyDownloadJS("@Url.Content($"~/UtilityScripts/Career/Seou_Crr_Search.min.js?RelNum={ViewBag.ReleaseNum}")");
+        }
+    </script>
+
+    <script type='text/javascript'>
+        var firstContentfulPaint_Timeout = @intFirstContentfulPaint_Timeout;
+        window.setTimeout(function () {
+            lazyDownload();
+        }, firstContentfulPaint_Timeout);
+    </script>
+}

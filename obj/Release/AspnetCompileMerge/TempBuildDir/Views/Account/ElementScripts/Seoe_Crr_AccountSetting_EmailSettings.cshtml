@@ -1,0 +1,55 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+        <div class="crr-change-boder-style border-radius3 flex-div flex-align-item-start flex-justify-content-between padding20 margin-bottom15">
+            <div class="flex-column crr-container">
+                <div class="crr-privacy-security-title display-flex flex-justify-content-between">
+                    <div>
+                        <div class="carr-h2 crr-text-primary">Email Settings</div>
+                        <div class="margin-top10 crr-text-primarydark text-size14">Settings for messages sent by Career.com</div>
+                    </div>
+                        <div>
+                            <img src="~/Images/down-icon.svg" class="crr-down-icon align-self-center" />
+                            <img src="~/Images/up-icon.svg" class="crr-up-icon align-self-center display-none" />
+                        </div>
+                    </div>
+                    <div class="crr-container-main display-none margin-top40">
+                        <div class="flex-div flex-justify-content-between margin-bottom20">
+                            <div class="crr-main-item-left">Receive career advice and newsletters from Career.com</div>
+                            <div class="crr-job-match-item display-flex flex-justify-content-between margin-right30 ">
+                                <div>
+                                    <img class="crr-on-button on-button-with-word align-self-center" src="/Images/on-button-with-word.svg">
+                                    <img class="crr-off-button off-button-with-word align-self-center display-none" src="/Images/off-button-with-word.svg">
+                                </div>                                   
+                                    <div class="margin-left20 font-bold  text-size16 crr-setting-updated">SETTING UPDATED</div>
+                            </div>
+                        </div>
+                        <div class="flex-div flex-justify-content-between margin-bottom20">
+                            <div class="crr-main-item-left">Receive promotional emails from Career.com</div>
+                            <div class="crr-job-match-item display-flex flex-justify-content-between margin-right30">
+                                <div>
+                                    <img class="crr-on-button on-button-with-word align-self-center" src="/Images/on-button-with-word.svg">
+                                    <img class="crr-off-button off-button-with-word align-self-center display-none" src="/Images/off-button-with-word.svg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-div flex-justify-content-between margin-bottom20">
+                            <div class="crr-main-item-left">Receive selected emails from our partners</div>
+                            <div class="crr-job-match-item display-flex flex-justify-content-between margin-right30">
+                                <div>
+                                    <img class="crr-on-button on-button-with-word align-self-center" src="/Images/on-button-with-word.svg">
+                                    <img class="crr-off-button off-button-with-word align-self-center display-none" src="/Images/off-button-with-word.svg">
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_AccountSetting_EmailSettings.cshtml", ex);
+}

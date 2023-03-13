@@ -1,0 +1,44 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="section-start crr-emp-hero-section hero-bg-fill crr-legal-content">
+        <div class="crr-layout-section crr-layout-section-mobile-omit padding-bottom0">
+            <div class="crr-content flex-div">
+                <div class="crr-emp-legal-hero-text">
+                    <label class="crr-emp-hero-eyebrow">Legal</label>
+                    <h1 class="crr-title-h1">Legal Center</h1>
+                </div>
+                <div class="crr-horizontal-sec">
+                    <div class="crr-horizontal-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class=" crr-layout-section crr-content crr-legal-content"> 
+        <div class="crr-item">
+            <div class="margin-bottom30">
+                <a class="font-bold text-size18" href="@Url.Content("~/legal/dsa")">Data Subscription Agreement</a>
+            </div>
+            <div class="margin-bottom30">
+                <a class="font-bold text-size18" href="@Url.Content("~/legal/privacy-controls")">Privacy Control</a>
+            </div>
+            <div class="margin-bottom30">
+                <a class="font-bold text-size18" href="@Url.Content("~/legal/dpa")">Data Processing Addendum</a>
+            </div>
+            <div class="margin-bottom30">
+                <a class="font-bold text-size18" href="@Url.Content("~/legal/pp")">Privacy Policy</a>
+            </div>
+            <div class="margin-bottom30">
+                <a class="font-bold text-size18" href="@Url.Content("~/legal/accessibility")">Accessibility</a>
+            </div>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index.cshtml", ex);
+}

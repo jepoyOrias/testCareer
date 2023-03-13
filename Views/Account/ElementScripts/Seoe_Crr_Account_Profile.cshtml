@@ -1,0 +1,89 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-user-profile-layout collapse-on-mobile">
+        <div class="crr-user-profile-info margin-top20">
+            <div class="text-center ">
+                <div class="crr-profile">
+                    <div class="crr-user-profile-img">
+                        <img src="~/Images/profile.jpg">
+                        <div class="crr-user-change-profile-btn"><span class="icon-add crr-text-primary text-size22 font-semibold"></span></div>
+                    </div>
+                    <div class="crr-user-profile-name crr-text-primarydark font-semibold text-size28 margin-top20">
+                        Jim Walters
+                    </div>
+                    <div class="crr-user-edit-profile  margin-top15">
+                        <button class="btn btn-default crr-border-primary crr-text-primary font-semibold text-size15" data-toggle="modal" data-target="#EditProfile"><div class="padding-left15 padding-right15">Edit Profile</div></button>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group  crr-user-basic-info margin-bottom20  margin-top10">
+                <li class="list-group-item crr-text-primary font-semibold text-size16">
+                    <span class="icon-email margin-right10 crr-text-primary text-size20"></span>
+                    jim.walters@gmail.com
+                </li>
+                <li class="list-group-item crr-text-blue font-semibold text-size16">
+                    <span class="icon-crr-phone margin-right10 crr-text-blue text-size20"></span>
+                    999-999-9999
+                </li>
+                <li class="list-group-item crr-text-blue font-semibold text-size16">
+                    <span class="icon-crr-board margin-right10 crr-text-blue text-size20"></span>
+                    <div>I've been working at Salary.com for 5 years and been in the compensation field for 10 years.</div>
+                </li>
+                <li class="list-group-item crr-text-blue font-semibold text-size16">
+                    <span class="icon-crr-location margin-right10 crr-text-blue text-size20"></span>Add Location
+                </li>
+                <li class="list-group-item crr-text-blue font-semibold text-size16">
+                    <span class="icon-crr-chaine margin-right10 crr-text-blue text-size20"></span>Add Website
+                </li>
+                <li role="separator" class="list-group-item divider padding0 margin10"></li>
+                <li class="list-group-item crr-text-primary font-semibold text-size16">
+                    <span class="icon-crr-gear margin-right10 crr-text-primary text-size20"></span>
+                    My settings
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="collapse-on-desktop">
+        <div class=" bg-grayfill">
+            <div class="display-flex flex-justify-content-between padding10">
+                <div class="crr-user-profile-name crr-text-primarydark align-self-center font-semibold text-size28">
+                    Jim Walters
+                </div>
+                <div class="crr-user-profile-img">
+                    <img src="~/Images/profile.jpg">
+                    <div class="crr-user-change-profile-btn"><span class="icon-add crr-text-primary text-size26 font-semibold"></span></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <ul class="list-group  crr-user-basic-info margin-bottom20  margin-top10 border-bottom ">
+                <li class="list-group-item crr-text-primary font-semibold text-size16">
+                    <span class="icon-email margin-right10 crr-text-primary text-size20"></span>
+                    jim.walters@gmail.com
+                </li>
+                <li class="list-group-item crr-text-blue font-semibold text-size16">
+                    <span class="icon-crr-phone margin-right10 crr-text-blue text-size20"></span>
+                    999-999-9999
+                </li>
+                <li class="list-group-item crr-text-blue font-semibold text-size16">
+                    <span class="icon-crr-location margin-right10 crr-text-blue text-size20"></span>Boston, MA
+                </li>
+                <li class="bg-grayfill padding10 margin20 margin-top10">
+                    <div class="text-center crr-text-primary font-semibold text-size16 cursor-pointer">Show More <span class="icon-crr-expandArrow text-size14"></span></div>
+                </li>
+                <li class="display-flex flex-justify-content-between margin20">
+                    <button class="btn btn-lg crr-border-primary crr-text-primary font-semibold text-size15"><div class="padding-left20 padding-right20">Edit Profile</div></button>
+                    <button class="btn btn-lg  crr-bg-primary text-white font-semibold text-size15"><div class="padding-left10">My Settings<span class="icon-crr-gear margin-left5"></span> </div></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Account_Profile.cshtml", ex);
+}

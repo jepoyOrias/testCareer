@@ -1,0 +1,40 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "Job Search, Find a Job Near You";
+    ViewBag.MetaDescription = "Find your next job on Career.com, type your location, and get started to search job openings by title, company, skills, and career path.";
+    ViewBag.PrimaryCategoryNameForAdobeTracking = "homepage";
+    ViewBag.PageNameForAdobeTracking = "homepage:landingpage";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Jobs.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Jobs.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="crr-layout-container">
+    @RenderPage("~/Views/Jobs/ElementScripts/Seoe_Crr_Jobs_BySkill.cshtml")
+</div>
+
+@Scripts.Render("~/UtilityScripts/lib/jquery-3.3.1.min.js")
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    <script src="@Url.Content("~/Styles/Career/js/bootstrap-career-web.js")" defer></script>
+    <script src="@Url.Content("~/UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js")" defer></script>
+    @*<script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Header_Global.js")" defer></script>*@
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Constant.js")" defer></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Helper.js")" defer></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Common.js")" defer></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_CenterModal.js")" defer></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Jobs.js")" defer></script>
+}
+else
+{
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Jobs.min.js?RelNum=" + ViewBag.ReleaseNum)"></script>
+}

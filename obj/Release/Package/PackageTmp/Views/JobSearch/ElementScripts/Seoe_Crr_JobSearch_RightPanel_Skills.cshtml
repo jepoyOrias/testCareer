@@ -1,0 +1,93 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+
+
+    <div class="crr-skills-wrapper  padding-bottom20">
+        <a id="crr-jobs-dropdown " class="btn btn-link sa-btn-collapse text-size20 font-bold crr-sr-collapse  text-black" role="button" data-toggle="collapse" data-target="#crr-sr-skills" aria-expanded="false" aria-controls="crr-sr-skills">
+            Skills for this Job
+            <img src="/Images/icon-arrow-down-circle.svg" width="20" height="20">
+        </a>
+
+        <div class="collapse sa-collapse" id="crr-sr-skills">
+
+            <div class="crr-skill">
+                <p class="margin-top10">Some verbiage will go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis leo et tellus luctus euismod a at mi. Vestibulum vestibulum finibus sollicitudin. Mauris sit amet est turpis. </p>
+                <div class="crr-sr-skill margin-top20">
+                    <div class="crr-sr-info">
+                        <div class="font-bold">Analysis</div>
+                        <a href="javascript:void(0)" class="crr-text-blue">55 Openings</a>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div class="font-bold">General Ledger</div>
+                        <a href="javascript:void(0)" class="crr-text-blue">55 Openings</a>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div class="font-bold">GAAP</div>
+                        <a href="javascript:void(0)" class="crr-text-blue">55 Openings</a>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div class="font-bold">Accounting</div>
+                        <a href="javascript:void(0)" class="crr-text-blue">55 Openings</a>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div class="font-bold">Communication</div>
+                        <a href="javascript:void(0)" class="crr-text-blue">55 Openings</a>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div class="font-bold">Organization</div>
+                        <a href="javascript:void(0)" class="crr-text-blue">55 Openings</a>
+                    </div>
+                </div>
+
+                @* See More *@
+                <div class="collapse-on-desktop">
+                    <div class="display-flex flex-justify-content-center margin-top30">
+                        <button class="btn btn-default  text-blue font-bold show-more-btn collapse-on-desktop" type="submit">Show more <span class="icon-crr-expandArrow text-blue text-size12 margin-left20 "></span></button>
+                    </div>
+                </div>
+
+                <div class="crr-sr-other-jobs">
+                    <div class="crr-other-jobs-card margin-top20">
+                        @for (var count = 1; count <= 3; count++)
+                        {
+                            var jobtitle = "Job-Title" + count;
+
+                            <div class="crr-sr-job-card margin-top15 " data-title="@jobtitle">
+                                <em class="text-sie14">For the skill of <strong>Graphic Designer</strong></em>
+                                <div class="display-flex flex-justify-content-between margin-top10">
+                                    <div class="crr-sr-job-info">
+                                        <div class="crr-company-desc flex-grow-1">
+                                            <div class="crr-search-item-title text-size18 crr-text-primary font-bold">Graphic Designer, Jr</div>
+                                            <div class="crr-text-blue margin-bottom10 margin-top20">Microsoft</div>
+                                            <div>Redmond, WA | Full Time</div>
+                                            <div class="text-size14 margin-top5">$45k-58k (estimate)</div>
+                                        </div>
+                                    </div>
+                                    <div class="crr-job-info-action flex-column flex-justify-content-between">
+                                        <span class="icon-crr-bookmark"></span>
+                                        <span>2d</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+     </div>
+
+
+
+
+       
+            }
+            catch (Exception ex)
+            {
+            objLog.SalError("Seoe_Crr_JobSearch_RightPanel_Skills.cshtml", ex);
+            }

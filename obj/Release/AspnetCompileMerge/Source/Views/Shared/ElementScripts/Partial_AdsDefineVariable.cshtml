@@ -1,0 +1,59 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+    Seom_Crr_GPTAdsLibrary objAdsLibrary = ViewBag.ObjAds;
+    string strUserIP = HttpContext.Current.Request.ServerVariables["REMOTE_HOST"];
+    string ibarJobTitle = string.Empty;
+}
+@try
+{
+    if (objAdsLibrary == null)
+    {
+        objAdsLibrary = new Seom_Crr_GPTAdsLibrary();
+    }
+    if (!String.IsNullOrEmpty(objAdsLibrary.strSearchKeyword))
+    {
+        ibarJobTitle = objAdsLibrary.strSearchKeyword;
+    }
+    else
+    {
+        if (!String.IsNullOrEmpty(objAdsLibrary.strAdsKeyWord))
+        {
+            ibarJobTitle = objAdsLibrary.strAdsKeyWord.Replace("'", "\'");
+        }
+    }
+
+    <SCRIPT LANGUAGE="JavaScript">
+        var adsPageName = '@objAdsLibrary.strAdsPageName';
+        var adsAreaID = '@objAdsLibrary.strAdsAreaID';
+        var adsNarrowCode = '@objAdsLibrary.strAdsNarrowCode';
+        var adsKeyWord = '@objAdsLibrary.strAdsKeyWord.Replace("'", "\'")';
+        var adSrc = '@objAdsLibrary.strAdSrc';
+        var MvcAdsUrl = "@objAdsLibrary.strMVCadsUrl";
+        var ibarZipCode = "@HttpContext.Current.Server.UrlEncode(objAdsLibrary.strAdsZipCode)";
+        var ibarCityCode = "@HttpContext.Current.Server.UrlEncode(objAdsLibrary.strAdsCity)";
+        var ibarStateCode = "@HttpContext.Current.Server.UrlEncode(objAdsLibrary.strAdsStateCode)";
+        var ibarCountryCode = "@HttpContext.Current.Server.UrlEncode(objAdsLibrary.strAdsCountry)";
+        var IbarProp = {
+            jobtitle: "@ibarJobTitle",
+            zipcode: ibarZipCode,
+            citycode: ibarCityCode,
+            statecode: ibarStateCode,
+            Country: ibarCountryCode,
+            uip: '@strUserIP',
+            uag: navigator.userAgent,
+            PageName: '@objAdsLibrary.strAdsPageName',
+            DispVersion: 'v2',
+			ShowZipRecruiterAPIKey: '@Request["ShowZipRecruiterAPIKey"]'
+        };
+    </SCRIPT>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Partial_AdsDefineVariable.cshtml: ", ex);
+}
+finally
+{
+    objAdsLibrary = null;
+    objLog = null;
+}

@@ -1,0 +1,15 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    <div class="font-bold">
+        231 Account Executive <span class="font-regular">jobs in</span> Boston, MA
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_SearchResult_Title.cshtml", ex);
+}

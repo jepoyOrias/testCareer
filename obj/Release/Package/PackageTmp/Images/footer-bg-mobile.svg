@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="479" viewBox="0 0 320 479">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="矩形_83" data-name="矩形 83" width="320" height="479" transform="translate(0.064 7926)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="蒙版组_3" data-name="蒙版组 3" transform="translate(-0.064 -7926)" clip-path="url(#clip-path)">
+    <g id="组_230" data-name="组 230">
+      <g id="组_229" data-name="组 229">
+        <g id="组_228" data-name="组 228">
+          <g id="组_227" data-name="组 227">
+            <g id="组_223" data-name="组 223">
+              <path id="路径_72" data-name="路径 72" d="M2650.556,7844.328c290.57,0,526.125,235.555,526.125,526.125s-235.555,526.125-526.125,526.125Z" transform="translate(-2933.936)" fill="#f6f6f9"/>
+              <path id="路径_74" data-name="路径 74" d="M3298.024,8209.485l-55.982-59.517h-4.348l60.33,63.871Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_75" data-name="路径 75" d="M3298.024,8252.606,3199,8149.969h-4.348l103.375,106.993Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_76" data-name="路径 76" d="M3298.024,8295.728l-142.072-145.759H3151.6l146.42,150.114Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_77" data-name="路径 77" d="M3298.024,8338.85l-185.117-188.881h-4.348l189.465,193.236Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_78" data-name="路径 78" d="M3298.024,8381.971l-228.162-232h-4.348l232.51,236.357Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_79" data-name="路径 79" d="M3279.667,8404.113,3044.11,8171.792v4.355l231.21,227.965Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_80" data-name="路径 80" d="M3236.623,8404.113l-192.512-189.2v4.355l188.165,184.844Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_81" data-name="路径 81" d="M3193.578,8404.113,3044.11,8258.035v4.355l145.12,141.723Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_82" data-name="路径 82" d="M3150.532,8404.113,3044.11,8301.157v4.355l102.075,98.6Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_83" data-name="路径 83" d="M3107.488,8404.113l-63.377-59.835v4.355l59.03,55.479Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+              <path id="路径_84" data-name="路径 84" d="M3059.8,8404.113h4.639L3044.11,8387.4v4.152Z" transform="translate(-2933.936)" fill="#c8e9f6"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

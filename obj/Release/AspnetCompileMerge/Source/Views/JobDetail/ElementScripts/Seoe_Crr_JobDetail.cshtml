@@ -1,0 +1,69 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    DataTable dtbJobPostingData = null;
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    string strJobPostingID = dtbJobPostingData.Rows[0]["ID"].ToString();
+
+<div id="crr-filter-params">
+    <input type="hidden" name="hd_t" id="hd_t" value="@hshPageParams["DatePostedType"]" />
+    <input type="hidden" name="hd_et" id="hd_et" value="@hshPageParams["EmploymentType"]" />
+    <input type="hidden" name="hd_qt" id="hd_qt" value="@hshPageParams["SearchKeywordType"]" />
+
+    <input type="hidden" name="hd_sk" id="hd_sk" value="@hshPageParams["CareerSkillCodes"]" />
+    <input type="hidden" name="hd_in" id="hd_in" value="@hshPageParams["IndustryFamilyCode"]" />
+    <input type="hidden" name="hd_r" id="hd_r" value="@hshPageParams["WorkForHome"]" />
+    @if (Request.HttpMethod == "POST")
+    {
+        <input type="hidden" name="hd_i" id="hd_i" value="@hshPageParams["CareerJobPostingIDFromFormSubmit"]" />
+    }
+    else
+    {
+        @*<input type="hidden" name="hd_i" id="hd_i" value="@Request.RequestContext.RouteData.GetRequiredString("strCareerJobPostingID")" />*@
+        <input type="hidden" name="hd_i" id="hd_i" value="@Request["jid"]" />
+    }
+    <input type="hidden" name="hd_q" id="hd_q" value="@hshPageParams["Keyword"]" />
+    <input type="hidden" name="hd_ci" id="hd_ci" value="@hshPageParams["CompanyID"]" />
+    <input type="hidden" name="hd_l" id="hd_l" value="@hshPageParams["Location"]" />
+    <input type="hidden" name="hd_p" id="hd_p" value="@hshPageParams["Page"]" />
+
+</div>
+    <div class="crr-layout-section border-none padding0">
+        <div class="crr-content-container">
+            <div class="crr-column-left">
+                @Html.Partial($"~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_LeftColumn_JobListing_Http{Request.HttpMethod}.cshtml")
+            </div>
+            <div class="crr-column-right">
+                <div class="crr-updatejob-arrow">
+                    <span class="left">
+                        <img src="~/Images/prev-arrow.svg" />
+                    </span>
+                    <span class="right">
+                        <img src="~/Images/next-arrow.svg" />
+                    </span>
+                </div>
+                @Html.Partial("~/Views/JobDetail/ElementScripts/Seoe_Crr_JobDetail_RightColumn.cshtml")
+            </div>
+            <span class="crr-scrolltotop-icon collapse" onclick="document.documentElement.scrollTop = 0;"><img src="~/Images/icon-to_top.svg" /></span>
+        </div>
+    </div>
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+}

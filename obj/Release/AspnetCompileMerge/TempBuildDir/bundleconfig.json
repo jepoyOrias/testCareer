@@ -1,0 +1,201 @@
+[
+  {
+    "outputFileName": "Styles/Career/CSS/bootstrap-career-web.min.css",
+    "inputFiles": [
+      "Styles/Career/CSS/bootstrap-career-web.css",
+      "Styles/ElementStyles/CSS/cookieconsent-3.0.3.min.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Header_Global.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Header_Global.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/Seos_Crr_Header_Global.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Legal.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Legal.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Legal_PrivacyControls.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Legal.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Legal_PrivacyControls.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Legal_PP.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Legal_PP.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Legal_Accessibility.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Legal_Accessibility.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Legal_DPA.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Legal_DPA.css"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/lib/swiper.min.js",
+    "inputFiles": [
+      "UtilityScripts/lib/swiper.js"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/swiper.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/swiper.css"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_Scroll.min.js",
+    "inputFiles": [
+      "UtilityScripts/Career/Seou_Crr_Scroll.js"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Index.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Index.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Account.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Search.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Search.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_JobDetail.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/swiper.min.css",
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_JobDetail.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Jobs.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Jobs.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_JobSearch.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_JobSearch.css"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Company.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Company.css"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_Index.min.js",
+    "inputFiles": [
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_Index.js"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_JobDetail.min.js",
+    "inputFiles": [
+      "Styles/Career/js/bootstrap-career-web.js",
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/lib/swiper.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_JobDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_Search.min.js",
+    "inputFiles": [
+      "Styles/Career/js/bootstrap-career-web.js",
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_Search.js"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_JobSearch.min.js",
+    "inputFiles": [
+      "Styles/Career/js/bootstrap-career-web.js",
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_JobSearch.js"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_Account.min.js",
+    "inputFiles": [
+      "Styles/Career/js/bootstrap-career-web.js",
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_CenterModal.js",
+      "UtilityScripts/Career/Seou_Crr_Account.js"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_Jobs.min.js",
+    "inputFiles": [
+      "Styles/Career/js/bootstrap-career-web.js",
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_CenterModal.js",
+      "UtilityScripts/Career/Seou_Crr_Jobs.js"
+    ]
+  },
+  {
+    "outputFileName": "UtilityScripts/Career/Seou_Crr_Company.min.js",
+    "inputFiles": [
+      "Styles/Career/js/bootstrap-career-web.js",
+      "UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js",
+      "UtilityScripts/Career/Seou_Crr_Constant.js",
+      "UtilityScripts/Career/Seou_Crr_Helper.js",
+      "UtilityScripts/Career/Seou_Crr_Common.js",
+      "UtilityScripts/Career/Seou_Crr_CenterModal.js",
+      "UtilityScripts/Career/Seou_Crr_Company.js"
+    ]
+  },
+  {
+    "outputFileName": "Styles/ElementStyles/CSS/Seos_Crr_Account.min.css",
+    "inputFiles": [
+      "Styles/ElementStyles/CSS/ElementStyles.css",
+      "Styles/ElementStyles/CSS/Seos_Crr_Account.css"
+    ]
+  }
+]

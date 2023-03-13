@@ -1,0 +1,33 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    <div class="section-start crr-emp-hero-section hero-bg-fill crr-legal-content">
+        <div class="crr-layout-section crr-layout-section-mobile-omit  padding-bottom0">
+            <div class="crr-content flex-div">
+                <div class="crr-emp-legal-hero-text">
+                    <label class="crr-emp-hero-eyebrow">Legal</label>
+                    <h1 class="crr-title-h1">Accessibility Statement</h1>
+                </div>
+                <div class="crr-horizontal-sec">
+                    <div class="crr-horizontal-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class=" crr-layout-section crr-content">
+        <div class="crr-content">
+            <p class="carr-p text-navy text-size22 margin-bottom40">Career.com is committed to maintaining its websites in compliance with legal requirements, including the Americans with Disabilities Act. Portions of our sites are coded with Alternative Text and are optimized for usage with various voice over readers. The majority of our website content is keyboard accessible.</p>
+            <p class="carr-p text-navy text-size22 margin-bottom40">Our teams are constantly working to improve our website experience by adding new features and making changes to better serve our users. We welcome feedback and would love to hear from you as to how we can make our website even better. Please contact us at  <a class="text-blue" href="mailto:accessibility@career.com">accessibility@career.com</a>.</p>
+        </div>
+    </div>
+
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Legal_Accessibility.cshtml", ex);
+}

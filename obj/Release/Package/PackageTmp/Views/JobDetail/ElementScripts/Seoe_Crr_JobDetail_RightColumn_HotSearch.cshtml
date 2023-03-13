@@ -1,0 +1,114 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    DataSet dstPopularSearches = null, dstPopularCompany = null, dstPopularLocation = null, dstPoupularSkills = null, dstCareerAdvice = null, dstPopularHowToBecome = null;
+}
+
+@try
+{
+    if (!Request.Browser.IsMobileDevice)
+    {
+        Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+        dstPopularSearches = objJob.SalGetPopularSearches();
+        dstPopularCompany = objJob.SalGetPopularCompany();
+        dstPopularLocation = objJob.SalGetPopularLocation();
+        dstPoupularSkills = objJob.SalGetPopularSkill();
+        dstCareerAdvice = objJob.SalGetCareerAdvice();
+        dstPopularHowToBecome = objJob.SalGetPopularHowToBecome();
+        string strLocation = string.Empty;
+        strLocation = hshPageParams["Location"]?.ToString();
+        <div class="crr-hot-search-wrapper margin-top10">
+            <div class="carr-hot-job margin-bottom30">
+                <span class="carr-title margin-bottom10 text-navy">Hot Jobs </span>
+                @if (!objData.SalIsEmptyDataSet(dstPopularSearches))
+                {
+                    foreach (DataRow drwPopularSearches in dstPopularSearches.Tables[0].AsEnumerable().Skip(10).Take(10))
+                    {
+                        string strJobTitle = drwPopularSearches["JobPostingTitle"] as string;
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strJobTitle,strLocation:strLocation,searchType:SearchKeywordType.JobTitle)">@strJobTitle</a>
+                    }
+                }
+
+            </div>
+            <div class="carr-hot-skill margin-bottom30 text-capitalize">
+                <span class="carr-title margin-bottom10 text-navy">Hot Skills </span>
+                @if (!objData.SalIsEmptyDataSet(dstPoupularSkills))
+                {
+                    DataView dataView = dstPoupularSkills.Tables[0].DefaultView;
+                    DataTable dtbDistinct = dataView.ToTable(true, "CareerSkillCode", "CareerSkillName");
+                    foreach (DataRow drwPopularSkill in dtbDistinct.AsEnumerable().Take(20))
+                    {
+                        string strSkillName = drwPopularSkill["CareerSkillName"] as string;
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strSkillName,strLocation:strLocation,searchType:SearchKeywordType.Skill)">@strSkillName</a>
+                    }
+                }
+            </div>
+            <div class="carr-hot-company margin-bottom30">
+                <span class="carr-title margin-bottom10 text-navy">Hot Companies </span>
+                @if (!objData.SalIsEmptyDataSet(dstPopularCompany))
+                {
+                    foreach (DataRow drwPopularSearches in dstPopularCompany.Tables[0].Rows)
+                    {
+                        string strCompanyName = drwPopularSearches["CompanyName"] as string;
+                        string strCompanyID = drwPopularSearches["CompanyID"] as string;
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strCompanyName,strLocation:strLocation,searchType:SearchKeywordType.Company)">@drwPopularSearches["CompanyName"]</a>
+                    }
+                }
+            </div>
+            <div class="carr-hot-career margin-bottom30">
+                <span class="carr-title margin-bottom10 text-navy">Career Advice </span>
+                @if (!objData.SalIsEmptyDataSet(dstCareerAdvice))
+                {
+                    foreach (DataRow drwCareerAdvice in dstCareerAdvice.Tables[0].AsEnumerable().Take(10))
+                    {
+                        string strCareerPath = drwCareerAdvice["title"] as string;
+                        <a href="@(drwCareerAdvice["url"].ToString())">@strCareerPath</a>
+                    }
+                }
+
+                <a href="@(ViewBag.DestinationHost)/articles/job-search">
+                    <span class="carr-skill-morebtn" style="padding:0;">Search All Career Advice Articles >></span>
+                </a>
+            </div>
+            @if (!objData.SalIsEmptyDataSet(dstPopularHowToBecome))
+            {
+                string strSEOArticleHotJobName = "", strArticleHotJobName = "", strAnOrA = "";
+
+                <div class="sal-hot-howtobecome">
+                    <span class="margin-bottom10 crr-section-border"></span>
+                    <span class="carr-title margin-bottom10 text-navy">How to Become</span>
+                    @foreach (DataRow drwPopularHowToBecome in dstPopularHowToBecome.Tables[0].AsEnumerable().Take(5))
+                    {
+                        strSEOArticleHotJobName = drwPopularHowToBecome["SEOArticleHotJobName"] as string;
+                        strArticleHotJobName = drwPopularHowToBecome["ArticleHotJobName"] as string;
+                        strAnOrA = drwPopularHowToBecome["AnOrA"] as string;
+                        <a href="@(ViewBag.DestinationHost)/how-to-become/how-to-become-@strAnOrA.ToString().ToLower()-@strSEOArticleHotJobName.ToString().ToLower()">@strArticleHotJobName</a>
+                    }
+                    <a href="@(ViewBag.DestinationHost)/how-to-become">
+                        <span class="carr-skill-morebtn" style="padding:0;">Search All How to Become >></span>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataSet(ref dstPopularSearches);
+    objData.SalCleanDataSet(ref dstPopularCompany);
+    objData.SalCleanDataSet(ref dstCareerAdvice);
+    objData.SalCleanDataSet(ref dstPoupularSkills);
+    objData.SalCleanDataSet(ref dstPopularHowToBecome);
+
+}

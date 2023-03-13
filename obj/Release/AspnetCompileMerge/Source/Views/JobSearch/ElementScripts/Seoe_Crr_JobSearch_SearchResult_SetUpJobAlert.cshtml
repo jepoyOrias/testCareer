@@ -1,0 +1,27 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    <div class="crr-sr-job-alert margin-top10 margin-bottom10">
+        <div class="text-uppercase crr-text-primary font-bold display-flex flex-align-item-center">
+           <span class="icon-crr-ring crr-text-blue collapse-on-desktop text-size22 margin-right5"></span>
+           
+            Set Job Alert
+        </div>
+        <div class="crr-job-alert-wrapper">
+            <span class="text-gray text-size14">Alert is </span>
+            <span id="" class="text-size14 crr-text-primary toggle-text font-bold">ON</span>
+            <img onclick="javascript: jobAlertToggle(this);" data-value="1" class="margin-left5 cursor-pointer" src="~/Images/turn-on-icon.svg" />
+        </div>
+        <div class="crr-text-blue">
+            <a href="#">Details...</a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_SearchResult_SetUpJobAlert.cshtml", ex);
+}

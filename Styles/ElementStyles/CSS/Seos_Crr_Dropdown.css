@@ -1,0 +1,90 @@
+﻿.crr-custom-select-el {
+    display: inline-block;
+    margin: 5px;
+    max-width: 100%;
+}
+
+div[class$='crr-custom-select-wrapper'] {
+    position: relative;
+    user-select: none;
+    width: 100%;
+    outline: none;
+}
+
+div[class^='crr-custom-select-target'].crr-custom-border-active {
+    border: 2px solid #29abe2;
+}
+
+div[class^='crr-custom-select__trigger'] {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.3;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: 32px;
+    /*color: #ffffff;*/
+    outline: none;
+}
+
+    div[class^='crr-custom-select__trigger'] span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+div[class^='crr-custom-options'] {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #e6e7e8;
+    background-color: #fff;
+    border-radius: 3px;
+    /*transition: all 0.5s;*/
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 999;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+div[class^='crr-custom-select'].open div[class^='crr-custom-options'] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+span[class^='crr-custom-option'] {
+    position: relative;
+    display: block;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.4;
+    cursor: pointer;
+    /*transition: all 0.5s;*/
+    padding: 5px 15px;
+    color: #01374f;
+}
+
+    span[class^='crr-custom-option']:first-child {
+        padding-top: 15px;
+    }
+
+    span[class^='crr-custom-option']:hover {
+        cursor: pointer;
+        color: #29abe2;
+        font-weight: 700;
+    }
+
+    span[class^='crr-custom-option'].selected {
+        color: #01374f;
+        font-weight: 700;
+    }

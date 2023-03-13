@@ -1,0 +1,45 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    DataSet dstSkill = null;
+    string strSelectedSkills = string.Empty;
+    string[] arrSelectedSkills = new string[0];
+
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    strSelectedSkills = hshPageParams["CareerSkillCodes"]?.ToString();
+    arrSelectedSkills = strSelectedSkills?.Split(new[] { "|||" }, StringSplitOptions.RemoveEmptyEntries);
+    dstSkill = objJob.SalGetAllCareerSkill();
+    if (!objData.SalIsEmptyDataSet(dstSkill))
+    {
+        string strCareerSkillCode = string.Empty;
+        foreach (DataRow drwSkill in dstSkill.Tables[0].Select())
+        {
+            strCareerSkillCode = drwSkill["CareerSkillCode"].ToString();
+            string strSelectedClass = "";
+            if (arrSelectedSkills != null && arrSelectedSkills.Length > 0 && arrSelectedSkills.Contains(strCareerSkillCode))
+            {
+                strSelectedClass = "checked";
+            }
+            <li><label><input type="checkbox" name="skills" @strSelectedClass value="@strCareerSkillCode" /><span>@drwSkill["CareerSkillName"]</span></label></li>
+        }
+        <li class="text-navy text-size16 crr-no-skills collapse">No results found</li>
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataSet(ref dstSkill);
+}

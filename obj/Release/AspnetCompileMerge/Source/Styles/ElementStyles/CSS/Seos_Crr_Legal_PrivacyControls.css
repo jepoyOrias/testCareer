@@ -1,0 +1,45 @@
+﻿
+.crr-privacy-controls-table tr {
+    vertical-align: top;
+}
+
+.crr-privacy-controls-table td {
+    border-bottom: 2px solid #e6e7e8;
+    padding: 15px;
+    padding-left: 0;
+}
+
+@media (min-width: 568px) {
+    .crr-privacy-controls-table {
+        font-size: 22px;
+    }
+
+        .crr-privacy-controls-table td {
+            line-height: 2;
+        }
+}
+
+
+.bg-privacy-controls {
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    z-index: -1;
+    max-width: 100%
+}
+
+.crr-content-table:before {
+    display: table;
+    content: " ";
+}
+
+.crr-privacy-controls-content {
+    position: relative;
+}
+
+
+@media (min-width: 90em) {
+    .crr-privacy-controls-content img {
+        max-width: 100%;
+    }
+}

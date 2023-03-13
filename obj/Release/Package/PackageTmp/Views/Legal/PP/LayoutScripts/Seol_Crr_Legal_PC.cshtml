@@ -1,0 +1,21 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "Opt-Out &amp; Privacy Controls | Legal";
+    ViewBag.MetaDescription = "Your privacy is important. To try to protect your privacy, Career.com manages all data it collects in accordance with its Privacy Policy";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal_PrivacyControls.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal_PrivacyControls.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="crr-layout-container">
+    @RenderPage("~/Views/Legal/PP/ElementScripts/Seoe_Crr_Legal_PC.cshtml")
+</div>

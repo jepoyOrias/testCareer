@@ -1,0 +1,38 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    string strDestinationHost = System.Configuration.ConfigurationManager.AppSettings["DestinationHost"].ToLower();
+}
+
+@try
+{
+<script type="text/javascript">
+        const htmlDecode = function (input) {
+            var doc = new DOMParser().parseFromString(input, "text/html");
+            return doc.documentElement.textContent;
+        };
+        let pageURLForAdobe = htmlDecode('@($"{strDestinationHost}{Request.RawUrl}")');
+        var salTrackingData = window.salTrackingData || {};
+        salTrackingData.page = salTrackingData.page || {};
+        salTrackingData.page.category = {};
+        salTrackingData.page.category.primaryCategory = '@ViewBag.PrimaryCategoryNameForAdobeTracking';
+
+        salTrackingData.server = '@Environment.MachineName';
+        salTrackingData.pageName = '@ViewBag.PageNameForAdobeTracking';
+        salTrackingData.pageURL = pageURLForAdobe;
+
+        _satellite.pageBottom();
+</script>
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+}
+

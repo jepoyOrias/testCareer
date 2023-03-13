@@ -1,0 +1,42 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "Job Search, Find a Job Near You";
+    ViewBag.MetaDescription = "Find your next job on Career.com, type your location, and get started to search job openings by title, company, skills, and career path.";
+    ViewBag.PrimaryCategoryNameForAdobeTracking = "homepage";
+    ViewBag.PageNameForAdobeTracking = "homepage:landingpage";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Index.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Account.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Index.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="crr-layout-container">
+    @RenderPage("~/Views/Index/ElementScripts/Seoe_Crr_Index.cshtml")
+</div>
+
+@Scripts.Render("~/UtilityScripts/lib/jquery-3.3.1.min.js")
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    <script src="@Url.Content("~/Styles/Career/js/bootstrap-career-web.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/lib/corejs-typeahead.bundle-1.2.1.min.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Header_Global.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Constant.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Helper.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Common.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_CenterModal.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Index.js")"></script>
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Account.js")"></script>
+}
+else
+{
+    <script src="@Url.Content("~/UtilityScripts/Career/Seou_Crr_Index.min.js?RelNum=" + ViewBag.ReleaseNum)"></script>
+}

@@ -1,0 +1,14 @@
+<svg id="dcb1de23-403e-45b3-9ba1-1744d6070c74" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .\38 21569bb-c373-43b0-a3e9-7dbf0d943a1d {
+        fill: #231f20;
+      }
+    </style>
+  </defs>
+  <title>arrow-right</title>
+  <g>
+    <path class="821569bb-c373-43b0-a3e9-7dbf0d943a1d" d="M18.5,11H1.5a.65.65,0,1,1,0-1.3h17a.65.65,0,0,1,0,1.3Z"/>
+    <path class="821569bb-c373-43b0-a3e9-7dbf0d943a1d" d="M12,17.52a.65.65,0,0,1-.46-1.11l6.07-6.07-6.09-6.7a.64.64,0,0,1,0-.92.65.65,0,0,1,.92,0L19,9.92a.64.64,0,0,1,0,.9l-6.51,6.51A.63.63,0,0,1,12,17.52Z"/>
+  </g>
+</svg>

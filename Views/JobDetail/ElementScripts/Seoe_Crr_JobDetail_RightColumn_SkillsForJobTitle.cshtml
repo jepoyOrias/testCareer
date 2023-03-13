@@ -1,0 +1,490 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    Seog_Crr_LuceneSearch objLuceneSearch = new Seog_Crr_LuceneSearch();
+    DataTable dtbJobPostingData = null;
+    //DataSet dstSkillByBenchmarkJobCode = null;
+    DataTable dtbFiltedSkillData = null;
+
+    DataSet dstCareerSkillToJobOpenings = new DataSet();
+
+    string strSkill = null;
+    string strIsAOrAn = null;
+
+    string strJobPostingCity = null;
+    string strJobPostingStateCode = null;
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    //string strEmploymentType = null;
+    string strJobTitle = null;
+    //string strBenchmarkJobCode = null;
+    //string strCareerSkillCodes = null;
+    //int intCount = 0;
+    string strLocation = string.Empty;
+    //string[] arrCareerSkillCodes = null;
+    //strBenchmarkJobCode = hshPageParams["BenchmarkJobCode"] as string;
+    //strCareerSkillCodes = hshPageParams["SkillCodesFromJobDesc"] as string;
+    strLocation = hshPageParams["Location"]?.ToString();
+    //if (!string.IsNullOrEmpty(strCareerSkillCodes))
+    //{
+    //    arrCareerSkillCodes = strCareerSkillCodes.Split('|');
+    //}
+
+    if (!objData.SalIsEmptyDataTable(dtbJobPostingData))
+    {
+        DataRow drwSingleJobPostingData = dtbJobPostingData.Rows[0];
+        strJobTitle = drwSingleJobPostingData["Title"].ToString();
+        strIsAOrAn = !objUtility.SalIsStartWithVowel(strJobTitle[0]) ? " a " : " an ";
+
+        strJobPostingCity = drwSingleJobPostingData["City"].ToString();
+        strJobPostingStateCode = drwSingleJobPostingData["State"].ToString();
+    }
+    //dstSkillByBenchmarkJobCode = objJob.SalGetSkillsByBenchmarkJobCode(strBenchmarkJobCode);
+    //if (!objData.SalIsEmptyDataSet(dstSkillByBenchmarkJobCode))
+    //{
+    //    if (arrCareerSkillCodes != null)
+    //    {
+    //        dtbFiltedSkillData = dstSkillByBenchmarkJobCode.Tables[0].Clone();
+    //        foreach (DataRow drw in dstSkillByBenchmarkJobCode.Tables[0].Rows)
+    //        {
+    //            for (int j = 0; j < arrCareerSkillCodes.Length; j++)
+    //            {
+    //                if (drw["SkillCode"].ToString() == arrCareerSkillCodes[j].ToString())
+    //                {
+    //                    dtbFiltedSkillData.Rows.Add(drw.ItemArray);
+    //                    break;
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //}
+
+    dtbFiltedSkillData = hshPageParams["FiltedSkillData"] as DataTable;
+
+
+    if (!objData.SalIsEmptyDataTable(dtbFiltedSkillData))
+    {
+        <div class="crr-layout-section padding-top0 padding-left0 padding-right0" id="crr-skill-section">
+            <div class="carr-skill-wripper">
+                <div class="carr-skill-head flex-div flex-justify-content-between flex-align-item-center margin-bottom20" style="margin:0 10px;">
+                    <h2 class="carr-h2 margin-bottom20 crr-careerpathhed margin-top30">Skills for @strJobTitle</h2>
+                    <a role="button" data-toggle="collapse" href="#crr-collapseSkill" aria-expanded="true" aria-controls="collapseExample" style="padding:0 30px;">
+                        <img style="height:15px;" src="~/Images/icon-big-expand.svg" />
+                    </a>
+                </div>
+                <div class="carr-skill-body collapse in" id="crr-collapseSkill">
+                    @if (dtbFiltedSkillData.Rows.Count > 6)
+                    {
+                        strSkill = String.Join(", ", dtbFiltedSkillData.AsEnumerable().Take(5).Select(q => $"<a class=crr-text-blue href={objJob.SalGenerateCareerJobSearchUrl(strKeyword: q["Skill"].ToString(), strLocation: strLocation, searchType: SearchKeywordType.Skill)}>{q["Skill"].ToString()}</a>"));
+                        strSkill += $",and <a class=crr-text-blue href ={ objJob.SalGenerateCareerJobSearchUrl(strKeyword: dtbFiltedSkillData.Rows[6]["Skill"].ToString(), strLocation: strLocation, searchType: SearchKeywordType.Skill)}>{ dtbFiltedSkillData.Rows[6]["Skill"].ToString()}</a>";
+                    }
+                    else
+                    {
+                        strSkill = string.Join(", ", dtbFiltedSkillData.AsEnumerable().Select(q => $"<a class=crr-text-blue href={objJob.SalGenerateCareerJobSearchUrl(strKeyword: q["Skill"].ToString(), strLocation: strLocation, searchType: SearchKeywordType.Skill)}>{q["Skill"].ToString()}</a>"));
+                    }
+                    <p class="carr-content margin-left10">
+                        The job skills required for @strJobTitle include @Html.Raw(strSkill) etc.
+                        Having related job skills and expertise will give you an advantage when applying to be @strIsAOrAn @(strJobTitle).
+                        That makes you unique and can impact how much salary you can get paid.
+                        Below are job openings related to skills required by @(strJobTitle).
+                        Select any job title you are interested in and start to search job requirements.
+                    </p>
+
+
+
+
+
+
+
+
+
+                    @if (strJobPostingStateCode != "")
+                    {
+                        for (int r = 0, length = 0; r < dtbFiltedSkillData.Rows.Count && length < 5; r++)
+                        {
+                            DataRow drw = dtbFiltedSkillData.Rows[r];
+
+                            DataSet dstCareerSkillToJobOpeningsEach = objJob.SalGetCareerSkillToJobOpenings(drw["SkillCode"].ToString(), strJobPostingStateCode);
+
+                            DataTable dtbCareerSkillToJobOpenings = null;
+
+                            if (!objData.SalIsEmptyDataSet(dstCareerSkillToJobOpeningsEach))
+                            {
+                                var otherJobPosting = dstCareerSkillToJobOpeningsEach.Tables[0].AsEnumerable().Where(q => !q["JobPostingID"].Equals(dtbJobPostingData.Rows[0]["ID"].ToString()));
+                                if (otherJobPosting.Count() < 3)
+                                {
+                                    dstCareerSkillToJobOpeningsEach = objJob.SalGetCareerSkillToJobOpenings(drw["SkillCode"].ToString());
+
+                                    if (!objData.SalIsEmptyDataSet(dstCareerSkillToJobOpeningsEach))
+                                    {
+                                        otherJobPosting = dstCareerSkillToJobOpeningsEach.Tables[0].AsEnumerable().Where(q => !q["JobPostingID"].Equals(dtbJobPostingData.Rows[0]["ID"].ToString()));
+
+                                        if (otherJobPosting.Count() > 0)
+                                        {
+                                            var location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) && q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                            if (location.Count() > 0)
+                                            {
+                                                dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                                if (location.Count() < otherJobPosting.Count())
+                                                {
+                                                    location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) || q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+
+                                                    if (location.Count() > 0)
+                                                    {
+                                                        dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                        if (dtbCareerSkillToJobOpenings.Rows.Count + location.Count() < otherJobPosting.Count())
+                                                        {
+                                                            location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                            dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                        dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) || q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                if (location.Count() > 0)
+                                                {
+                                                    dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                                    if (location.Count() < otherJobPosting.Count())
+                                                    {
+                                                        location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                        dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    dtbCareerSkillToJobOpenings = otherJobPosting.CopyToDataTable();
+                                                }
+                                            }
+
+
+                                            dstCareerSkillToJobOpenings.Tables.Add(dtbCareerSkillToJobOpenings);
+                                            length++;
+                                        }
+                                        else
+                                        {
+                                            drw.Delete();
+                                            r--;
+                                        }
+                                    }
+                                    else if (otherJobPosting.Count() > 0)
+                                    {
+                                        var location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                        if (location.Count() > 0)
+                                        {
+                                            dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                            if (location.Count() < otherJobPosting.Count())
+                                            {
+                                                location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            dtbCareerSkillToJobOpenings = otherJobPosting.CopyToDataTable();
+                                        }
+
+                                        dstCareerSkillToJobOpenings.Tables.Add(dtbCareerSkillToJobOpenings);
+                                        length++;
+                                    }
+                                    else
+                                    {
+                                        drw.Delete();
+                                        r--;
+                                    }
+                                }
+                                else
+                                {
+                                    var location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                    if (location.Count() > 0)
+                                    {
+                                        dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                        if (location.Count() < otherJobPosting.Count())
+                                        {
+                                            location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                            dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                        }
+                                    }
+                                    else
+                                    {
+                                        dtbCareerSkillToJobOpenings = otherJobPosting.CopyToDataTable();
+                                    }
+
+                                    dstCareerSkillToJobOpenings.Tables.Add(dtbCareerSkillToJobOpenings);
+                                    length++;
+                                }
+                            }
+                            else
+                            {
+                                dstCareerSkillToJobOpeningsEach = objJob.SalGetCareerSkillToJobOpenings(drw["SkillCode"].ToString());
+
+                                if (!objData.SalIsEmptyDataSet(dstCareerSkillToJobOpeningsEach))
+                                {
+                                    var otherJobPosting = dstCareerSkillToJobOpeningsEach.Tables[0].AsEnumerable().Where(q => !q["JobPostingID"].Equals(dtbJobPostingData.Rows[0]["ID"].ToString()));
+
+                                    if (otherJobPosting.Count() > 0)
+                                    {
+                                        var location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) && q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                        if (location.Count() > 0)
+                                        {
+                                            dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                            if (location.Count() < otherJobPosting.Count())
+                                            {
+                                                location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) || q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+
+                                                if (location.Count() > 0)
+                                                {
+                                                    dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                    if (dtbCareerSkillToJobOpenings.Rows.Count + location.Count() < otherJobPosting.Count())
+                                                    {
+                                                        location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                        dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                    dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) || q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                            if (location.Count() > 0)
+                                            {
+                                                dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                                if (location.Count() < otherJobPosting.Count())
+                                                {
+                                                    location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                    dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                }
+                                            }
+                                            else
+                                            {
+                                                dtbCareerSkillToJobOpenings = otherJobPosting.CopyToDataTable();
+                                            }
+                                        }
+
+
+                                        dstCareerSkillToJobOpenings.Tables.Add(dtbCareerSkillToJobOpenings);
+                                        length++;
+                                    }
+                                    else
+                                    {
+                                        drw.Delete();
+                                        r--;
+                                    }
+                                }
+                                else
+                                {
+                                    drw.Delete();
+                                    r--;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int r = 0, length = 0; r < dtbFiltedSkillData.Rows.Count && length < 5; r++)
+                        {
+                            DataRow drw = dtbFiltedSkillData.Rows[r];
+
+                            DataSet dstCareerSkillToJobOpeningsEach = objJob.SalGetCareerSkillToJobOpenings(drw["SkillCode"].ToString());
+
+                            DataTable dtbCareerSkillToJobOpenings = null;
+
+                            if (!objData.SalIsEmptyDataSet(dstCareerSkillToJobOpeningsEach))
+                            {
+                                var otherJobPosting = dstCareerSkillToJobOpeningsEach.Tables[0].AsEnumerable().Where(q => !q["JobPostingID"].Equals(dtbJobPostingData.Rows[0]["ID"].ToString()));
+                                if (otherJobPosting.Count() > 0)
+                                {
+                                    var location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) && q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                    if (location.Count() > 0)
+                                    {
+                                        dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                        if (location.Count() < otherJobPosting.Count())
+                                        {
+                                            location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) || q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+
+                                            if (location.Count() > 0)
+                                            {
+                                                dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                if (dtbCareerSkillToJobOpenings.Rows.Count + location.Count() < otherJobPosting.Count())
+                                                {
+                                                    location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                    dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                                }
+                                            }
+                                            else
+                                            {
+                                                location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => q["City"].Equals(strJobPostingCity) || q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                        if (location.Count() > 0)
+                                        {
+                                            dtbCareerSkillToJobOpenings = location.CopyToDataTable();
+                                            if (location.Count() < otherJobPosting.Count())
+                                            {
+                                                location = otherJobPosting.CopyToDataTable().AsEnumerable().Where(q => !q["City"].Equals(strJobPostingCity) && !q["StateCode"].Equals(strJobPostingStateCode)).OrderBy(c => Convert.ToDouble(c["DisSeq"]));
+                                                dtbCareerSkillToJobOpenings.Merge(location.CopyToDataTable());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            dtbCareerSkillToJobOpenings = otherJobPosting.CopyToDataTable();
+                                        }
+                                    }
+
+                                    dstCareerSkillToJobOpenings.Tables.Add(dtbCareerSkillToJobOpenings);
+                                    length++;
+                                }
+                                else
+                                {
+                                    drw.Delete();
+                                    r--;
+                                }
+                            }
+                            else
+                            {
+                                drw.Delete();
+                                r--;
+                            }
+                        }
+                    }
+
+
+                    @if (!objData.SalIsEmptyDataSet(dstCareerSkillToJobOpenings))
+                    {
+                        for (int r = 0; r < dstCareerSkillToJobOpenings.Tables.Count; r++)
+                        {
+                            DataRow drw = dtbFiltedSkillData.Rows[r];
+
+                            <div class="carr-skill-content">
+                                <div class="carr-title"> Job Openings with Skill of @drw["Skill"].ToString()</div>
+                                @if (!Request.Browser.IsMobileDevice)
+                                {
+                                    <a class="text-size20 crr-text-blue font-bold" href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:drw["Skill"].ToString(),strLocation:strLocation,searchType:SearchKeywordType.Skill)">MORE>></a>
+                                }
+                            </div>
+
+                            DataTable dtbCareerSkillToJobOpenings = dstCareerSkillToJobOpenings.Tables[r];
+                            <div class="carr-skill-item">
+                                @for (int i = 0, cnt = 0; i < dtbCareerSkillToJobOpenings.Rows.Count && cnt < 3; i++)
+                                {
+                                    DataRow drwskillInfo = dtbCareerSkillToJobOpenings.Rows[i];
+                                    DataSet dstJobPostingData = objJob.SalGetJobPostingByJobPostingID(drwskillInfo["JobPostingID"].ToString());
+
+                                    if (!objData.SalIsEmptyDataSet(dstJobPostingData))
+                                    {
+                                        cnt++;
+
+                                        DataRow drwJobPostingData = dstJobPostingData.Tables[0].Rows[0];
+
+                                        string strEmploymentType = objUtility.SalUpperCaseFirstLetter(drwJobPostingData["EmploymentType"].ToString().Replace("-", " ").Replace("_", " ").Replace(",", " | ").Trim());
+
+                                        @*<a class="cursor-pointer carr-skill-row" href="@objJob.SalGenerateCareerJobPostingDetailUrl(drwskillInfo["SEOCompanyName"].ToString(),drwskillInfo["SEOTitle"].ToString(),drwskillInfo["CareerJobPostingID"].ToString())">*@
+                                        <a class="cursor-pointer carr-skill-row" href="@objJob.SalGenerateCareerJobPostingDetailUrl(drwJobPostingData["SEOCompanyName"].ToString(),drwJobPostingData["SEOTitle"].ToString(),drwskillInfo["CareerJobPostingID"].ToString(), drwJobPostingData["City"].ToString(), drwJobPostingData["State"].ToString())">
+
+                                            @*<div class="carr-jobtitle margin-bottom10">@drwskillInfo["JobPostingTitle"].ToString()</div>*@
+                                            <div class="carr-jobtitle margin-bottom10">@drwJobPostingData["Title"].ToString()</div>
+
+                                            <div class="carr-company margin-bottom10">
+                                                @drwJobPostingData["CompanyName"].ToString()
+                                            </div>
+
+                                            @*<div class="carr-elementtype">@drwskillInfo["City"], @drwskillInfo["StateCode"] | @strEmploymentType</div>*@
+                                            <div class="carr-elementtype">@drwJobPostingData["City"], @drwJobPostingData["State"] | @strEmploymentType</div>
+                                        </a>
+                                    }
+                                }
+
+                                @if (Request.Browser.IsMobileDevice)
+                                {
+                                    <a class="text-size20 crr-text-blue font-bold" href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:drw["Skill"].ToString(),strLocation:strLocation,searchType:SearchKeywordType.Skill)">MORE>></a>
+                                }
+                            </div>
+                        }
+                    }
+
+
+
+
+
+
+                    @*@foreach (DataRow drw in dtbFiltedSkillData.AsEnumerable().Take(5))
+                        {
+                            DataSet dstGetJobBySkill = objLuceneSearch.SalSearchJob(out intCount, SearchKeywordType.Skill, drw["Skill"].ToString());
+                            //DataSet dstGetJobBySkill = objLuceneSearch.SalGetJobTitleSearchResultFromSalaryCoolLuceneIndexStore("Sales Associate", out intCount);
+                            if (!objData.SalIsEmptyDataSet(dstGetJobBySkill))
+                            {
+                                <div class="carr-skill-content">
+                                    <div class="carr-title"> Job Openings with Skill of @drw["Skill"].ToString()</div>
+                                    @if (!Request.Browser.IsMobileDevice)
+                                    {
+                                        <a class="text-size20 crr-text-blue font-bold" href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:drw["Skill"].ToString(),strLocation:strLocation,searchType:SearchKeywordType.Skill)">MORE>></a>
+                                    }
+                                </div>
+                                <div class="carr-skill-item">
+                                    @foreach (DataRow drwskillInfo in dstGetJobBySkill.Tables[0].AsEnumerable().Take(3))
+                                    {
+                                        strEmploymentType = objUtility.SalUpperCaseFirstLetter(drwskillInfo["EmploymentType"].ToString().Replace("-", " ").Replace("_", " ").Replace(",", " | ").Trim());
+
+                                        <a class="cursor-pointer carr-skill-row" href="@objJob.SalGenerateCareerJobPostingDetailUrl(drwskillInfo["SEOCompanyName"].ToString(),drwskillInfo["SEOTitle"].ToString(),drwskillInfo["CareerJobPostingID"].ToString())">
+                                            <div class="carr-jobtitle margin-bottom10">@drwskillInfo["JobPostingTitle"].ToString()</div>
+                                            <div class="carr-company margin-bottom10">
+                                                @drwskillInfo["CompanyName"].ToString()
+                                            </div>
+                                            <div class="carr-elementtype">@drwskillInfo["City"], @drwskillInfo["StateCode"] | @strEmploymentType</div>
+                                        </a>
+                                    }
+                                    @if (Request.Browser.IsMobileDevice)
+                                    {
+                                        <a class="text-size20 crr-text-blue font-bold" href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:drw["Skill"].ToString(),strLocation:strLocation,searchType:SearchKeywordType.Skill)">MORE>></a>
+                                    }
+                                </div>
+
+                            }
+                        }*@
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+    //objData.SalCleanDataSet(ref dstSkillByBenchmarkJobCode);
+    objData.SalCleanDataTable(ref dtbFiltedSkillData);
+}

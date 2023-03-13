@@ -1,0 +1,20 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "Data Processing Addendum | Legal";
+    ViewBag.MetaDescription = "This Data Processing Addendum reflects the parties' agreement regarding the processing of personal data under the Career.com Data Subscription Agreement.";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal_DPA.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal_DPA.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="sa-layout-container">
+    @RenderPage("~/Views/Legal/DPA/ElementScripts/Seoe_Crr_Legal_DPA.cshtml")
+</div>

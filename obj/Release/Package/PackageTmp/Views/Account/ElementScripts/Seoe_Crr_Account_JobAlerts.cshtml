@@ -1,0 +1,80 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    bool bolExistJobAlerts = true;
+}
+
+@try
+{
+
+
+    if (!bolExistJobAlerts)
+    {
+    <div class="crr-recommended-jobs-layout crr-max-width">
+        <div class="crr-job-alert-container crr-featuredjob-item padding20 padding-bottom20 padding-top0">
+            <div class="crr-job-alert-set-container margin-bottom20">
+                <div class="crr-job-alert-wrapper crr-wrap-center-media  padding20 padding-right0">
+                    <div class="text-blue text-size17 margin-bottom10 margin-top10">You have 13 job alerts set.</div>
+                    <button class="btn btn-default crr-add-another-alert text-size16 font-semibold"><span class="icon-add text-size16 font-semibold"></span> Add another alert</button>
+                </div>
+            </div>
+            @for (var count = 0; count <= 8; count++)
+            {
+                <div class="crr-job-alert-set-container">
+                    <div class="crr-job-alerts-list-container margin-bottom10">
+                        <div class="crr-job-alerts-list-desc">
+                            <div class="crr-job-alert-wrapper">
+                                <div class="text-size20 font-bold margin-bottom15 ">Account Executive</div>
+                                <div class="crr-display-none crr-job-alert-wrapper margin-bottom15">
+                                    <span class="text-size14 text-blue">ON</span>
+                                    <img id="toggle@count" onclick="javascript: jobAlertToggle(this);" data-value="1" class="margin-left15 cursor-pointer" src="~/Images/turn-on-icon.svg" />
+                                </div>
+                            </div>
+                            <div class="crr-featuredjob-item-location margin-bottom10">Boston, MA</div>
+                            <div class="flex-div text-gray text-size14">
+                                <div class="text-size14 text-charcoal margin-right50"><b class="crr-text-blue">222</b> <b class="crr-text-blue font-regular">new</b> listings</div>
+                                <div class="text-size14 text-charcoal">FREQUENCY Daily</div>
+                            </div>
+                        </div>
+                        <div class="crr-job-alerts-list-actions">
+                            <div class="display-flex flex-align-item-center">
+                                <div class="crr-job-alert-wrapper crr-display-none-mobile margin-right50">
+                                    <span id="" class="text-size14 text-blue toggle-text">ON</span>
+                                    <img onclick="javascript: jobAlertToggle(this);" data-value="1" class="margin-left15 cursor-pointer" src="~/Images/turn-on-icon.svg" />
+                                </div>
+                                <span class="icon-edit text-size22 text-blue margin-right20"></span>
+                                <span class="icon-trash text-size22 text-blue margin-right15"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    }
+        </div>
+    </div>
+    }
+    else
+    {
+        <div class="crr-recommended-jobs-layout crr-max-width">
+            <div class="crr-job-alert-container crr-featuredjob-item padding-left15 padding-right15 margin-top20">
+                <div class="text-size20 font-bold">No Job Alerts -- Create One!</div>
+                <div class="text-size16 margin-top15">Let us send personalized job recommendations right to your inbox</div>
+                <div class="crr-no-job-alert-wrapper flex-wrap margin-top30 ">
+                    <div class="form-group  margin-bottom25">
+                        <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">job Tile, Company, or Keyword</label>
+                        <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                    </div>
+
+                    <div class="form-group  margin-bottom25">
+                        <label for="#" class="text-size16 font-semibold crr-text-primary text-transform-none margin-bottom10 ">Location</label>
+                        <input type="text" class="form-control crr-create-acc-input border-none" id="#" placeholder="">
+                    </div>
+
+                </div>
+                <button class="btn btn-lg crr-bg-primary text-white font-bold margin-top20">Create Job Alert</button>
+            </div>
+        </div>
+    }
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Account_JobAlerts.cshtml", ex);
+}

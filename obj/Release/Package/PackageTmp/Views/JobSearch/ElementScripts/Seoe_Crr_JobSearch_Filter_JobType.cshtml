@@ -1,0 +1,26 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="display-flex flex-justify-content-between flex-wrap ">
+        @{
+            var isMobile = Request.Browser.IsMobileDevice;
+        }   
+        <div class="@(isMobile ? "btn-group-vertical" : "btn-group") flex-div flex-nowrap flex-basis-fill" role="group" aria-label="...">
+            <button type="button" class="btn btn-default border-blue">All</button>
+            <button type="button" class="btn btn-default border-blue">Full Time</button>
+            <button type="button" class="btn btn-default border-blue">Part Time</button>
+            <button type="button" class="btn btn-default border-blue">Contract</button>
+            <button type="button" class="btn btn-default border-blue">Casual</button>
+        </div>
+        <div class="crr-view-more-filter-btn collapse-on-desktop">
+            <a href="#" class="crr-text-blue">view more</a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_Filter_JobType.cshtml", ex);
+}

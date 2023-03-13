@@ -1,0 +1,61 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+        <div class="crr-change-boder-style border-radius3 flex-div flex-align-item-start flex-justify-content-between padding20 margin-bottom15">
+            <div class="flex-column crr-container">
+                <div class="crr-privacy-security-title display-flex flex-justify-content-between">
+                    <div>
+                        <div class="carr-h2 crr-text-primary">Privacy & Security</div>
+                        <div class="margin-top10 crr-text-primarydark text-size14">Device and privacy settings</div>
+                    </div>
+                    <div>
+                        <img src="~/Images/down-icon.svg" class="crr-down-icon align-self-center" />
+                        <img src="~/Images/up-icon.svg" class="crr-up-icon align-self-center display-none" />
+                    </div>
+                </div>
+                <div class="crr-container-main display-none margin-top30">
+                    <div class="flex-column flex-justify-content-between">
+                        <div class="text-size18 font-bold margin-bottom15">Privacy</div>
+                        <div class="margin-bottom15">A blurb goes here regarding our privacy policies lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla quis leo et tellus luctus euismod a at mi. Vestibulum vestibulum finibus sollicitudin. Mauris sit amet est turpis.</div>
+                        <div class="margin-bottom15">
+                            <span class="crr-text-blue">Privacy Policy</span>
+                            <span class="margin-left30 crr-text-blue">Cookie Settings</span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="text-size18 font-bold">Your Active Sessions</div>
+                    <table class="table sa-table" data-tablesaw-sortable>
+                        <thead>
+                            <tr>
+                                <td class="color-777777 text-size14">Device</td>
+                                <td class="color-777777 text-size14">IP Address</td>
+                                <td class="color-777777 text-size14">Last accessed</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Windows Firefox</td>
+                                <td>12.34.56.78 Boston, MA</td>
+                                <td>Current session</td>
+                            </tr>
+                            <tr>
+                                <td>Windows Chrome</td>
+                                <td>22.22.22.22 Buffalo, NY</td>
+                                <td>
+                                    <span class="margin-right30">May 4, 2022</span>
+                                    <span class="crr-text-blue text-size18">Sign Out</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_AccountSetting_PrivacyAndSecurity.cshtml", ex);
+}

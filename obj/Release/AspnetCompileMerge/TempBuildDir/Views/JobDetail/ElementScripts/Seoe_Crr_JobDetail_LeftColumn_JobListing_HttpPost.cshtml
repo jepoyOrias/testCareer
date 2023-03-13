@@ -1,0 +1,177 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    DataTable dtbJobPostingDataInUrl = null;
+    DataTable dtbJobPostingDataFromUrl = null;
+    DataTable dtbSearchResult = null;
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    int intPageSize = (System.Configuration.ConfigurationManager.AppSettings["pagesize"] ?? "10").ChangeType<int>(); // this value is the same with lucene search page size
+    dtbJobPostingDataFromUrl = hshPageParams["JobPostingData"] as DataTable;
+    int intCount = 0;
+    dtbSearchResult = objJob.SalSearchJob(hshPageParams, out intCount)?.Tables[0];
+
+    string strJobPostingIDFromUrl = dtbJobPostingDataFromUrl.Rows[0]["ID"].ToString();
+    string strTheFirstSumbitedCareerJobPostingIDFromFormSubmit = hshPageParams["CareerJobPostingIDFromFormSubmit"] as string; // also it is the first request career job posting id, or when user click that job again
+
+    //string strCareerJobPostingIDFromUrl = Request.RequestContext.RouteData.GetRequiredString("strCareerJobPostingID");
+    string strCareerJobPostingIDFromUrl = Request["jid"];
+
+    int intDefaultSelectedJobIndex = -1;
+    var insertCareerJobPostingActionFromPostRequest = new Action(() =>
+    {
+        DataRow drwNew = dtbSearchResult.NewRow();
+        string strTheFirstSubmitedJobPostingID = objJob.SalGetJobPostingIDByCareerJobID(strTheFirstSumbitedCareerJobPostingIDFromFormSubmit);
+        DataSet dstTheFirstSubmitedData = objJob.SalGetJobPostingByJobPostingID(strTheFirstSubmitedJobPostingID);
+        drwNew["JobPostingID"] = strTheFirstSubmitedJobPostingID;
+        drwNew["CareerJobPostingID"] = strTheFirstSumbitedCareerJobPostingIDFromFormSubmit;
+        drwNew["JobPostingTitle"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["Title"].ToString();
+        drwNew["SEOTitle"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["SEOTitle"].ToString();
+        drwNew["PostDate"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["PostDate"].ToString();
+        drwNew["City"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["CompanyName"].ToString();
+        drwNew["EmploymentType"] = dtbJobPostingDataFromUrl.Rows[0]["EmploymentType"].ToString();
+        drwNew["StateCode"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["State"].ToString();
+        drwNew["CompanyName"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["CompanyName"].ToString();
+        drwNew["IsWorkFromHome"] = dstTheFirstSubmitedData.Tables[0].Columns.Contains("WFH") ? dstTheFirstSubmitedData.Tables[0].Rows[0]["WFH"].ToString() : null;
+        drwNew["SEOCompanyName"] = dstTheFirstSubmitedData.Tables[0].Rows[0]["SEOCompanyName"].ToString();
+        dtbSearchResult.Rows.InsertAt(drwNew, 0);
+    });
+
+    int intPage;
+    int.TryParse(hshPageParams["Page"] as string, out intPage);
+    intPage = intPage == 0 ? 1 : intPage;
+
+    if (intPage == 1)
+    {
+
+        var rows = dtbSearchResult.Select($"CareerJobPostingID='{strTheFirstSumbitedCareerJobPostingIDFromFormSubmit}'");
+        if (rows.Count() == 0)
+        {
+            insertCareerJobPostingActionFromPostRequest();
+        }
+
+        rows = dtbSearchResult.Select($"CareerJobPostingID='{strCareerJobPostingIDFromUrl}'");
+        foreach (var row in rows)
+        {
+            intDefaultSelectedJobIndex = dtbSearchResult.Rows.IndexOf(row);
+            break;
+        }
+
+
+    } // if page=1
+    else // page>1
+    {
+        var rows = dtbSearchResult.Select($"CareerJobPostingID='{strCareerJobPostingIDFromUrl}'");
+        foreach(var row in rows)  // if the first requested job exist in page>1, then delete it, due to it had been shown in the first page
+        {
+            intDefaultSelectedJobIndex = dtbSearchResult.Rows.IndexOf(row);
+            break;
+        }
+        if (rows.Count() == 0) // it is very rare
+        {
+            intDefaultSelectedJobIndex = 0; // default always selected the first job
+        }
+    }
+
+
+    if (intCount > 0)
+    {
+        <div class="crr-job-number crr-text-navy font-bold">@(intCount>=10000?"10000+":intCount.ToString()) Job@(intCount > 1 ? "s" : "")</div>
+        <div class="crr-joblisting-container">
+            @for (int intIndex = 0; intIndex < dtbSearchResult.Rows.Count; intIndex++)
+            {
+                string strAppendStyleForSelectedJob = string.Empty;
+                DataRow drw = dtbSearchResult.Rows[intIndex];
+                DataRow drwNext = null;
+                DataRow drwPrevious = null;
+                string strCareerJobPostingID = drw["CareerJobPostingID"].ToString();
+                string strJobPostingID = drw["JobPostingID"].ToString();
+                string strLocation = string.Join(", ", drw["City"], drw["StateCode"]);
+                string strSeoCompanyName = drw["SEOCompanyName"].ToString();
+                string strSeoJobTitle = drw["SEOTitle"].ToString();
+                string strEmploymentType = objUtility.SalUpperCaseFirstLetter(drw["EmploymentType"].ToString().Replace("-", " ").Replace("_", " ").Replace(",", " | ").Trim());
+                string strDateTime = drw["PostDate"].ToString();
+
+                if (intDefaultSelectedJobIndex == intIndex)
+                {
+                    strAppendStyleForSelectedJob = "job selected";
+
+                    if (dtbSearchResult.Rows.Count > 1)
+                    {
+                        if (intIndex > 0)
+                        {
+                            drwPrevious = dtbSearchResult.Rows[intIndex - 1];
+                            <input type="hidden" name="hd_pj" id="hd_pj" value="@objJob.SalGenerateCareerJobPostingDetailUrl(drwPrevious["SEOCompanyName"] as string, drwPrevious["SEOTitle"] as string, drwPrevious["CareerJobPostingID"] as string, drwPrevious["City"] as string, drwPrevious["StateCode"] as string)" />
+                        }
+                        else
+                        {
+                            <input type="hidden" name="hd_pj" id="hd_pj" value="" />
+                        }
+
+                        if (intIndex < dtbSearchResult.Rows.Count - 1)
+                        {
+                            drwNext = dtbSearchResult.Rows[intIndex + 1];
+                            <input type="hidden" name="hd_nj" id="hd_nj" value="@objJob.SalGenerateCareerJobPostingDetailUrl(drwNext["SEOCompanyName"] as string, drwNext["SEOTitle"] as string, drwNext["CareerJobPostingID"] as string, drwNext["City"] as string, drwNext["StateCode"] as string)" />
+                        }
+                        else
+                        {
+                            <input type="hidden" name="hd_nj" id="hd_nj" value="" />
+                        }
+                    }
+                }
+                <a class="crr-joblisting-wrapper cursor-pointer @strAppendStyleForSelectedJob" href="@objJob.SalGenerateCareerJobPostingDetailUrl(strSeoCompanyName,strSeoJobTitle,strCareerJobPostingID,drw["City"].ToString(),drw["StateCode"].ToString())" title="@drw["JobPostingTitle"].ToString()">
+                    <div class="crr-joblisting-item">
+                        <span class="jb text-size22">@drw["JobPostingTitle"].ToString()</span>
+                        <span class="cp color-212221 text-size16">  @drw["CompanyName"].ToString()</span>
+                        <span class="l color-767676 text-size16">
+                            @if (drw["IsWorkFromHome"]?.ToString() == "1")
+                            {
+                                @: @string.Join(" | ", strLocation, strEmploymentType, "Remote")
+                            }
+                            else
+                            {
+                                @: @string.Join(" | ", strLocation, strEmploymentType)
+                            }
+                        </span>
+                    </div>
+                    <div class="crr-joblisting-item">
+                        @if (!string.IsNullOrEmpty(strDateTime))
+                        {
+                            <div class='d'>@objUtility.SalGetPostDateDesc(Convert.ToDateTime(strDateTime))</div>
+                        }
+                    </div>
+                </a>
+            }
+        </div>
+        if (intCount > intPageSize && intCount > intPage * intPageSize)
+        {
+            <div class="crr-row-loadmore">
+                <a class="btn crr-btn crr-btn-size crr-btn-bluedark font-semibold crr-loadmore-btn" href="~/jobs" id="crr-btn-loadmore"><span>Load More</span></a>
+            </div>
+
+        }
+
+    }
+
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbJobPostingDataFromUrl);
+    objData.SalCleanDataTable(ref dtbSearchResult);
+    objData.SalCleanDataTable(ref dtbJobPostingDataInUrl);
+}

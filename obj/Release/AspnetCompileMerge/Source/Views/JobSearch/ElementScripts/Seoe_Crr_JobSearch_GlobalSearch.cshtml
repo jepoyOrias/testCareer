@@ -1,0 +1,82 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    string strPlaceHolders = "e.g. Accountant";
+}
+
+@try
+{
+    <div class="crr-find-job-wrapper crr-find-job-wrapper-listing ">
+        @* For Desktop *@
+        <form id="form_findjob" name="findjob_form" class="collapse-on-mobile" action="~/jobs">
+            <div class="input-group form-group">
+                <div class="crr-searchinput crr-job-searchinput">
+                    <input type="search" class="crr-findjob-typeahead-hint" readonly="">
+                    <input type="search" name="q" id="txt_typeahead_findjob"
+                           class="crr-findjob-typeahead-input font-italic tt-input"
+                           placeholder="@strPlaceHolders" autocomplete="off" value="">
+                    <span class="icon-search text-bluebright text-size22" onclick="document.getElementById('form_findjob').submit()"></span>
+                    <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                    <img class="crr-findjob-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                    <div class="crr-findjob-typeahead-menu"></div>
+                </div>
+            </div>
+            <div class="input-group  form-group">
+                <div class="crr-searchinput">
+                    <input type="search" class="crr-location-typeahead-hint" readonly="">
+                    <input type="search" name="l" id="txt_typeahead_location"
+                           class="crr-location-typeahead-input font-italic tt-input"
+                           placeholder="Enter city, state or zip code" autocomplete="off" value="">
+                    <span class="icon-crr-location text-bluebright text-size22"></span>
+                    <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                    <img class="crr-location-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                    <div class="crr-location-typeahead-menu"></div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default crr-btn-blue">Search Jobs</button>
+        </form>
+
+        @* For Mobile *@
+        <form id="form_findjob" name="findjob_form" class="collapse-on-desktop search-filter-mobile" action="~/jobs">
+            <div class="crr-form-search-div ">
+                <div class="crr-back-search-arrow hidden  margin-top15">
+                    <a href="javascript:void(0)" class="crr-back-arrow-left text-size20 " aria-label="Close" data-toggle="collapse" data-target="#crr-collpase-search" aria-expanded="false">
+                        <span class="icon-arrow-left"></span>
+                    </a>
+                </div>
+                <div class="crr-search-inputs">
+                    <div class="input-group form-group">
+                        <div class="crr-searchinput crr-job-searchinput" data-toggle="collapse" data-target="#crr-collpase-search" aria-expanded="false" aria-controls="crr-collpase-search" onclick="toggleSearchOnMobile()">
+                            <input type="search" class="crr-findjob-typeahead-hint" readonly="">
+                            <input type="search" name="q" id="txt_typeahead_findjob"
+                                   class="crr-findjob-typeahead-input font-italic tt-input"
+                                   placeholder="@strPlaceHolders" autocomplete="off" value="">
+                            <span class="icon-search text-bluebright text-size22" onclick="document.getElementById('form_findjob').submit()"></span>
+                            <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                            <img class="crr-findjob-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                            <div class="crr-findjob-typeahead-menu"></div>
+                        </div>
+                    </div>
+
+                    <div class="input-group  collapse sa-collapse margin10" id="crr-collpase-search">
+                        <div class="crr-searchinput">
+                            <input type="search" class="crr-location-typeahead-hint" readonly="">
+                            <input type="search" name="l" id="txt_typeahead_location"
+                                   class="crr-location-typeahead-input font-italic tt-input"
+                                   placeholder="Enter city, state or zip code" autocomplete="off" value="">
+                            <span class="icon-crr-location text-bluebright text-size22"></span>
+                            <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                            <img class="crr-location-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                            <div class="crr-location-typeahead-menu"></div>
+                        </div>
+                        <button type="submit" class="btn btn-default crr-btn-blue btn-block margin-top20">Search Jobs</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+catch (Exception ex)
+{
+   objLog.SalError("Seoe_Crr_JobSearch_GlobalSearch.cshtml", ex);
+}

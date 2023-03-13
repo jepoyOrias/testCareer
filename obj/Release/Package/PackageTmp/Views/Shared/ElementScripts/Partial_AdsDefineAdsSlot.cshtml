@@ -1,0 +1,137 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seom_Crr_GPTAdsLibrary objAdsLibrary = ViewBag.ObjAds;
+
+    ConcurrentDictionary<string, AdsUnit> objAllAds = ViewBag.AllAds as ConcurrentDictionary<string, AdsUnit>;
+    var allGptAdsList = objAllAds.Values.Where(q => q.AdsType == AdsType.Ad);
+}
+
+@try
+{
+    if (!allGptAdsList.Any())
+    {
+        return;
+    }
+
+    string strUnitName = string.Join("/", objAdsLibrary.strAdsGPTID, objAdsLibrary.strAdsFirstTierSite, objAdsLibrary.strAdsAreaID);
+    string strSST = string.Empty;
+    if (!string.IsNullOrEmpty(objAdsLibrary.strAdsStateCode))
+    {
+        strSST = "ST_" + objAdsLibrary.strAdsStateCode;
+    }
+
+    <script async src="//js-sec.indexww.com/ht/htw-salary.js"></script>
+    <!-- OpwenWrap Script begins here -->
+    <script>
+        var PWT = {}; //Initialize Namespace
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        PWT.jsLoaded = function () { //PubMatic pwt.js on load callback is used to load GPT
+            (function () {
+                var gads = document.createElement('script');
+                gads.async = true;
+                var useSSL = 'https:' == document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+        };
+        (function () {
+            var purl = window.location.href;
+            var url = '@(!Request.Browser.IsMobileDevice?"//ads.pubmatic.com/AdServer/js/pwt/160754/4533": "//ads.pubmatic.com/AdServer/js/pwt/160754/4534")';
+            var profileVersionId = '';
+            if (purl.indexOf('pwtv=') > 0) {
+                var regexp = /pwtv=(.*?)(&|$)/g;
+                var matches = regexp.exec(purl);
+                if (matches.length >= 2 && matches[1].length > 0) {
+                    profileVersionId = '/' + matches[1];
+                }
+            }
+            var wtads = document.createElement('script');
+            wtads.async = true;
+            wtads.type = 'text/javascript';
+            wtads.src = url + profileVersionId + '/pwt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(wtads, node);
+        })();
+    </script>
+    <!--OpwenWrap Script ends here -->
+    <!-- Amazon header bidding section begin -->
+    <script type="text/javascript">
+        !function (a9, a, p, s, t, A, g) { if (a[a9]) return; function q(c, r) { a[a9]._Q.push([c, r]) } a[a9] = { init: function () { q("i", arguments) }, fetchBids: function () { q("f", arguments) }, setDisplayBids: function () { }, _Q: [] }; A = p.createElement(s); A.async = !0; A.src = t; g = p.getElementsByTagName(s)[0]; g.parentNode.insertBefore(A, g) }("apstag", window, document, "script", "//c.amazon-adsystem.com/aax2/apstag.js");
+        // initialize apstag and have apstag set bids on the googletag slots when they are returned to the page
+        apstag.init({
+            pubID: 'ddec33d0-7ea2-4a81-bc80-203d4d474b9b',
+            adServer: 'googletag'
+        });
+    </script>
+    <!-- Amazon header bidding section end -->
+
+    <!-- Google tag script begin -->
+    <script>
+        var notifyId;
+        googletag.cmd.push(function () {
+            /*
+             // Notifies OpenWrap that there are some external bidders for which it has to wait before calling(DFP) GAM.
+             let adsId = ['div-gpt-ad-top-1', 'div-gpt-ad-bottom-1', 'div-gpt-ads_side_div-1', 'div-gpt-ads_side_div-2', 'div-gpt-ads_side_div-3', 'div-gpt-ads_side_div_300x250mid3', 'div-gpt-ads_side_div_300x250mid4', 'div-gpt-ads_side_div_300x250mid5', 'div-gpt-ads_side_div_300x250mid6', 'div-gpt-ads_side_div-4', 'div-gpt-ad-content-6'];
+             notifyId = window.OWT.registerExternalBidders(adsId); //the call to this function should happen as soon as OpenWrap script loads, we can also move above code into PWT.jsLoaded.
+             */
+            console.log('gpt loaded');
+            @if (null != allGptAdsList)
+            {
+                foreach (var objAd in allGptAdsList)
+                {
+                        var arrSizeMapping = objAd.SizeMapping.Split('|');
+                        <text>var sizemapping_@(objAd.ID.Replace("-", "_")) = googletag.sizeMapping().</text>
+                            foreach (var objSizeMapping in arrSizeMapping) {
+                                <text>addSize(@(objSizeMapping)).</text>
+                            }
+                        <text>build();
+                        googletag.defineSlot('@(strUnitName)', @(objAd.Size), '@(objAd.ID)').defineSizeMapping(sizemapping_@(objAd.ID.Replace("-", "_"))).addService(googletag.pubads()).setTargeting('pos', '@(objAd.Pos.ToUpper())');</text>
+
+                }
+            }
+
+            googletag.pubads().setTargeting('PLOC', '');
+            googletag.pubads().setTargeting('PAJT', '');
+            googletag.pubads().setTargeting('PJCAT', '');
+            googletag.pubads().setTargeting('SSRC', '@(objAdsLibrary.strAdSrc)');
+            googletag.pubads().setTargeting('SJCOD', '@(objAdsLibrary.strAdsJobCode)');
+            googletag.pubads().setTargeting('SST', '@(strSST)');
+            googletag.pubads().setTargeting('SJLVL', '@(objAdsLibrary.strAdsJobLevelDesc)');
+            googletag.pubads().setTargeting('SJGRP', '@(objAdsLibrary.strAdsJobFamilyCode)');
+            googletag.pubads().setTargeting('SEDU', '@(objAdsLibrary.strAdsEducationCode)');
+            googletag.pubads().setTargeting('SIND', '@(objAdsLibrary.strAdsIndustryFamilyCode)');
+            googletag.pubads().setTargeting('PIND', '');
+            googletag.pubads().setTargeting('PNAME', '@(objAdsLibrary.strAdsPageName)');
+            googletag.pubads().setTargeting('SSAL', '@(objAdsLibrary.strAdsWSRCode)');
+            googletag.pubads().setTargeting('SMET', '@(objAdsLibrary.strAdsGeoMetroCode)');
+            googletag.pubads().setTargeting('afs', 'true');
+            googletag.pubads().setTargeting('PSAL', '');
+            googletag.pubads().setTargeting('PJCOD', '');
+            googletag.pubads().setTargeting('PJLVL', '');
+            googletag.pubads().setTargeting('SITE', '@(objAdsLibrary.strAdsContentSiteID)');
+            googletag.pubads().setTargeting('PRETO', '');
+            googletag.pubads().setTargeting('ENV', '@(objAdsLibrary.strAdsEnv)');
+            googletag.pubads().setTargeting('SJCAT', '@(objAdsLibrary.strAdsNarrowCode)');
+            googletag.pubads().setTargeting('PYOEX', '');
+            googletag.pubads().setTargeting('PCSIZE', '');
+            googletag.pubads().setTargeting('PDEGR', '');
+            googletag.pubads().setTargeting('SCOMSZ', '@(objAdsLibrary.strAdsFTE)');
+            googletag.pubads().setTargeting('TITLETYPE', '@(objAdsLibrary.strAdsTitleType)');
+            googletag.pubads().disableInitialLoad();
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.enableServices();
+        });
+    </script>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Partial_AdsDefineVariable.cshtml: ", ex);
+}
+finally
+{
+    objAdsLibrary = null;
+    objLog = null;
+}

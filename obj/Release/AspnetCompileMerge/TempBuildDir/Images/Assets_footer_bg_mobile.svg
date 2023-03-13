@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="406" viewBox="0 0 320 406">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="路径_513" data-name="路径 513" d="M0,0H320V406H0Z" transform="translate(0 6433)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="_0033" data-name="0033" transform="translate(0 -6433)" clip-path="url(#clip-path)">
+    <g id="组_270" data-name="组 270">
+      <path id="路径_26" data-name="路径 26" d="M2650.556,5131.785c290.57,0,526.125,235.555,526.125,526.125s-235.555,526.125-526.125,526.125Z" transform="translate(-2933.936 1254)" fill="#f6f6f9"/>
+      <path id="路径_29" data-name="路径 29" d="M3298.024,5496.942l-55.982-59.516h-4.348l60.33,63.872Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_30" data-name="路径 30" d="M3298.024,5540.063,3199,5437.426h-4.348l103.375,106.993Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_31" data-name="路径 31" d="M3298.024,5583.185l-142.072-145.759H3151.6l146.42,150.114Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_32" data-name="路径 32" d="M3298.024,5626.306l-185.117-188.88h-4.348l189.465,193.236Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_33" data-name="路径 33" d="M3298.024,5669.428l-228.162-232h-4.348l232.51,236.357Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_34" data-name="路径 34" d="M3279.667,5691.571,3044.11,5459.25v4.355l231.21,227.965Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_35" data-name="路径 35" d="M3236.623,5691.571l-192.512-189.2v4.355l188.165,184.844Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_36" data-name="路径 36" d="M3193.578,5691.571,3044.11,5545.493v4.355l145.12,141.723Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_37" data-name="路径 37" d="M3150.532,5691.571,3044.11,5588.614v4.355l102.075,98.6Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_38" data-name="路径 38" d="M3107.488,5691.571l-63.377-59.835v4.355l59.03,55.48Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+      <path id="路径_39" data-name="路径 39" d="M3059.8,5691.571h4.639l-20.332-16.714v4.151Z" transform="translate(-2933.936 1254)" fill="#c8e9f6"/>
+    </g>
+  </g>
+</svg>

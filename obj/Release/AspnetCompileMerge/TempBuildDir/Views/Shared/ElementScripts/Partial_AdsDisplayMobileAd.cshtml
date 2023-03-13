@@ -1,0 +1,43 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    AdsUnit objNeedToRenderAdsUnit = Model as AdsUnit;
+    ConcurrentDictionary<string, AdsUnit> objAllAds = ViewBag.AllAds as ConcurrentDictionary<string, AdsUnit>;
+}
+
+@try
+{
+    if (Request.Browser.IsMobileDevice)
+    {
+        if (objNeedToRenderAdsUnit.ID != null && objAllAds.Any())
+        {
+            AdsUnit objAd;
+            if (objAllAds.TryGetValue(objNeedToRenderAdsUnit.ID, out objAd))
+            {
+                switch (objAd.AdsType)
+                {
+                    case AdsType.GoogleAd:
+                    case AdsType.MediaNetAd:
+                        <div id="@objAd.ID"></div>
+                        break;
+                    case AdsType.Ad:
+                        <div id="@objAd.ID" class="@objAd.CssClass"></div>
+                        break;
+                    case AdsType.WidgetAd:
+                        <div id="@objAd.ID" class="@objAd.CssClass">
+                            @Html.Raw(objAd.HtmlString)
+                        </div>
+                        break;
+                }
+            }
+
+        }
+    }
+}
+catch (Exception ex)
+{
+    objLog.SalError("Partial_AdsDisplayMobileAd.cshtml", ex);
+}
+finally
+{
+    objLog = null;
+}

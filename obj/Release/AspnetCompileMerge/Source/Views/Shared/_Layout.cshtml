@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.Raw(ViewBag.PageTitle) | Career.com</title>
+    <meta name="description" @Html.Raw("content=\"" + @ViewBag.MetaDescription + "\"") />
+    <meta name="author" content="Site built by: Career.com" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" @Html.Raw("content=\"" + @ViewBag.PageTitle + " | Career.com\"") />
+    <meta property="og:description" @Html.Raw("content=\"" + @ViewBag.MetaDescription + "\"") />
+    <meta property="og:site_name" content="Career.com" />
+    <link rel="icon" href="@Url.Content("~/Images/career.ico")">
+    @RenderSection("Canonical", false)
+    @RenderSection("noindex", false)
+    @if (ViewBag.IsEnableDebugMode == "1")
+    {
+        @Styles.Render("~/Styles/Career/CSS/bootstrap-career-web.css?RelNum=" + ViewBag.ReleaseNum)
+        @Styles.Render("~/Styles/ElementStyles/CSS/cookieconsent-3.0.3.min.css?RelNum=" + ViewBag.ReleaseNum)
+        @Styles.Render("~/Styles/ElementStyles/CSS/Seos_Crr_Header_Global.css?RelNum=" + ViewBag.ReleaseNum)
+    }
+    else
+    {
+        <!-- web css -->
+        @Styles.Render("~/Styles/Career/CSS/bootstrap-career-web.min.css?RelNum=" + ViewBag.ReleaseNum)
+        <!--end web css -->
+    }
+    <script src="@System.Configuration.ConfigurationManager.AppSettings["GeneralTrackingHeaderURL"]"></script>
+    <script type="text/javascript">
+        var settings = {
+            baseUrl: '@Url.Content("~")',
+            destinationHost:'@ViewBag.DestinationHost',
+            cookieDomain: '@System.Configuration.ConfigurationManager.AppSettings["CookieDomain"]'
+        };
+    </script>
+</head>
+<body>
+    <!-- header -->
+    @Html.Partial("_Header")
+    <!-- end header -->
+    <!-- body -->
+    @RenderBody()
+    <!--end body -->
+    <!-- footer -->
+    @Html.Partial("_Footer")
+    <!-- end footer-->
+
+    <!--GDPR Cookie js content-->
+    <script src="~/UtilityScripts/lib/cookieconsent-3.0.3.min.js"></script>
+    <script src="~/Styles/Career/js/crr_cookieconsent.js"></script>
+    <!--end GDPR Cookie js content-->
+    @RenderPage("~/Views/Shared/ElementScripts/Partial_AdobeTrackingData.cshtml")
+</body>
+</html>

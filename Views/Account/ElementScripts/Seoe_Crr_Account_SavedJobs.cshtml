@@ -1,0 +1,62 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-recommended-jobs-layout crr-max-width">
+        <div class="crr-job-alert-container crr-featuredjob-item padding-left15 padding-right15 margin-top20">
+            <div class="text-blue text-size17 margin-left20 margin-top20 margin-bottom30">You have 3 saved jobs.</div>
+
+            @for (var count = 0; count <= 6; count++)
+            {
+                <div class="crr-job-alert-set-container">
+                    <div class="crr-job-alerts-list-container margin-bottom10">
+                        <div class="crr-job-alerts-list-desc">
+                            <div class="crr-job-alert-wrapper">
+                                <div id="#listJobTitle" onclick="showJobDetails()" class="text-size20 font-bold margin-bottom15 cursor-pointer">Account Executive</div>
+                                <div class="crr-job-alert-wrapper margin-bottom15">
+                                    <span class="collapse-on-desktop icon-trash text-size22 text-blue"></span>
+                                </div>
+                            </div>
+                            <div class="crr-featuredjob-item-location text-blue margin-bottom10">University of something</div>
+                            <div class="flex-div text-gray text-size14 crr-flex-space-betweent-mobile">
+                                <div class="text-size14 text-charcoal margin-right50">Waltham, MA | Full Time</div>
+                                <div class="margin-right50 collapse-on-mobile"></div>
+                                <div class="text-size14 text-charcoal  collapse-on-mobile"> 5 Days Ago</div>
+                                <div class="text-size14 crr-text-primary font-bold collapse-on-desktop"> 5d</div>
+                            </div>
+                        </div>
+                        <div class="crr-job-alerts-list-actions crr-flex-start-mobile">
+                            <div class="display-flex flex-align-item-center  ">
+                                <div class="crr-job-alert-wrapper  margin-right50">
+                                    <span id="" class="text-size16 text-black toggle-text margin-right15">STATUS</span>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-sm dropdown-toggle border-none crr-hover-none text-black text-size16" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Interviewing<span class="caret crr-caret-blue text-size17"></span>
+                                        </button>
+                                        <ul class="dropdown-menu text-size14">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="margin-right50 collapse-on-mobile"></div>
+                                    <div class="margin-right50 collapse-on-mobile"></div>
+                                </div>
+
+                                <span class="crr-display-none-mobile icon-trash text-size22 text-blue margin-right15"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Account_SavedJobs.cshtml", ex);
+}

@@ -1,0 +1,183 @@
+﻿@using System.Text.RegularExpressions;
+@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    DataTable dtbJobPostingData = null;
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    string strURL = null;
+    string strCompanyID = null;
+    string strCompanyName = null;
+    string strSeoCompanyName = null;
+    string strCompanyUrl = null;
+    string strCityName = null;
+    string strStateCode = null;
+    string strEmploymentType = null;
+    string strWorkFromHome = null;
+    string strPostDate = null;
+    string strCloseDate = null;
+    string strDescription = null;
+    string strQualifications = null;
+    string strJobResponsibilities = null;
+    string strBenefits = null;
+    string strJobTitle = null;
+    bool bolMobileDevice = Request.Browser.IsMobileDevice;
+
+    if (!objData.SalIsEmptyDataTable(dtbJobPostingData))
+    {
+        DataRow drwSingleJobPostingData = dtbJobPostingData.Rows[0];
+        strJobTitle = drwSingleJobPostingData["Title"].ToString();
+        strURL = Regex.Replace(drwSingleJobPostingData["URL"].ToString(), "=Salary.com", "=career.com", RegexOptions.IgnoreCase);
+        strCompanyID = drwSingleJobPostingData["CompanyID"].ToString();
+        strCompanyName = drwSingleJobPostingData["CompanyName"].ToString();
+        strSeoCompanyName = drwSingleJobPostingData["SEOCompanyName"].ToString();
+        strCompanyUrl = objJob.SalGenerateCareerJobSearchUrl(strKeyword: strCompanyName, searchType: SearchKeywordType.Company);
+
+
+        strCityName = drwSingleJobPostingData["City"].ToString();
+        strStateCode = drwSingleJobPostingData["State"].ToString();
+        strEmploymentType = objUtility.SalUpperCaseFirstLetter(drwSingleJobPostingData["EmploymentType"].ToString().Replace("-", " ").Replace("_", " ").Replace(",", " | ").Trim());
+        strWorkFromHome = drwSingleJobPostingData["WFH"].ToString();
+        strPostDate = drwSingleJobPostingData["PostDate"].ToString();
+        strCloseDate = drwSingleJobPostingData["CloseDate"].ToString();
+        strDescription = drwSingleJobPostingData["Description"].ToString();
+        strQualifications = drwSingleJobPostingData["Qualifications"].ToString();
+        strJobResponsibilities = drwSingleJobPostingData["Responsibilities"].ToString();
+        strBenefits = drwSingleJobPostingData["Benefits"].ToString();
+    }
+    <div class="crr-seemore-results-sticky collapse">
+        <span class="crr-text-blue cursor-pointer" onclick="javascript: seeMoreResults(this);"><span class="icon-crr-arrow-left font-bold"></span><span class="crr-text-primarydark font-bold margin-left5">More Search Results</span></span>
+        @if (Convert.ToDateTime(strCloseDate) < DateTime.Today)
+        {
+            <button class="btn btn-default crr-bg-primary text-white text-uppercase text-size18" disabled>Apply</button>
+        }
+        else
+        {
+            <button class="btn btn-default crr-bg-primary text-white text-uppercase text-size18" onclick="applyJob('@strURL')"><span>Apply</span></button>
+        }
+    </div>
+    <div class="carr-detail-info">
+        <div class="display-flex flex-justify-content-between flex-align-item-end">
+            <h1 class="carr-h1">@strJobTitle</h1>
+            @if (Convert.ToDateTime(strCloseDate) < DateTime.Today)
+            {
+                <button class="btn crr-btn" disabled>Apply</button>
+            }
+            else
+            {
+                <button class="btn btn-default crr-apply-btn" onclick="applyJob('@strURL')">APPLY</button>
+            }
+        </div>
+        <div class="carr-companyName">
+            <a class="crr-text-blue" href="@strCompanyUrl">View More Jobs at @strCompanyName</a>
+        </div>
+
+        <div class="carr-location">
+            @if (strWorkFromHome == "1")
+            {
+                @: @string.Join(" | ", string.Join(", ", strCityName, strStateCode), strEmploymentType, "Remote")
+            }
+            else
+            {
+                @: @string.Join(" | ", string.Join(", ", strCityName, strStateCode), strEmploymentType)
+
+
+
+
+
+
+
+
+            }
+        </div>
+
+
+        @if (Convert.ToDateTime(strCloseDate) < DateTime.Today)
+        {
+            <div class="carr-expire">Expired</div>
+        }
+        else
+        {
+            <div class="carr-date">@(objUtility.SalGetPostDateDesc(Convert.ToDateTime(strPostDate)))</div>
+        }
+
+        <div class="crr-sticky-nav">
+            <a href="#crr-jobdescription-section" class="selected"><span class="selected">@(bolMobileDevice ? "Job Desc" : "Job Description")</span></a>
+            <a href="#crr-company-wrapper"><span>Company</span></a>
+            <a href="#crr-skill-section"><span>Skills</span></a>
+            <a href="#crr-careerpath-section"><span>Career Path</span></a>
+            <a href="#carr-howtobecome"><span>@(bolMobileDevice ? "Become" : "How to Become")</span></a>
+        </div>
+    </div>
+
+    <div class="carr-description-view" id="crr-jobdescription-section">
+        @*<h2 class="carr-description-summary">
+                Job Posting for <b class="font-semibold">@(Html.Raw(strJobTitle))</b> at <strong>@(Html.Raw(strCompanyName))</strong>
+            </h2>*@
+
+        <h2 class="carr-title">Job Description</h2>
+        <div class="carr-information">
+            @Html.Raw(strDescription)
+        </div>
+
+
+
+        @if (!string.IsNullOrEmpty(strQualifications)
+            && !string.IsNullOrEmpty(objUtility.SalGetFirstSentence(strQualifications))
+            && !strDescription.ToLower().Contains(objUtility.SalGetFirstSentence(strQualifications).ToLower())
+            && !strDescription.ToLower().Contains(objUtility.SalGetLastSentence(strQualifications.ToLower()))
+            )
+        {
+            <h2 class="carr-title">Qualifications</h2>
+            <div class="carr-information">
+                @Html.Raw(strQualifications)
+            </div>
+        }
+
+
+        @if (!string.IsNullOrEmpty(strJobResponsibilities)
+            && !string.IsNullOrEmpty(objUtility.SalGetFirstSentence(strJobResponsibilities))
+            && !strDescription.ToLower().Contains(objUtility.SalGetFirstSentence(strJobResponsibilities).ToLower())
+            && !strDescription.ToLower().Contains(objUtility.SalGetLastSentence(strJobResponsibilities.ToLower()))
+            )
+        {
+            <h2 class="carr-title">Responsibilities</h2>
+            <div class="carr-information">
+                @Html.Raw(strJobResponsibilities)
+            </div>
+        }
+
+
+        @if (!string.IsNullOrEmpty(strBenefits)
+            && !string.IsNullOrEmpty(objUtility.SalGetFirstSentence(strBenefits))
+            && !strDescription.ToLower().Contains(objUtility.SalGetFirstSentence(strBenefits.ToLower()))
+            && !strDescription.ToLower().Contains(objUtility.SalGetLastSentence(strBenefits.ToLower()))
+            )
+        {
+            <h2 class="carr-title">Benefits</h2>
+            <div class="carr-information">
+                @Html.Raw(strBenefits)
+            </div>
+
+        }
+    </div>
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+}

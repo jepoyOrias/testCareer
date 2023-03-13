@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+	<Pages>
+		<Page ID="Crr_Index" Show="true">
+			<TopAd>
+				<Ad ID="div-gpt-ad-top-1" />
+			</TopAd>
+			<RightNavAd>
+				<Ad ID="div-gpt-ads_side_div-1" />
+				<Ad ID="div-gpt-ads_side_div-2"/>
+				<Ad ID="div-gpt-ads_side_div-3" />
+				<Ad ID="div-gpt-ads_side_div_300x250mid3" />
+				<Ad ID="div-gpt-ads_side_div_300x250mid4" />
+				<Ad ID="div-gpt-ads_side_div-4" />
+				<Ad ID="div-gpt-ads_side_div-7" />
+			</RightNavAd>
+			<InContentAd>
+				<Ad ID="div-gpt-ad-728x90mid" />
+				<MediaNetAd ID="635723831" />
+			</InContentAd>
+			<BottomAd>
+				<Ad ID="div-gpt-ad-bottom-1"/>
+			</BottomAd>
+			<MobileAd>
+				<Ad ID="div-gpt-ads_content_320x50mid" />
+				<Ad ID="div-gpt-ad-content-1" />
+				<Ad ID="div-gpt-ad-content-2" />
+				<Ad ID="div-gpt-ad-content-4" />
+				<Ad ID="div-gpt-ad-content-6"/>
+				<MediaNetAd ID="541845392" />
+			</MobileAd>
+		</Page>
+		<Page ID="Crr_JobDetail" Show="true">
+			<TopAd>
+				<Ad ID="div-gpt-ad-top-1" />
+			</TopAd>
+			<RightNavAd>
+				<Ad ID="div-gpt-ads_side_div-1" />
+				<Ad ID="div-gpt-ads_side_div-2"/>
+				<Ad ID="div-gpt-ads_side_div-3" />
+				<Ad ID="div-gpt-ads_side_div_300x250mid3" />
+				<Ad ID="div-gpt-ads_side_div_300x250mid4" />
+				<Ad ID="div-gpt-ads_side_div-4" />
+				<Ad ID="div-gpt-ads_side_div-7" />
+			</RightNavAd>
+			<BottomAd>
+				<Ad ID="div-gpt-ad-bottom-1"/>
+			</BottomAd>
+			<MobileAd>
+				<Ad ID="div-gpt-ads_content_320x50mid" />
+				<Ad ID="div-gpt-ad-content-1" />
+				<Ad ID="div-gpt-ad-content-2" />
+				<Ad ID="div-gpt-ad-content-4" />
+				<Ad ID="div-gpt-ad-content-6"/>
+			</MobileAd>
+		</Page>
+		<Page ID="Crr_Search" Show="true">
+			<TopAd>
+				<Ad ID="div-gpt-ad-top-1" />
+			</TopAd>
+			<RightNavAd>
+				<Ad ID="div-gpt-ads_side_div-1" />
+				<Ad ID="div-gpt-ads_side_div-2"/>
+				<Ad ID="div-gpt-ads_side_div-3" />
+				<Ad ID="div-gpt-ads_side_div_300x250mid3" />
+				<Ad ID="div-gpt-ads_side_div_300x250mid4" />
+				<Ad ID="div-gpt-ads_side_div-4" />
+				<Ad ID="div-gpt-ads_side_div-7" />
+			</RightNavAd>
+			<BottomAd>
+				<Ad ID="div-gpt-ad-bottom-1"/>
+			</BottomAd>
+			<MobileAd>
+				<Ad ID="div-gpt-ads_content_320x50mid" />
+				<Ad ID="div-gpt-ad-content-1" />
+				<Ad ID="div-gpt-ad-content-2" />
+				<Ad ID="div-gpt-ad-content-4" />
+				<Ad ID="div-gpt-ad-content-6"/>
+			</MobileAd>
+		</Page>
+
+	</Pages>
+	<!-- the following ads config should include all consumer sites ads config, so you must take care when remove or update any section -->
+	<!-- please ensure the following section put in the end of this file -->
+	<AllAds>
+		<TopAd>
+			<Ad ID="div-gpt-ad-top-1" Pos="TOP" Size="[[728, 90], [970, 90], [970, 250]]" SizeMapping="[0, 0], []|[728, 200], [[728, 90], [970, 90], [970, 250]]" CssClass="ad-top" />
+			<!-- <Ad ID="div-gpt-ad-top-1" Pos="TOP" Size="[[728, 90], [970, 90]]" SizeMapping="[0, 0], []|[728, 200], [[728, 90], [970, 90]]" CssClass="ad-top" /> -->
+			<!-- if different page needs to display different size top ads in the same project, then code needs to adjust -->
+		</TopAd>
+		<RightNavAd CssClass="ads_side_div">
+			<Ad ID="div-gpt-ads_side_div-1" Pos="top" Size="[[300, 250], [300, 600]]" SizeMapping="[0, 0], []|[1024, 200], [[300, 250], [300, 600]]" />
+			<Ad ID="div-gpt-ads_side_div-2" Pos="mid" Size="[300, 250]" SizeMapping="[0, 0], []|[1024, 200], [300, 250]" />
+			<Ad ID="div-gpt-ads_side_div-3" Pos="mid2" Size="[300, 250]" SizeMapping="[0, 0], []|[1024, 200], [300, 250]" />
+			<Ad ID="div-gpt-ads_side_div_300x250mid3" Pos="mid3" Size="[300, 250]" SizeMapping="[0, 0], []|[1024, 200], [300, 250]" />
+			<Ad ID="div-gpt-ads_side_div_300x250mid4" Pos="mid4" Size="[300, 250]" SizeMapping="[0, 0], []|[1024, 200], [300, 250]" />
+			<Ad ID="div-gpt-ads_side_div-4" Pos="bottom" Size="[300, 250]" SizeMapping="[0, 0], []|[1024, 200], [300, 250]" />
+			<Ad ID="div-gpt-ads_side_div-7" Pos="sticky" Size="[1, 1]" SizeMapping="[0,0], []|[1024,200],[1,1]" />
+			<GoogleAd ID="seo_adblock1" />
+		</RightNavAd>
+		<InContentAd CssClass="ads_side_div">
+			<Ad ID="div_gpt_htart_div_1" Pos="ht_1" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" />
+			<Ad ID="div_gpt_htart_div_2" Pos="ht_2" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" />
+			<Ad ID="div_gpt_htart_div_3" Pos="ht_3" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" />
+			<Ad ID="div-gpt-ad-728x90mid" Pos="MID" Size="[728, 90]" SizeMapping="[0, 0], []|[728, 200], [728, 90]" CssClass="ad-mid" />
+			<Ad ID="div-gpt-ad-content-ibar" Pos="r2"  Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" CssClass="ibar_container" />
+			<Ad ID="div-gpt-ad-content-ibar-feature" Pos="fl_t"  Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" CssClass="GoogleActiveViewClass" />
+			<MediaNetAd ID="635723831" Size="1400x200"/>
+			<MediaNetAd ID="106428849" Size="1400x200"/>
+		</InContentAd>
+		<BottomAd>
+			<Ad ID="div-gpt-ad-bottom-1" Pos="BOTTOM" Size="[[728, 90], [970, 90]]" SizeMapping="[0, 0], []|[728, 200], [[728, 90], [970, 90]]" CssClass="ad-bottom" />
+		</BottomAd>
+		<MobileAd CssClass="ads_main_div">
+			<Ad ID="div-gpt-ads_content_320x50mid" Pos="mid" Size="[320, 50]" SizeMapping="[0, 0], [320, 50]|[1024, 200], []" />
+			<Ad ID="div-gpt-ad-content-1" Pos="top" Size="[[300, 250], [300, 600]]" SizeMapping="[0, 0], [[300, 250], [300, 600]]|[1024, 200], []" />
+			<Ad ID="div-gpt-ad-content-2" Pos="mid" Size="[300, 250]" SizeMapping="[0, 0], [300, 250]|[1024, 200], []" />
+			<Ad ID="div-gpt-ad-content-4" Pos="bottom" Size="[300, 250]" SizeMapping="[0, 0], [300, 250]|[1024, 200], []" />
+			<Ad Pos="sticky" ID="div-gpt-ad-content-6" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" />
+			<Ad Pos="ht_1" ID="div_gpt_htart_div_1" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" />
+			<Ad Pos="ht_2" ID="div_gpt_htart_div_2" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]" />
+			<Ad Pos="ht_3" ID="div_gpt_htart_div_3" Size="[1, 1]" SizeMapping="[0, 0], [1, 1]"/>
+			<MediaNetAd ID="541845392" Size="300x250"/>
+			<MediaNetAd ID="198355175" Size="300x250"/>
+			<GoogleAd ID="seo_1_sd_R1_m" Order="1"/>
+			<GoogleAd ID="seo_2_sd_FL_B_m" Order="2"/>
+		</MobileAd>
+	</AllAds>
+</Project>

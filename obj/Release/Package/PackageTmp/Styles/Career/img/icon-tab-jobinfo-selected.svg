@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g id="icon-tab-jobinfo-selected" transform="translate(-898.053 -777.239)">
+    <circle id="Ellipse_3" data-name="Ellipse 3" cx="14" cy="14" r="14" transform="translate(898.053 777.239)" fill="#007dbc"/>
+    <g id="Group_3" data-name="Group 3">
+      <g id="Group_2" data-name="Group 2">
+        <path id="Path_21" data-name="Path 21" d="M918.444,789.99h-3.92v-3.917Z" fill="#fff"/>
+        <path id="Path_22" data-name="Path 22" d="M906.9,786.164h-.465a.754.754,0,0,0-.754.755v8.64a.755.755,0,0,0,.755.755h11.2a.714.714,0,0,0,.714-.714v-5.621l-3.743-3.815h-8.27a.29.29,0,0,1-.279-.29c0-.275.416-.275.416-.275h8.417l4.16,4.24v5.6a1.368,1.368,0,0,1-1.36,1.44h-11.2a1.434,1.434,0,0,1-1.44-1.44v-8.4a1.434,1.434,0,0,1,1.44-1.44h.406a.29.29,0,0,1,.236.3A.253.253,0,0,1,906.9,786.164Z" fill="#fff"/>
+      </g>
+      <rect id="Rectangle_9" data-name="Rectangle 9" width="5.331" height="1.254" rx="0.247" transform="translate(906.716 787.794)" fill="#fff"/>
+      <rect id="Rectangle_10" data-name="Rectangle 10" width="10.474" height="0.643" rx="0.248" transform="translate(906.716 790.554)" fill="#fff"/>
+      <rect id="Rectangle_11" data-name="Rectangle 11" width="10.474" height="0.643" rx="0.248" transform="translate(906.716 792.208)" fill="#fff"/>
+      <rect id="Rectangle_12" data-name="Rectangle 12" width="7.401" height="0.643" rx="0.209" transform="translate(906.716 793.862)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

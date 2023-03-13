@@ -1,0 +1,45 @@
+<svg id="667f3b04-66a2-4400-80fa-7c00a3772be3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .a11e11fe-1c5f-423e-b090-0b4fca782b05 {
+        fill: #231f20;
+      }
+
+      .\34 42ebecc-4b67-4a78-a8ac-0a8ab84273e6 {
+        font-size: 12px;
+        font-family: MyriadPro-Regular, Myriad Pro;
+      }
+
+      .\32 538edea-1da4-4fb0-ab2f-69867211f35d {
+        letter-spacing: -0.01em;
+      }
+
+      .\37 8fe6a98-8bbd-4858-bb33-e40419ed95ca {
+        letter-spacing: -0.01em;
+      }
+
+      .d52369bf-7b52-4777-823a-4b834c817422 {
+        letter-spacing: 0em;
+      }
+
+      .\31 f7b9379-1fe6-4f6e-aa77-78e964976324 {
+        letter-spacing: 0.02em;
+      }
+
+      .\36 df00da3-cf50-47d8-9941-d22e376b4b57 {
+        letter-spacing: -0.01em;
+      }
+
+      .ffb5772b-29cb-4e28-86b7-84af152decf1 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <title>filter</title>
+  <path class="a11e11fe-1c5f-423e-b090-0b4fca782b05" d="M18.44.5H1.56a.51.51,0,0,0-.45.28.51.51,0,0,0,0,.52L7.5,9.61V19a.5.5,0,0,0,.31.46.43.43,0,0,0,.19,0,.51.51,0,0,0,.36-.15l4-4A.53.53,0,0,0,12.5,15V9.61L18.83,1.3a.49.49,0,0,0,.06-.52A.51.51,0,0,0,18.44.5ZM11.6,9.13a.5.5,0,0,0-.1.31V14.8l-3,3V9.44a.5.5,0,0,0-.1-.31L2.57,1.5H17.43Z"/>
+  <g id="03fd3ffa-6f88-4765-ae3a-86c6411c6b5d" data-name="check toggle 2">
+    <g id="be347eef-f558-4f65-a6fe-fe7eb067b257" data-name="checked">
+      <text class="442ebecc-4b67-4a78-a8ac-0a8ab84273e6" transform="translate(-58.76 -16.64)">I<tspan class="2538edea-1da4-4fb0-ab2f-69867211f35d" x="2.87" y="0">c</tspan><tspan x="8.17" y="0">ons </tspan><tspan class="78fe6a98-8bbd-4858-bb33-e40419ed95ca" x="28.72" y="0">f</tspan><tspan x="32.06" y="0">or </tspan><tspan class="d52369bf-7b52-4777-823a-4b834c817422" x="45.12" y="0">e</tspan><tspan x="51.1" y="0">xpo</tspan><tspan class="1f7b9379-1fe6-4f6e-aa77-78e964976324" x="70.07" y="0">r</tspan><tspan x="74.28" y="0">t </tspan><tspan class="6df00da3-cf50-47d8-9941-d22e376b4b57" x="80.79" y="0">t</tspan><tspan x="84.7" y="0">o i</tspan><tspan class="2538edea-1da4-4fb0-ab2f-69867211f35d" x="96.63" y="0">c</tspan><tspan x="101.94" y="0">on </tspan><tspan class="78fe6a98-8bbd-4858-bb33-e40419ed95ca" x="117.73" y="0">f</tspan><tspan x="121.08" y="0">o</tspan><tspan class="ffb5772b-29cb-4e28-86b7-84af152decf1" x="127.67" y="0">n</tspan><tspan x="134.28" y="0">t</tspan></text>
+    </g>
+  </g>
+</svg>

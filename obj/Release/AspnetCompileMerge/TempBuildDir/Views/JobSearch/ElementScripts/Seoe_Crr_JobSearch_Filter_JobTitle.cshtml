@@ -1,0 +1,26 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    <div class="display-flex flex-justify-content-between flex-wrap">
+        <div class="crr-filter-buttons">
+            <button class="btn btn-default border-blue">All</button>
+            <button class="btn btn-default border-blue">Accountant</button>
+            <button class="btn btn-default border-blue">Construction</button>
+            <button class="btn btn-default border-blue">Related Job Title</button>
+            <button class="btn btn-default border-blue">Related Job Title</button>
+            <button class="btn btn-default border-blue">Related Job Title</button>
+            <button class="btn btn-default border-blue">Related Job Title</button>
+        </div>
+        <div class="crr-view-more-filter-btn collapse-on-desktop">
+            <a href="#" class="crr-text-blue">view more</a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_Filter_JobTitle.cshtml", ex);
+}

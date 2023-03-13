@@ -1,0 +1,194 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+   
+    <div class="crr-job-listing-filters-tabs collapse-on-mobile">
+        <ul class="nav nav-tabs crr-job-listing-filters" role="tablist" id="crr-filter-tabs">
+            <li class="">
+                <button class="btn btn-default border-none  crr-text-blue font-bold crr-filter-count" type="button" onclick="removeFilters()">   4 <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right font-regular">×</span></button>
+            </li>
+            <li class="active">
+                <a href="javascript:void(0)" aria-controls="crr-date-posted" data-target="#crr-date-posted" role="tab" data-toggle="tab">Date Posted </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" aria-controls="crr-job-type" data-target="#crr-job-type" role="tab" data-toggle="tab">Job Type</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)"  aria-controls="crr-distance" data-target="#crr-distance" role="tab" data-toggle="tab">Distance</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" aria-controls="crr-job-title" data-target="#crr-job-title" role="tab" data-toggle="tab">Job Title</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" aria-controls="crr-salary" data-target="#crr-salary" role="tab" data-toggle="tab">Salary</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" aria-controls="crr-skill" data-target="#crr-skill" role="tab" data-toggle="tab">Skill</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" aria-controls="crr-company" data-target="#crr-company" role="tab" data-toggle="tab" data>Company</a>
+            </li>
+            @*<li>
+                    <a href="javascript:void(0);" aria-controls="crr-job-level" role="tab" data-toggle="tab">Job Level</a>
+                </li>*@
+            <li class="checkbox">
+                <label>
+                    <input type="checkbox"> <span>Remote Only</span>
+                </label>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content margin-top15 margin-left20 margin-right30">
+            <div role="tabpanel" class="tab-pane active" id="crr-date-posted">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_DatePosted.cshtml")
+            </div>
+            <div role="tabpanel" class="tab-pane" id="crr-job-type">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_JobType.cshtml")
+            </div>
+            <div role="tabpanel" class="tab-pane" id="crr-distance">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Distance.cshtml")
+            </div>
+            <div role="tabpanel" class="tab-pane" id="crr-job-title">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_JobTitle.cshtml")
+            </div>
+            <div role="tabpanel" class="tab-pane" id="crr-salary">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Salary.cshtml")
+            </div>
+            <div role="tabpanel" class="tab-pane" id="crr-skill">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Skill.cshtml")
+            </div>
+            <div role="tabpanel" class="tab-pane" id="crr-company">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Company.cshtml")
+            </div>
+            @*<div role="tabpanel" class="tab-pane" id="crr-job-level">
+                    @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_JobLevel.cshtml")
+                </div>*@
+        </div>
+    </div>
+
+    //For Mobile
+    <div class="collapse-on-desktop">
+        <a href="javascript:void(0)" class=" display-flex" data-toggle="collapse" data-target="#crr-filter-absolute" aria-expanded="false">
+            <span class="icon-filter text-bluedark "></span>
+            <span class="caret "></span>
+        </a>
+        <div class="collapse crr-header-global-navcontainer collapse-on-desktop navbar-right" id="crr-filter-absolute">
+            <div class="crr-emp-header-global-menu-content padding0">
+                <div class="crr-filter-header padding-left10 padding-right10 margin-top20">
+                    <a href="javascript:void(0)" class="crr-back-arrow-left margin-right20 text-size20" aria-label="Close" data-toggle="collapse" data-target="#crr-filter-absolute" aria-expanded="false">
+                        <span class="icon-arrow-left"></span>
+                    </a>
+                    <a href="javascript:void(0)" class="crr-text-primarydark text-size20 ">
+                        <span class="icon-filter crr-text-primarydark margin-right20"></span>
+                        Filters
+                    </a>
+                    <button class="btn btn-default border-none  crr-text-blue font-bold crr-filter-count" type="button" onclick="removeFilters()">  4 <span aria-hidden="true" class="crr-text-blue crr-custom-close-btn float-right font-regular">×</span></button>
+                </div>
+                <div class="crr-global-filters">
+
+                    <div class="crr-sort-by">
+                        <div class="crr-filters-Sort-by text-gray text-uppercase">SORT BY</div>
+                        <button class="btn btn-default border-none font-bold padding-left10 padding-right10">Date</button>
+                        <button class="btn btn-default border-none  font-bold padding-left10 padding-right10">Relevance</button>
+                    </div>
+                    <hr class="margin-top20 margin-bottom20" />
+
+                    <div class="crr-filters-Sort-by text-gray text-uppercase margin-bottom20">Filter By</div>
+                    <div class="display-flex flex-justify-content-between ">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> <span>Remote Only</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0  " role="button" data-toggle="collapse" data-target="#crr-datePosted" aria-expanded="false" aria-controls="crr-datePosted">
+                            <span>Date Posted<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10 " id="crr-datePosted">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_DatePosted.cshtml")
+                        </div>
+                    </div>
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-jobType" aria-expanded="false" aria-controls="crr-jobType">
+                            <span>Job Type<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10" id="crr-jobType">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_JobType.cshtml")
+                        </div>
+                    </div>
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-distance-mobile" aria-expanded="false" aria-controls="crr-distance-mobile">
+                            <span>Distance<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10" id="crr-distance-mobile">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Distance.cshtml")
+                        </div>
+                    </div>
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-jobtitle" aria-expanded="false" aria-controls="crr-jobtitle">
+                            <span>Job Title<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10" id="crr-jobtitle">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_JobTitle.cshtml")
+                        </div>
+                    </div>
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-sal" aria-expanded="false" aria-controls="crr-sal">
+                            <span>Salary<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10" id="crr-sal">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Salary.cshtml")
+                        </div>
+                    </div>
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-skills" aria-expanded="false" aria-controls="crr-skills">
+                            <span>Skills<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10" id="crr-skills">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Skill.cshtml")
+                        </div>
+                    </div>
+                    @*<div class="crr-job-filter">
+                            <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-jobLevel" aria-expanded="false" aria-controls="crr-jobLevel">
+                                Job Level
+                                <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                            </a>
+                            <div class="collapse sa-collapse padding-top10" id="crr-jobLevel">
+                                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_JobLevel.cshtml")
+                            </div>
+                        </div>*@
+                    <div class="crr-job-filter">
+                        <a id="crr-jobs-dropdown" class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0" role="button" data-toggle="collapse" data-target="#crr-company-filter" aria-expanded="false" aria-controls="crr-company-filter">
+                            <span>Company<span class="badge  margin-left10">4</span></span>
+                            <img src="~/Images/icon-arrow-down-circle.svg" class="collapse-on-desktop" width="16" height="16" />
+                        </a>
+                        <div class="collapse sa-collapse padding-top10" id="crr-company-filter">
+                            @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_Filter_Company.cshtml")
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crr-jobs-filter-actions">
+                    <button class="btn btn-default border-blue padding-left30 padding-right30  font-bold crr-text-blue" aria-label="Close" data-toggle="collapse" data-target="#crr-filter-absolute" aria-expanded="false">Close</button>
+                    <button type="button" class="btn btn-cta   font-bold padding-left30 padding-right30">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_Filter.cshtml", ex);
+}

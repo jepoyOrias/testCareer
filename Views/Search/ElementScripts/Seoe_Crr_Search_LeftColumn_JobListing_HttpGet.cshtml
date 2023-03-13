@@ -1,0 +1,98 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seog_Crr_LuceneSearch objSearch = new Seog_Crr_LuceneSearch();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    //DataSet dstJobPostingData = null;
+    DataTable dtbJobPostingData = null;
+    DataTable dtbSearchResult = null;
+}
+
+@try
+{
+    int intPageSize = (System.Configuration.ConfigurationManager.AppSettings["pagesize"] ?? "10").ChangeType<int>();
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    //SearchKeywordType searchType = (SearchKeywordType)Convert.ToInt32(hshPageParams["SearchKeywordType"]);
+    //string strKeyword = hshPageParams["Keyword"]?.ToString();
+    dtbSearchResult = hshPageParams["SearchResultData"] as DataTable;
+    int intCount = Convert.ToInt32(hshPageParams["SearchResultCount"]);
+    int intPage = 0;
+    int.TryParse(hshPageParams["Page"] as string, out intPage);
+    intPage = intPage == 0 ? 1 : intPage;
+
+    <div class="crr-job-number crr-text-navy font-bold">@(intCount>=10000?"10000+":intCount.ToString()) Job@(intCount > 1 ? "s" : "")</div>
+    //if (!objData.SalIsEmptyDataTable(dtbSearchResult))
+    //{
+    <div class="crr-joblisting-container">
+        @for (int intIndex = 0; intIndex < dtbSearchResult.Rows.Count; intIndex++)
+        {
+            string strAppendStyleForSelectedJob = string.Empty;
+            DataRow drw = dtbSearchResult.Rows[intIndex];
+            //string strCareerJobPostingID = drw["CareerJobPostingID"].ToString();
+            string strJobPostingID = drw["JobPostingID"].ToString();
+            string strLocation = string.Join(", ", drw["City"], drw["StateCode"]);
+            string strSeoCompanyName = drw["SEOCompanyName"].ToString();
+            string strSeoJobTitle = drw["SEOTitle"].ToString();
+            string strEmploymentType = objUtility.SalUpperCaseFirstLetter(drw["EmploymentType"].ToString().Replace("-", " ").Replace("_", " ").Replace(",", " | ").Trim());
+            string strDateTime = drw["PostDate"].ToString();
+
+            if (string.Compare(strJobPostingID, dtbJobPostingData?.Rows[0]["ID"].ToString(), true) == 0)
+            {
+                strAppendStyleForSelectedJob = "job selected";
+                //dstJobPostingData = objJob.SalGetJobPostingByJobPostingID(objJob.SalGetJobPostingIDByCareerJobID(strCareerJobPostingID));
+            }
+            @*<a class="crr-joblisting-wrapper cursor-pointer @strAppendStyleForSelectedJob"
+                href="@objJob.SalGenerateCareerJobPostingDetailUrl(strSeoCompanyName,strSeoJobTitle,strCareerJobPostingID,drw["City"].ToString(), drw["StateCode"].ToString())"
+                title="@drw["JobPostingTitle"].ToString()">*@
+            <a class="crr-joblisting-wrapper cursor-pointer @strAppendStyleForSelectedJob" pid="@strJobPostingID" onclick="loadJob(this)" title="@drw["JobPostingTitle"].ToString()">
+                <div class="crr-joblisting-item">
+                    <span class="jb text-size22">@drw["JobPostingTitle"].ToString()</span>
+                    <span class="cp color-212221 text-size16">  @drw["CompanyName"].ToString()</span>
+                    <span class="l color-767676 text-size16">
+                        @if (drw["IsWorkFromHome"]?.ToString() == "1")
+                        {
+                            @: @string.Join(" | ", strLocation, strEmploymentType, "Remote")
+                        }
+                        else
+                        {
+                            @: @string.Join(" | ", strLocation, strEmploymentType)
+                        }
+                    </span>
+                </div>
+                <div class="crr-joblisting-item">
+                    @if (!string.IsNullOrEmpty(strDateTime))
+                    {
+                        <div class='d'>@objUtility.SalGetPostDateDesc(Convert.ToDateTime(strDateTime))</div>
+                    }
+                </div>
+            </a>
+        }
+    </div>
+
+    if (intCount > intPageSize && intCount > intPage * intPageSize)
+    {
+        <div class="crr-row-loadmore">
+            <a class="btn crr-btn crr-btn-size crr-btn-bluedark font-semibold crr-loadmore-btn" href="@Request.Url.AddOrUpdateParameter("p",(intPage+1).ToString())" id="crr-loadmore-httpget">
+                <span>Load More</span>
+            </a>
+        </div>
+    }
+    //}
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbSearchResult);
+    //objData.SalCleanDataSet(ref dstJobPostingData);
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+}

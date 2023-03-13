@@ -1,0 +1,42 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    <div class="crr-layout-section border-none crr-jobs-panel padding0">
+        <div class="crr-js-search-results flex-basis-fill">
+            <div class="crr-sr-panels">
+                <div class="crr-sr-left-panel  crr-layout-section border-none">
+                    <div class="collapse-on-mobile">
+                        @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_SearchResult_Title.cshtml")
+                        @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_SearchResult_Filter.cshtml")
+                    </div>
+                    @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_SearchResult_JobCard.cshtml")
+                </div>
+                <div class="crr-sr-main-panel">
+                    <div class="crr-sr-content">
+                        @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_RightPanel.cshtml")
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse-on-desktop crr-layout-section border-none margin-top30">
+                @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_SearchResult_SetUpJobAlert.cshtml")
+               
+                <div class="display-flex flex-justify-content-center margin-top30">
+                    <a href="javascript:void(0)" class="crr-text-blue text-size15 display-flex flex-align-item-center"><span class="crr-text-primary icon-arrow-left margin-right10 text-size20"></span>Back to Results</a>
+                </div>
+            </div>
+            <div class="crr-sr-next-jobs collapse-on-mobile">
+                <a href="javascript:void(0);" class="crr-next-job-btn crr-text-blue font-semibold text-size15">Next Job<span class="icon-arrow-right margin-left10 text-charcoal"></span></a>
+            </div>
+
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch.cshtml", ex);
+}

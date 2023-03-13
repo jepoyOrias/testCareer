@@ -1,0 +1,45 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    string strKeyword = hshPageParams["Keyword"]?.ToString().Trim();
+    if (string.IsNullOrEmpty(strKeyword) && hshPageParams.ContainsKey("SearchKeywordType"))
+    {
+        SearchKeywordType SelectedSearchType = SearchKeywordType.JobTitle;
+        SelectedSearchType = (SearchKeywordType)Convert.ToInt32(hshPageParams["SearchKeywordType"].ToString());
+        switch (SelectedSearchType)
+        {
+            case SearchKeywordType.JobTitle:
+                strKeyword = "Accountant";
+                break;
+            case SearchKeywordType.Company:
+                strKeyword = "Dollar General";
+                break;
+            case SearchKeywordType.Skill:
+                strKeyword = "Estimating";
+                break;
+            case SearchKeywordType.CareerPath:
+                strKeyword = "Assistant Manager";
+                break;
+        }
+    }
+
+    <div class="crr-noresults">There are no search results for <span class="font-semibold">@(strKeyword)</span></div>
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+}

@@ -1,0 +1,164 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+    DataTable dtbJobPostingData = null;
+    DataSet dstCompanyInfo = null;
+    DataSet dstRelatedCompanyInfo = null;
+    string strCompanyID = null;
+    string strCompanyName = null;
+    string strSeoCompanyName = null;
+    string strLocation = string.Empty;
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    strLocation = hshPageParams["Location"]?.ToString();
+    dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+    if (!objData.SalIsEmptyDataTable(dtbJobPostingData))
+    {
+        DataRow drwSingleJobPostingData = dtbJobPostingData.Rows[0];
+        strCompanyName = drwSingleJobPostingData["CompanyName"].ToString().ToLower();
+        strSeoCompanyName = drwSingleJobPostingData["SEOCompanyName"].ToString();
+    }
+    if (!string.IsNullOrEmpty(strSeoCompanyName))
+    {
+        Hashtable hshJBDCompanyNames = (Hashtable)HttpContext.Current.Application["JBDCompanyNames"];
+        if (hshJBDCompanyNames.ContainsKey(strSeoCompanyName.ToUpper()))
+        {
+            strCompanyID = hshJBDCompanyNames[strSeoCompanyName.ToUpper()].ToString();
+            dstCompanyInfo = objJob.SalGetCompanyInfoByCompanyID(strCompanyID);
+            dstRelatedCompanyInfo = objJob.SalGetRelatedCompanyInfoByCompanyID(strCompanyID);
+        }
+    }
+    if (!objData.SalIsEmptyDataSet(dstCompanyInfo))
+    {
+        <div class="crr-layout-section padding-top0 padding-left0 padding-right0" id="crr-company-wrapper">
+            <div class="carr-company-overview-head flex-nowrap flex-div flex-justify-content-between flex-align-item-center" style="margin:0 10px;">
+                <h2 class="carr-h2 margin-bottom20 crr-careerpathhed margin-top30">Company Overview</h2>
+                <a role="button" data-toggle="collapse" href="#carr-company-overview" aria-expanded="true" style="padding:0 30px;">
+                    <img style="height:15px;" src="~/Images/icon-big-expand.svg" />
+                    @*<img style="display:none" src="~/Images/arrow-up.png" />*@
+                </a>
+            </div>
+            <div class="carr-company-overview-body collapse in" id="carr-company-overview">
+                @if (!objData.SalIsEmptyDataSet(dstCompanyInfo))
+                {
+                    foreach (DataRow drw in dstCompanyInfo.Tables[0].Rows)
+                    {
+                        string strCompanyCity = drw["CompanyCity"].ToString();
+                        string strCompanyState = drw["CompanyState"].ToString();
+                        string strLocationDesc = string.Empty;
+                        if (!string.IsNullOrEmpty(strCompanyCity))
+                        {
+                            strLocationDesc = $"{strCompanyCity}, {strCompanyState}";
+                        }
+                        else if (!string.IsNullOrEmpty(strCompanyState))
+                        {
+                            strLocationDesc = strCompanyState;
+                        }
+                        <ul class="carr-lable">
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Website</span>
+                                <span>@drw["CompanyDomain"].ToString()</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Headquarters</span>
+                                <span>@strLocationDesc</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Size</span>
+                                <span>@drw["FTERangeDesc"].ToString()</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Founded</span>
+                                <span>@(drw["FoundedYear"].ToString()=="0"?"": drw["FoundedYear"].ToString())</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Type</span>
+                                <span>@drw["OwnershipType"].ToString()</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">CEO</span>
+                                <span>@drw["CEOName"].ToString()</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Revenue</span>
+                                <span>@drw["RevRangeDesc"].ToString()</span>
+                            </li>
+                            <li class="display-flex col-sm-6">
+                                <span class="font-semibold">Industry</span>
+                                <span>@drw["IndustryFamilyName"].ToString()</span>
+                            </li>
+                        </ul>
+                    }
+
+                }
+
+                <ul class="carr-related-company">
+
+                    @if (!objData.SalIsEmptyDataSet(dstRelatedCompanyInfo))
+                    {
+                        <li class="col-sm-12"> Related Companies</li>
+                        foreach (DataRow drwJBDCompanyRelated in dstRelatedCompanyInfo.Tables[0].AsEnumerable().Take(6))
+                        {
+                            string strUrl = objJob.SalGenerateCareerJobSearchUrl(strKeyword: drwJBDCompanyRelated["CompanyName"].ToString().ToLower(), strLocation: strLocation, searchType: SearchKeywordType.Company);
+                            <li class="col-sm-4">
+                                <a href="@strUrl" class="text-capitalize margin-right20 margin-bottom20 crr-text-blue">
+                                    @objUtility.SalUpperCaseFirstLetter(drwJBDCompanyRelated["CompanyName"].ToString())
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+                <ul class="carr-about-company">
+
+                    @if (!objData.SalIsEmptyDataSet(dstCompanyInfo))
+                    {
+                        var companyInfo = dstCompanyInfo.Tables[0].AsEnumerable().Where(c => !string.IsNullOrWhiteSpace(c["BusinessDesc"].ToString()));
+
+                        if (companyInfo.Count() > 0)
+                        {
+                            DataTable dtbCompanyInfo = companyInfo.CopyToDataTable();
+
+                            <li class="col-sm-12">About @strCompanyName</li>
+                            <li class="font-regular col-sm-12">
+                                @foreach (DataRow drw in dtbCompanyInfo.Rows)
+                                {
+                                    if (drw["BusinessDesc"].ToString().Length > 600)
+                                    {
+                                        @Html.Raw(objUtility.SalGetShortedContent(drw["BusinessDesc"].ToString(), 600))
+                                        <span id="companydescdots">...</span>
+                                        <span id="companydescmore" class="collapse">
+                                            @drw["BusinessDesc"].ToString().Substring(600)
+                                        </span>
+                                        <a class="cursor-pointer" id="btnMoreCompanyDesc" onclick="showMoreCompanyDesc()">More</a>
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(drw["BusinessDesc"].ToString())
+                                    }
+                                }
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+}

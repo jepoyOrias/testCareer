@@ -1,0 +1,381 @@
+﻿@using System.Text
+@using System.Globalization;
+
+@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+
+
+    //DataTable dtbJobPostingData = null;
+    DataTable dtbAllAticles = null;
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    DataRow[] drwAllAticles = null;
+}
+
+@try
+{
+    string strCleanJobPostingTitle = hshPageParams["CleanJobPostingTitle"]?.ToString();
+    if (!string.IsNullOrEmpty(strCleanJobPostingTitle))
+    {
+        dtbAllAticles = objJob.SalGetAllHotTitles()?.Tables[0];
+        drwAllAticles = dtbAllAticles.Select("ArticleHotJobName = '" + strCleanJobPostingTitle + "'");
+
+        if (drwAllAticles.Count() > 0)
+        {
+            DataSet dstHotJobs = null;
+            DataSet dstColleges = null;
+
+            List<DataRow> lstWhatToDo = null;
+            List<DataRow> lstTips = null;
+            List<DataRow> lstBestColleges = null;
+
+            string strSectionID = string.Empty;
+            string strAOrAn = drwAllAticles[0]["AnOrA"].ToString();
+            string strHotJobKeyword = drwAllAticles[0]["ArticleHotJobName"].ToString();
+            string strArticleHotJobCode = drwAllAticles[0]["ArticleHotJobCode"].ToString();
+            string strJobDesc = string.Empty;
+            string strFormatTitle = string.Format("{0} {1}", strAOrAn, strHotJobKeyword);
+            string strMatchedJobCode = string.Empty;
+            string strSEOJobTitle = string.Empty;
+            string strSectionContent = string.Empty;
+
+            string strJobFamilyCode = string.Empty;
+            string strBenchmarkJobCode = string.Empty;
+            string strTXNYJobFamilyCode = string.Empty;
+            DataSet dstArticleSectionContent = objJob.SalGetSingleArticleSectionContent(strArticleHotJobCode);
+            dstHotJobs = objJob.SalGetSingleArticleHotJobByArticleHotJobCode(strArticleHotJobCode);
+            if (!objData.SalIsEmptyDataSet(dstHotJobs))
+            {
+                strTXNYJobFamilyCode = dstHotJobs.Tables[0].Rows[0]["TXNYJobFamilyCode"].ToString();
+                objData.SalCleanDataSet(ref dstHotJobs);
+            }
+
+            //DataSet dstSingleArticleHotJobToBenchmarkJob = null;
+            //DataSet dstJobData = null;
+            //DataSet dstBenchmarkJobData = null;
+            //int intMatchedJobTypeCode = 1;
+            //dstSingleArticleHotJobToBenchmarkJob = objJob.SalGetSingleArticleHotJobToBenchmarkJob(strArticleHotJobCode);
+            //if (!objData.SalIsEmptyDataSet(dstSingleArticleHotJobToBenchmarkJob))
+            //{
+            //    foreach (DataRow drwData in dstSingleArticleHotJobToBenchmarkJob.Tables[0].Rows)
+            //    {
+            //        strMatchedJobCode = drwData.FieldValue("MatchedJobCode");
+            //        intMatchedJobTypeCode = int.Parse(drwData.FieldValue("MatchedJobTypeCode"));
+            //        strJobFamilyCode = drwData.FieldValue("JobFamilyCode");
+            //    }
+            //    objData.SalCleanDataSet(ref dstSingleArticleHotJobToBenchmarkJob);
+            //}
+
+            //if (intMatchedJobTypeCode == 1) //benchmark job
+            //{
+            //    strBenchmarkJobCode = strMatchedJobCode;
+            //}
+            //else
+            //{
+            //    dstJobData = objJob.SalGetJobData((JobType)(intMatchedJobTypeCode), strMatchedJobCode);
+            //    if (!objData.SalIsEmptyDataSet(dstJobData))
+            //    {
+            //        strBenchmarkJobCode = dstJobData.Tables[0].Rows[0].FieldValue("BenchMarkJobCode");
+            //    }
+            //}
+
+            //dstBenchmarkJobData = objJob.SalGetSingleBenchmarkJobByBenchmarkJobCode(strBenchmarkJobCode);
+            //if (!objData.SalIsEmptyDataSet(dstBenchmarkJobData))
+            //{
+            //    DataRow drwJobData = dstBenchmarkJobData.Tables[0].Rows[0];
+            //    strJobTitle = drwJobData.FieldValue("JobTitle");
+            //    strJobDesc = drwJobData.FieldValue("JobDesc").Replace(strJobTitle, strHotJobKeyword);
+            //    strSEOJobTitle = drwJobData.FieldValue("SEOTitle");
+            //}
+
+            //switch ((JobType)(intMatchedJobTypeCode))
+            //{
+            //    case JobType.AlternateJob:
+            //        string strEndWith = strMatchedJobCode.Replace(strBenchmarkJobCode, "").Trim();
+            //        strJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("JobTitle");
+            //        if (!string.IsNullOrEmpty(dstJobData.Tables[0].Rows[0].FieldValue("JobDesc")))
+            //        {
+            //            strJobDesc = dstJobData.Tables[0].Rows[0].FieldValue("JobDesc");
+            //        }
+            //        strSEOJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("SEOTitle");
+            //        break;
+            //    case JobType.CompanyJob:
+            //        break;
+            //    case JobType.PostingJob:
+            //        double dblSlotAdjust = objData.SalConvertDBFieldToDouble(dstJobData.Tables[0].Rows[0]["SlotAdjust"]);
+            //        strJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("JobTitle");
+            //        if (!string.IsNullOrEmpty(dstJobData.Tables[0].Rows[0].FieldValue("JobDesc")))
+            //        {
+            //            strJobDesc = dstJobData.Tables[0].Rows[0].FieldValue("JobDesc");
+            //        }
+            //        strSEOJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("SEOTitle");
+            //        break;
+            //    case JobType.NoLevelJob:
+            //    case JobType.FunctionJob:
+            //    case JobType.CertifiedJob:
+            //        //No Zip, StateCode, City, No need adjust market data
+            //        strJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("JobTitle");
+            //        if (!string.IsNullOrEmpty(dstJobData.Tables[0].Rows[0].FieldValue("JobDesc")))
+            //        {
+            //            strJobDesc = dstJobData.Tables[0].Rows[0].FieldValue("JobDesc");
+            //        }
+            //        strSEOJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("SEOTitle");
+            //        break;
+            //    case JobType.ListingJob:
+            //        strJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("JobTitle");
+            //        strSEOJobTitle = dstJobData.Tables[0].Rows[0].FieldValue("SEOTitle");
+            //        break;
+            //}
+
+            <div class="crr-layout-section padding-top0 padding-left0 padding-right0" id="carr-howtobecome">
+                <div class="carr-howtobecome-wripper">
+                    <div class="carr-howtobecome-head flex-nowrap flex-div flex-justify-content-between flex-align-item-center" style="margin:0 10px;">
+                        <h2 class="carr-h2 margin-bottom20 crr-careerpathhed margin-top30">How to Become @strFormatTitle</h2>
+                        <a role="button" data-toggle="collapse" href="#crr-collapsehowtobecome" aria-expanded="true" aria-controls="collapseExample" style="padding:0 30px;">
+                            <img style="height:15px;" src="~/Images/icon-big-expand.svg" />
+                        </a>
+                    </div>
+                    <div class="carr-howtobecome-body collapse in" id="crr-collapsehowtobecome">
+                        <p class="carr-content margin-left10">
+                            If you are interested in becoming @strFormatTitle, you need to understand the job requirements and
+                            the detailed related responsibilities. Of course, a good educational background and an applicable major will
+                            also help in job hunting. Below are some tips on how to become @strFormatTitle for your
+                            reference.
+                        </p>
+                        <div id="carr-section-whattodo" style="margin:0 10px;">
+                            <h3 class="carr-article-duties text-size18 font-bold">
+                                Step 1
+                                <span class="carr-content display-block margin10">
+                                    Understand the job description and responsibilities of @strFormatTitle
+                                </span>
+                            </h3>
+
+                            <div class="carr-articles-opinions margin-left20">
+                                @if (!objData.SalIsEmptyDataSet(dstArticleSectionContent))
+                                {
+                                    lstWhatToDo = dstArticleSectionContent.Tables[0].Select("ArticleSectionType = 'WhatToDo'", "DisplaySeq ASC").ToList();
+                                    if (lstWhatToDo != null && lstWhatToDo.Count > 0)
+                                    {
+                                        strSectionID = lstWhatToDo != null && lstWhatToDo.Count > 0 ? lstWhatToDo.First()["ArticleSectionID"].ToString() : "-1";
+                                        @Html.Raw(SalRenderArticlesOpinionsV2(strHotJobKeyword, strFormatTitle, strSectionID, dstArticleSectionContent))
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div id="carr-section-tip" style="margin:0 10px;">
+                            <h3 class="carr-article-duties text-size18 font-bold">
+                                Step 2
+                                <span class="carr-content display-block margin10">
+                                    Knowing the best tips for becoming @strFormatTitle can help you explore the needs of the position and prepare for the job-related knowledge well ahead of time.
+                                </span>
+                            </h3>
+                            <div class="carr-articles-opinions margin-left20">
+                                @if (!objData.SalIsEmptyDataSet(dstArticleSectionContent))
+                                {
+                                    lstTips = dstArticleSectionContent.Tables[0].Select("ArticleSectionType = 'Tips'", "DisplaySeq ASC").ToList();
+                                    if (lstTips != null && lstTips.Count > 0)
+                                    {
+                                        strSectionID = lstTips != null && lstTips.Count > 0 ? lstTips.First()["ArticleSectionID"].ToString() : "-1";
+                                        @Html.Raw(SalRenderArticlesOpinionsV2(strHotJobKeyword, strFormatTitle, strSectionID, dstArticleSectionContent))
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        @{
+                            dstColleges = objJob.SalGetSingleTXNYJobFamilyToUniversitySubject(strTXNYJobFamilyCode);
+                            if (!objData.SalIsEmptyDataSet(dstColleges))
+                            {
+                                lstBestColleges = dstColleges.Tables[0].Select().ToList();
+                                if (lstBestColleges != null && lstBestColleges.Count > 0)
+                                {
+                                    if (lstBestColleges.Where(r => r.Field<string>("UniversityName").Trim().Length < 150).Count() > 0)
+                                    {
+                                        lstBestColleges = lstBestColleges.Take(6).ToList();
+
+                                        <div id="carr-section-bestcollege" style="margin:0 10px;">
+                                            <h3 class="carr-article-duties text-size18 font-bold">
+                                                Step 3
+                                                <span class="carr-content display-block margin10">
+                                                    View the best colleges and universities for @strHotJobKeyword
+                                                </span>
+                                            </h3>
+                                            <div>
+                                                @foreach (DataRow drwData in lstBestColleges)
+                                                {
+                                                    strSectionContent = drwData.FieldValue("UniversityName");
+                                                    <div class="carr-articles-opinions margin-left20">
+                                                        <span style="display:inline-block; width:10px;height:10px; background-color: #003e8b; margin-right:10px;"></span>@(strSectionContent)
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        </div>
+
+                                    }
+                                }
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+            objData.SalCleanDataSet(ref dstHotJobs);
+            objData.SalCleanDataSet(ref dstColleges);
+            objData.SalCleanDataSet(ref dstArticleSectionContent);
+        }
+    }
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbAllAticles);
+}
+<style>
+    .carr-howtobecome-content {
+        padding: 10px;
+    }
+
+    .carr-howtobecome-morebtn {
+        font-size: 20px;
+        font-weight: 900;
+        color: #29abe2;
+    }
+
+    .carr-howtobecome-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        gap: 20px;
+        max-width: 992px;
+        padding: 20px;
+    }
+
+    .carr-howtobecome-row {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+        flex-basis: 33%;
+        flex-grow: 1;
+    }
+
+    .carr-howtobecome-row-header {
+        padding: 20px;
+    }
+
+    .carr-howto-subtitle {
+        font-size: 16px;
+    }
+
+    .carr-opinion-content .alert {
+        font-size: 14px;
+    }
+
+    .carr-opinion-date {
+        font-size: 13px;
+    }
+
+    #carr-section-bestcollege .carr-articles-opinions {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .icon-quote {
+        width: 16px;
+    }
+
+    @@media(max-width:768px) {
+        .carr-howtobecome-item {
+            flex-direction: column;
+        }
+
+        .carr-howto-subtitle {
+            font-size: 18px;
+        }
+
+        .carr-opinion-content .alert,
+        .carr-opinion-date {
+            font-size: 16px;
+        }
+
+        #carr-section-bestcollege .carr-articles-opinions {
+            margin-bottom: 18px;
+            font-size: 16px;
+        }
+
+        .icon-quote {
+            width: 22px;
+        }
+    }
+</style>
+
+@helper SalRenderArticlesOpinionsV2(string strHotJobKeyword, string strFormatTitle, string strSectionID, DataSet dstOptions)
+{
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    string[] arrIcon = { "icon-comment-blue.svg", "icon-comment-green.svg", "icon-comment-yellow.svg" };
+    int intPageIndex = 0;
+    string strCityName = string.Empty;
+    string strStateCode = string.Empty;
+    string strLastUpdateDate = string.Empty;
+    StringBuilder sbStructureData = new StringBuilder();
+    string strTitle = string.Empty;
+    string p = string.Empty;
+    switch (strSectionID)
+    {
+        case "5": strTitle = $"Quotes from people on {strHotJobKeyword} job description and responsibilities"; break;
+        case "6": strTitle = $"People's Opinions on {strHotJobKeyword} skills"; break;
+        case "10": strTitle = $"Career tips from people on {strHotJobKeyword} jobs"; break;
+        case "12": strTitle = $"People's Opinions on lifestyles"; break;
+    }
+
+    sbStructureData.Append(strTitle).AppendLine();
+
+    <div class="margin-top15 margin-bottom15">
+        <span class="font-bold crr-text-primary carr-howto-subtitle" data-sectionid="5">
+            @strTitle
+        </span>
+    </div>
+    <div class="carr-opinion-div">
+        @if (!objData.SalIsEmptyDataSet(dstOptions))
+        {
+            foreach (DataRow drw in dstOptions.Tables[0].Select("ArticleSectionID = '" + strSectionID + "'").Take(5))
+            {
+                strCityName = drw["City"] != DBNull.Value ? drw["City"].ToString() : "";
+                strStateCode = drw["StateCode"] != DBNull.Value ? drw["StateCode"].ToString() : "";
+                strLastUpdateDate = drw["LastUpdateDate"] != DBNull.Value ? drw["LastUpdateDate"].ToString() : "";
+                <div class="margin-right20 padding-top5" style="margin-bottom:-5px;">
+                    <img class="icon-quote" src="~/Images/icon-quote.svg" />
+                </div>
+                <div class="carr-opinion-content margin-bottom10 row" style="width:70%;">
+                    <div class="alert margin-bottom10" role="alert" style="background-color: #f6f7f8; margin-left: 10px;">
+                        @(drw.Field<string>("SectionContent"))
+                    </div>
+                    <div class="carr-opinion-date pull-right">@($"{strLastUpdateDate}: {strCityName}, {strStateCode}")</div>
+                </div>
+                //Structure data
+                sbStructureData.Append(drw.Field<string>("SectionContent")).AppendLine();
+                sbStructureData.Append($"{strLastUpdateDate}: {strCityName}, {strStateCode}").AppendLine();
+
+                intPageIndex++;
+                intPageIndex = intPageIndex == 3 ? 0 : intPageIndex;
+
+            }
+        }
+    </div>
+    var wvp = PageContext.Page as System.Web.Mvc.WebViewPage;
+    wvp.Context.Items["StructureDataSectionContent"] = sbStructureData.ToString();
+}

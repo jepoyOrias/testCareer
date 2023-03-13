@@ -1,0 +1,48 @@
+<svg id="592f4c0d-31e0-427e-a11e-5209405b9d22" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .ed425df6-0b97-4a9d-80b4-1c6752439149 {
+        fill: #231f20;
+      }
+
+      .\39 5308b00-6df8-4bf5-92fe-cd0466870f98 {
+        font-size: 12px;
+        font-family: MyriadPro-Regular, Myriad Pro;
+      }
+
+      .\38 955ec3a-3f13-4002-9496-2c9a25622f14 {
+        letter-spacing: -0.01em;
+      }
+
+      .fcb9a9e7-2840-41f8-bcae-23c29698a1de {
+        letter-spacing: -0.01em;
+      }
+
+      .f70f24ba-b082-47e6-a028-cd177f6ed59b {
+        letter-spacing: 0em;
+      }
+
+      .e01b2261-6080-4f74-a446-50b11d4119ed {
+        letter-spacing: 0.02em;
+      }
+
+      .d4fd608b-1986-4fd3-aa13-350108c4b428 {
+        letter-spacing: -0.01em;
+      }
+
+      .ac69165d-4632-401b-b6db-f45e72537442 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <title>charts</title>
+  <g>
+    <path class="ed425df6-0b97-4a9d-80b4-1c6752439149" d="M10.93.5a.5.5,0,0,0-.5.5V9.07a.5.5,0,0,0,.5.5H19a.5.5,0,0,0,.5-.5A8.57,8.57,0,0,0,10.93.5Zm.5,8.07v-7a7.56,7.56,0,0,1,7.05,7.05Z"/>
+    <path class="ed425df6-0b97-4a9d-80b4-1c6752439149" d="M17.14,10.43H9.57V2.86a.51.51,0,0,0-.5-.5,8.57,8.57,0,1,0,8.57,8.57A.51.51,0,0,0,17.14,10.43ZM9.07,18.5a7.57,7.57,0,0,1-.5-15.12v7.55a.5.5,0,0,0,.5.5h7.55A7.58,7.58,0,0,1,9.07,18.5Z"/>
+  </g>
+  <g id="44bac03d-35d6-463c-998b-a3a7eb4dff35" data-name="check toggle 2">
+    <g id="54a4a76f-0191-4845-bfae-f7ed1d06b740" data-name="checked">
+      <text class="95308b00-6df8-4bf5-92fe-cd0466870f98" transform="translate(-120.1 -16.81)">I<tspan class="8955ec3a-3f13-4002-9496-2c9a25622f14" x="2.87" y="0">c</tspan><tspan x="8.17" y="0">ons </tspan><tspan class="fcb9a9e7-2840-41f8-bcae-23c29698a1de" x="28.72" y="0">f</tspan><tspan x="32.06" y="0">or </tspan><tspan class="f70f24ba-b082-47e6-a028-cd177f6ed59b" x="45.12" y="0">e</tspan><tspan x="51.1" y="0">xpo</tspan><tspan class="e01b2261-6080-4f74-a446-50b11d4119ed" x="70.07" y="0">r</tspan><tspan x="74.28" y="0">t </tspan><tspan class="d4fd608b-1986-4fd3-aa13-350108c4b428" x="80.79" y="0">t</tspan><tspan x="84.7" y="0">o i</tspan><tspan class="8955ec3a-3f13-4002-9496-2c9a25622f14" x="96.63" y="0">c</tspan><tspan x="101.94" y="0">on </tspan><tspan class="fcb9a9e7-2840-41f8-bcae-23c29698a1de" x="117.73" y="0">f</tspan><tspan x="121.08" y="0">o</tspan><tspan class="ac69165d-4632-401b-b6db-f45e72537442" x="127.67" y="0">n</tspan><tspan x="134.28" y="0">t</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-user-logged-in-layout margin-top40 margin-bottom40">
+        @Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Account_Profile.cshtml")
+
+        <div class="crr-user-tabs crr-max-width">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                    <a href="javascript:toggleUserTabs();" class="font-semibold" aria-controls="crr-job-alerts" role="tab" data-toggle="tab">Job Alerts</a>
+                </li>
+                <li class="">
+                    <a href="javascript:toggleUserTabs();" class="font-semibold" aria-controls="crr-saved-jobs" role="tab" data-toggle="tab">Saved Jobs</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="crr-job-alerts">
+                    @Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Account_JobAlerts.cshtml")
+                </div>
+                <div role="tabpanel" class="tab-pane" id="crr-saved-jobs">
+                    @Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Account_SavedJobs.cshtml")
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="crr-saved-jobs-detail">
+                    @Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Account_SavedJobs_Detail.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Account/ElementScripts/Seoe_Crr_Account_Profile_EditProfile_Modal.cshtml")
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Account.cshtml", ex);
+}

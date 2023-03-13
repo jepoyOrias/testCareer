@@ -1,0 +1,24 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    <div class="display-flex flex-justify-content-between">
+        <div class="padding-left10 padding-right10 crr-filter-buttons">
+            <button class="btn btn-default border-blue">Entry Level</button>
+            <button class="btn btn-default border-blue">Junior Level</button>
+            <button class="btn btn-default border-blue">Mid Level</button>
+            <button class="btn btn-default border-blue">Senior Level</button>
+            <button class="btn btn-default border-blue">Project Manager</button>
+        </div>
+        <div class="crr-view-more-filter-btn collapse-on-desktop">
+            <a href="#" class="crr-text-blue"></a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_Filter_JobLevel.cshtml", ex);
+}

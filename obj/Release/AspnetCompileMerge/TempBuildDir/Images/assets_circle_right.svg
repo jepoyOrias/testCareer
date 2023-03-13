@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1797" height="1219" viewBox="0 0 1797 1219">
+  <defs>
+    <clipPath id="clip-assets_circle_right">
+      <rect width="1797" height="1219"/>
+    </clipPath>
+  </defs>
+  <g id="assets_circle_right" clip-path="url(#clip-assets_circle_right)">
+    <rect width="1797" height="1219" fill="#fff"/>
+    <circle id="椭圆_1" data-name="椭圆 1" cx="485" cy="485" r="485" transform="translate(-302 102)" fill="#f6f6f9"/>
+  </g>
+</svg>

@@ -1,0 +1,81 @@
+﻿@{
+    Seom_Crr_GPTAdsLibrary objAdsLibrary = ViewBag.ObjAds as Seom_Crr_GPTAdsLibrary;
+    ConcurrentDictionary<string, AdsUnit> objAllAds = ViewBag.AllAds as ConcurrentDictionary<string, AdsUnit>;
+    var mediaNetAdsList = objAllAds.Values.Where(q => q.AdsType == AdsType.MediaNetAd);
+    var googleTextAdsList = objAllAds.Values.Where(q => q.AdsType == AdsType.GoogleAd);
+}
+
+
+@if (mediaNetAdsList.Any())
+{
+    <!--Media.net Ads Scripts -->
+    <script type="text/javascript">
+        window._mNHandle = window._mNHandle || {};
+        window._mNHandle.queue = window._mNHandle.queue || [];
+        medianet_versionId = "3121199";
+    </script>
+    <script src="//contextual.media.net/dmedianet.js?cid=8CUH7GB6T" async="async"></script>
+
+    if (Request.Browser.IsMobileDevice)
+    {
+        <script type="text/javascript">
+            window.setTimeout(function () {
+               @foreach(var mediaNetAds in mediaNetAdsList)
+                {
+                    <text>
+                        try {
+                            window._mNHandle.queue.push(function () {
+                                window._mNDetails.loadTag("@mediaNetAds.ID", "@mediaNetAds.Size", "@mediaNetAds.ID");
+                            });
+                        }
+                        catch (error) {
+                        }
+                    </text>
+                  }
+                }/*, BID_TIMEOUT2*/);
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+             @foreach(var mediaNetAds in mediaNetAdsList)
+            {
+                <text>
+                    try {
+                        window._mNHandle.queue.push(function () {
+                            window._mNDetails.loadTag("@mediaNetAds.ID", "@mediaNetAds.Size", "@mediaNetAds.ID");
+                        });
+                    }
+                    catch (error) {
+                    }
+                </text>
+            }
+        </script>
+    }
+
+}
+
+@if (googleTextAdsList.Any())
+{
+    <!--Google Ads Scripts -->
+    <script language="javascript" src="@Url.Content("~/UtilityScripts/adsjs/googleads-config.js")" type="text/javascript"></script>
+    <script async="async" src="https://www.google.com/adsense/search/ads.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        (function (g, o) {
+            g[o] = g[o] || function () {
+                (g[o]['q'] = g[o]['q'] || []).push(
+                    arguments)
+            }, g[o]['t'] = 1 * new Date
+        })(window, '_googCsa');
+
+        var pageOptions = {
+            'pubId': 'partner-pub-2224643151810923',
+            'query': '@(objAdsLibrary?.strAdsKeyWord)',
+            'channel': '6612211827',
+            "styleId": "3116630695"
+        };
+
+        _googCsa('ads', pageOptions, @string.Join(",",googleTextAdsList.Select(q=>q.ID)));
+    </script>
+}

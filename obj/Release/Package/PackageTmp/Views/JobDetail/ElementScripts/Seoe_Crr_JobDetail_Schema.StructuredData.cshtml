@@ -1,0 +1,257 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seog_Crr_Utility objUtility = new Seog_Crr_Utility();
+    Seog_Crr_XmlHelper objXmlHelper = new Seog_Crr_XmlHelper();
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    DataTable dtbJobPostingData = hshPageParams["JobPostingData"] as DataTable;
+
+    DataTable dtbFiltedSkillData = null;
+
+    string strJobPostingID = string.Empty;
+    string strJobPostingTitle = string.Empty;
+    string strJobPostingSEOFriendlyTitle = string.Empty;
+    string strJobPostingDesc = string.Empty;
+
+    string strJobPostingDatePosted = string.Empty;
+    string strJobPostingValidThrough = string.Empty; //ClosedDate
+    string strJobPostingEmploymentType = "FULL_TIME";  //"FULL_TIME", "PART_TIME", "CONTRACTOR", "TEMPORARY", "INTERN", "VOLUNTEER", "PER_DIEM" ,"OTHER"
+    string strJobPostingCompanyName = string.Empty;
+    string strJobPostingSEOFriendlyCompanyName = string.Empty;
+    string strJobPostingCompanyUrl = string.Empty;
+    string strJobPostingCompanyLogo = string.Empty;
+
+
+    string strJobPostingStreetAddress = string.Empty;
+    string strJobPostingAddressLocality = string.Empty;
+    string strJobPostingAddressRegion = string.Empty;
+    string strJobPostingPostalCode = string.Empty;
+    string strJobPostingAddressCountry = "US";
+
+    string strJobQualifications = string.Empty;
+    string strJobResponsibilities = string.Empty;
+    string strBenefitsDesc = string.Empty;
+    string strJobLocationLongitude = string.Empty;
+    string strJobLocationLatitude = string.Empty;
+
+    string strMinBaseSalary = string.Empty;
+    string strMaxBaseSalary = string.Empty;
+    string strWorkFromHome = string.Empty;
+
+    string strCity = string.Empty;
+    string strState = string.Empty;
+
+    if (!objData.SalIsEmptyDataTable(dtbJobPostingData))
+    {
+        foreach (DataRow drwData in dtbJobPostingData.Rows)
+        {
+            strJobPostingID = drwData["ID"] != DBNull.Value ? drwData["ID"].ToString() : "";
+            strJobPostingTitle = drwData["Title"] != DBNull.Value ? drwData["Title"].ToString() : "";
+            strJobPostingSEOFriendlyTitle = drwData["SEOTitle"] != DBNull.Value ? drwData["SEOTitle"].ToString() : "";
+            strJobPostingCompanyName = drwData["CompanyName"] != DBNull.Value ? drwData["CompanyName"].ToString() : "";
+            strJobPostingSEOFriendlyCompanyName = drwData["SEOCompanyName"] != DBNull.Value ? drwData["SEOCompanyName"].ToString() : "";
+            strJobPostingDesc = drwData.FieldValue("Description");
+            strJobLocationLongitude = drwData["Longitude"] != DBNull.Value ? drwData["Longitude"].ToString() : "";
+            strJobLocationLatitude = drwData["Latitude"] != DBNull.Value ? drwData["Latitude"].ToString() : "";
+            strMinBaseSalary = drwData.FieldValue("MinSalary");
+            strMaxBaseSalary = drwData.FieldValue("MaxSalary");
+
+            strJobPostingDatePosted = drwData["PostDate"] != DBNull.Value ? drwData["PostDate"].ToString() : "";
+            if (!string.IsNullOrEmpty(strJobPostingDatePosted))
+            {
+                strJobPostingDatePosted = Convert.ToDateTime(strJobPostingDatePosted).ToString("yyyy-MM-dd");
+            }
+            if (drwData["CloseDate"] != DBNull.Value)
+            {
+                strJobPostingValidThrough = Convert.ToDateTime(drwData["CloseDate"]).Year.ToString() == "1900" ? "" : drwData["CloseDate"].ToString();
+            }
+            if (!string.IsNullOrEmpty(strJobPostingValidThrough))
+            {
+                strJobPostingValidThrough = Convert.ToDateTime(strJobPostingValidThrough).ToString("yyyy-MM-dd");
+            }
+            strJobPostingCompanyLogo = drwData["CompanyLogo"] != DBNull.Value ? drwData["CompanyLogo"].ToString() : "";
+            strJobPostingAddressLocality = drwData["City"] != DBNull.Value ? drwData["City"].ToString() : "";
+            strJobPostingAddressRegion = drwData["State"] != DBNull.Value ? drwData["State"].ToString() : "";
+            strJobPostingPostalCode = drwData["Zip"] != DBNull.Value ? drwData["Zip"].ToString() : "";
+            strJobPostingAddressCountry = drwData["Country"] != DBNull.Value ? drwData["Country"].ToString() : "";
+            strJobPostingStreetAddress = drwData["Street"] != DBNull.Value ? drwData["Street"].ToString() : "";
+            strJobQualifications = drwData["Qualifications"] != DBNull.Value ? drwData["Qualifications"].ToString() : "";
+            if (strJobQualifications.Contains("\"") || strJobQualifications.Contains("\\"))
+            {
+                strJobQualifications = strJobQualifications.Replace("\"", "'").Replace("\\", "\\\\");
+            }
+            strJobResponsibilities = drwData["Responsibilities"] != DBNull.Value ? drwData["Responsibilities"].ToString() : "";
+            if (strJobResponsibilities.Contains("\"") || strJobResponsibilities.Contains("\\"))
+            {
+                strJobResponsibilities = strJobResponsibilities.Replace("\"", "'").Replace("\\", "\\\\");
+            }
+            strBenefitsDesc = drwData["Benefits"] != DBNull.Value ? drwData["Benefits"].ToString() : "";
+            if (strBenefitsDesc.Contains("\"") || strBenefitsDesc.Contains("\\"))
+            {
+                strBenefitsDesc = strBenefitsDesc.Replace("\"", "'").Replace("\\", "\\\\");
+            }
+            strWorkFromHome = drwData?.FieldValue("WFH") ?? "";
+            strJobPostingEmploymentType = drwData["EmploymentType"].ToString().Replace("-", "_");
+
+            strCity = drwData["City"].ToString();
+            strState = drwData["State"].ToString();
+        }
+        objData.SalCleanDataTable(ref dtbJobPostingData);
+    }
+    //localhost:801/company/hines/job/accountant/-in-boston,ma?jid=73a89b3a-e9e9-40fc-af56-8df2f852a484
+    //string strJobPostingUrl = string.Format("{0}/company/{1}/job/{2}/-in-{3},{4}?jid={5}", ViewBag.DestinationHost, strJobPostingSEOFriendlyCompanyName, strJobPostingSEOFriendlyTitle, strCity, strState, strJobPostingID);
+    string strJobPostingUrl = Request.Url.ToString();
+
+    bool bolTestStructureDataBaseSalary = false;
+    string strStateCode = string.Empty;
+    string strStructureDataMinSalary = "0";
+    string strStructureDataMaxSalary = "0";
+    if (strJobPostingDatePosted == "2020-04-03")
+    {
+        Hashtable hshStates = objUtility.SalGetStateList();
+        if (strJobPostingAddressRegion.Length > 2)
+        {
+            foreach (DictionaryEntry item in hshStates)
+            {
+                if (item.Value.ToString().ToUpper() == strJobPostingAddressRegion.ToUpper())
+                {
+                    strStateCode = item.Key.ToString();
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (hshStates.ContainsKey(strJobPostingAddressRegion))
+            {
+                strStateCode = strJobPostingAddressRegion;
+            }
+        }
+    }
+
+    if (!string.IsNullOrEmpty(strStateCode))
+    {
+        DataSet dstCitys = objXmlHelper.SalGetSingleStateMajorCityFrmoXmlFile(strStateCode);
+        if (!objData.SalIsEmptyDataSet(dstCitys))
+        {
+            DataRow[] drwMajorCity = dstCitys.Tables[0].Select("City = '" + strJobPostingAddressLocality + "' AND IsMetroCity = '1'");
+            bolTestStructureDataBaseSalary = drwMajorCity != null && drwMajorCity.Count() > 0;
+        }
+        objData.SalCleanDataSet(ref dstCitys);
+
+        strStructureDataMinSalary = HttpContext.Current.Items["StructureDataMinSalary"].ToString().Replace("$", "").Replace(",", "");
+        strStructureDataMaxSalary = HttpContext.Current.Items["StructureDataMaxSalary"].ToString().Replace("$", "").Replace(",", "");
+
+        if (!string.IsNullOrEmpty(strStructureDataMinSalary))
+        {
+            strStructureDataMinSalary = (Math.Floor(Convert.ToDouble(strStructureDataMinSalary) / 1000) * 1000).ToString();
+        }
+
+        if (!string.IsNullOrEmpty(strStructureDataMaxSalary))
+        {
+            strStructureDataMaxSalary = (Math.Ceiling(Convert.ToDouble(strStructureDataMaxSalary) / 1000) * 1000).ToString();
+        }
+
+    }
+
+    dtbFiltedSkillData = hshPageParams["FiltedSkillData"] as DataTable;
+}
+
+@try
+{
+    <input type="hidden" id="hdjobpostingtitle" name="hdjobpostingtitle" value="@(strJobPostingTitle)" />
+    @*<input type="hidden" id="hdjobpostingid" name="hdjobpostingid" value="@(strJobPostingID)" />*@
+    <input type="hidden" id="hdjoblocationcity" name="hdjoblocationcity" value="@(strJobPostingAddressLocality)" />
+    <input type="hidden" id="hdjoblocationstate" name="hdjoblocationstate" value="@(strJobPostingAddressRegion)" />
+    <input type="hidden" id="hdjoblocationzip" name="hdjoblocationzip" value="@(strJobPostingPostalCode)" />
+    <input type="hidden" id="hdjoblocationcountry" name="hdjoblocationcountry" value="@(strJobPostingAddressCountry)" />
+    <input type="hidden" id="hdclientipaddress" name="hdclientipaddress" value="@(HttpContext.Current.Request.UserHostAddress)" />
+    <input type="hidden" id="hduserresumefilename" name="hduserresumefilename" value="" />
+    <input type="hidden" id="hdserverresumefilename" name="hdserverresumefilename" value="" />
+
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "JobPosting",
+        "title": "@strJobPostingTitle",
+        "url": "@strJobPostingUrl.ToLower()",
+        "datePosted": "@strJobPostingDatePosted",
+        @if (strJobPostingEmploymentType.Split(',').Length > 1)
+        {
+            var intIndex = strJobPostingEmploymentType.Split(',').Length;
+            @:"employmentType":[@foreach (var item in strJobPostingEmploymentType.ToUpper().Split(',').ToList()) {
+                @:"@item"@if (--intIndex > 0) {@:,
+                }
+            }],
+        }
+        else
+        {
+            @:"employmentType":"@strJobPostingEmploymentType.ToUpper()",
+        }
+
+        @if (!string.IsNullOrEmpty(strJobPostingValidThrough))
+        {
+            @:"validThrough": "@strJobPostingValidThrough",
+        }
+        @if (!string.IsNullOrEmpty(strJobQualifications))
+        {
+            @:"qualifications": "@Html.Raw(strJobQualifications)",
+        }
+        @if (!string.IsNullOrEmpty(strJobResponsibilities))
+        {
+            @:"responsibilities": "@Html.Raw(strJobResponsibilities)",
+        }
+        @if (!string.IsNullOrEmpty(strBenefitsDesc))
+        {
+            @:"jobBenefits": "@Html.Raw(strBenefitsDesc)",
+        }
+        "hiringOrganization": {
+        "@@type": "Organization",
+        @if (!string.IsNullOrEmpty(strJobPostingCompanyUrl))
+        {
+            @:"sameAs":"@strJobPostingCompanyUrl",
+        }
+
+        "name": "@objUtility.SalJavaScriptStringEncode(strJobPostingCompanyName)"
+        },
+        "jobLocation": {
+        "@@type": "Place",
+        "address": {
+        "@@type": "PostalAddress",
+        @if (!string.IsNullOrEmpty(strJobPostingStreetAddress))
+        {
+            @:"streetAddress": "@(strJobPostingStreetAddress)",
+        }
+        "addressLocality": "@(strJobPostingAddressLocality)",
+        "addressRegion": "@(strJobPostingAddressRegion)",
+        @if (!string.IsNullOrEmpty(strJobPostingPostalCode))
+        {
+            @:"postalCode": "@(strJobPostingPostalCode)",
+        }
+        "addressCountry": "@(strJobPostingAddressCountry)"
+        }
+        },
+        @if (!string.IsNullOrEmpty(strWorkFromHome) && strWorkFromHome.Equals("1"))
+        {
+            @:  "applicantLocationRequirements": {
+            @:  "@@type": "Country",
+            @:  "name": "USA"
+            @:  },
+            @:  "jobLocationType": "TELECOMMUTE",
+        }
+        "skills": "@(dtbFiltedSkillData==null?"":string.Join("; ", dtbFiltedSkillData.AsEnumerable().Take(6).Select(q => q["Skill"])))",
+        "description": "@Html.Raw(@objUtility.SalJavaScriptStringEncode(strJobPostingDesc))"
+        }
+
+    </script>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobDetail_Schema.StructuredData.cshtml", ex);
+}
+finally
+{
+    objData.SalCleanDataTable(ref dtbJobPostingData);
+    objData.SalCleanDataTable(ref dtbFiltedSkillData);
+}
+

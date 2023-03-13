@@ -1,0 +1,35 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    <div class="display-flex flex-justify-content-between">
+        <div class="padding-left10 padding-right10 crr-filter-buttons">
+            @{
+                var count = 1;
+                var isMobile = true;
+                if (!isMobile)
+                {
+                    count = 5;
+                }
+            }
+            @for (var i = 1; i <= count; i++)
+            {
+                <button class="btn btn-default border-blue">All</button>
+                <button class="btn btn-default border-blue">Accounting</button>
+                <button class="btn btn-default border-blue">I.T / Software</button>
+                <button class="btn btn-default border-blue">Food and Beverages</button>
+                <button class="btn btn-default border-blue">Services</button>
+            }
+        </div>
+        <div class="crr-view-more-filter-btn collapse-on-desktop">
+            <a href="#" class="crr-text-blue">view more</a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_Filter_Industry.cshtml", ex);
+}

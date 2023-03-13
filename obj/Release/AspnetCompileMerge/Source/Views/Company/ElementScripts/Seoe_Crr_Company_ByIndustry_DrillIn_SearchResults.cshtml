@@ -1,0 +1,65 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="flex-column flex-justify-content-center" id="crr-jobs-wrapper">
+        <div class="crr-search-results">
+            @{
+
+                string[] companies = { "360 Concept", "Microsoft", "Google" };
+                Random random = new Random();
+            }
+
+            @for (var count = 0; count <= 20; count++)
+            {
+
+                Int32 Index = random.Next(0, companies.Length);
+                var companyName = companies[Index];
+
+                //We need to create a url for each item here For now i will use a static url
+
+                <div class="crr-search-result-div crr-search-result-drill-in">
+                    <div class="crr-company-info">
+                        <div>
+                            <a href="#">
+                                <img class="crr-company-logo" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xODFjY2ZjZDMwMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE4MWNjZmNkMzAxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzE4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true">
+                            </a>
+                        </div>
+                        <div class="crr-company-desc flex-grow-1">
+                            <div class="crr-search-item-title">@companyName</div>
+                            <p class="crr-search-job-counts">2 Jobs</p>
+                            <p><span class="text-charcoal margin-right5 text-size14">INDUSTRY </span>Advertising/Marketing/PR</p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+        <div class="crr-jobs-pagination">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
+                    <li class="active"><a href="#" class="margin-left10 margin-right10">1<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#" class="margin-left10 margin-right10">2<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#" class="margin-left10 margin-right10">3<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#" class="margin-left10 margin-right10">4<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#" class="margin-left10 margin-right10">5<span class="sr-only">(current)</span></a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Company_ByIndustry_DrillIn_SearchResults.cshtml", ex);
+}

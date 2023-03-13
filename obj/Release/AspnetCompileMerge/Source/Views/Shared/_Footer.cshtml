@@ -1,0 +1,91 @@
+﻿<footer>
+    <div class="crr-emp-global-gradient crr-emp-global-gradient-footer crr-emp-footer-container flex-wrap">
+        @*@Html.Partial("~/Views/Shared/ElementScripts/Seoe_Emp_BreadCrumb.cshtml", new { pageName = TempData["PageName"] })*@
+        <div class="crr-footer">
+            <div class="crr-footer-col crr-footer-col-logo">
+                <a href="@ViewBag.DestinationHost"><img src="@Url.Content("~/Images/Career_logo.svg")" onerror="this.src='@Url.Content("~/Images/Career_logo.svg")'" class="crr-logo crr-logo-footer" alt="Career.com"></a>
+                <div class="crr-emp-footer-social">
+                    @*<div class="margin-top0">
+                        <img class="margin-right30" src="@Url.Content("~/Images/Navigation/linked-in-footer.svg")" />
+                        <img class="margin-right30" src="@Url.Content("~/Images/Navigation/twitter-footer.svg")" />
+                        <img class="margin-right30" src="@Url.Content("~/Images/Navigation/facebook-footer.svg")" />
+                    </div>*@
+                    <div class="crr-emp-legal-nav-mobile">
+                        <ul class="crr-list list-unstyled">
+                            <li><a href="@ViewBag.DestinationHost/legal">Legal</a></li>
+                            <li><a href="@ViewBag.DestinationHost/legal/pp">Privacy Policy</a></li>
+                            <li><a href="@ViewBag.DestinationHost/legal/dsa">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                    <p class="crr-footer-b-copy margin-top15">
+                        &copy;
+                        @DateTime.Now.Year Career.com. All rights reserved.
+                    </p>
+                </div>
+            </div>
+            <div class="crr-emp-legal-nav">
+                <ul class="crr-list list-unstyled">
+                    <li><a href="@ViewBag.DestinationHost/legal">Legal</a></li>
+                    <li><a href="@ViewBag.DestinationHost/legal/pp">Privacy Policy</a></li>
+                    <li><a href="@ViewBag.DestinationHost/legal/dsa">Terms of Use</a></li>
+                </ul>
+            </div>
+            @*<div class="crr-footer-col crr-footer-col-nav">
+                    <div class="crr-footer-navlinks">
+                        <div>
+                            <ul class="crr-list list-unstyled">
+                                <li><a href="#">Why Us</a></li>
+                                <li><a href="#">News</a></li>
+                            </ul>
+                            <ul class="crr-list list-unstyled">
+                                <li><a href="#">Products</a></li>
+                                <li><a href="#">Services</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="crr-list list-unstyled">
+                                <li><a href="#">Resources</a></li>
+                                <li><a href="#">Partners</a></li>
+                            </ul>
+                            <ul class="crr-list list-unstyled">
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="crr-emp-legal-nav-mobile">
+                            <ul class="crr-list list-unstyled">
+                                <li><a href="#">Legal</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms of Use</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="crr-emp-footer-individuals font-bold">
+                        <a href="#">Learn how we help individuals understand their value.</a>
+                    </div>
+                    <div class="crr-emp-footer-social-mobile">
+                        <div class="margin-top10">
+                            <a class="border-none" href="https://www.linkedin.com/company/salarydotcom/"><img class="margin-right20" src="@Url.Content("~/Images/Navigation/linked-in-footer-mobile.svg")" /></a>
+                            <a class="border-none" href="https://twitter.com/salary"><img class="margin-right20" src="@Url.Content("~/Images/Navigation/twitter-footer-mobile.svg")" /></a>
+                            <a class="border-none" href="https://www.facebook.com/mysalary"><img class="margin-right20" src="@Url.Content("~/Images/Navigation/facebook-footer-mobile.svg")" /></a>
+                        </div>
+                        <div class="margin-top40">
+                            <p class="crr-footer-b-copy margin-bottom50">
+                                &copy;
+                                @DateTime.Now.Year Salary.com. All rights reserved.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="crr-footer-col crr-emp-legal-nav">
+                    <ul class="crr-list list-unstyled">
+                        <li><a href="#">Legal</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>*@
+        </div><!-- /crr-footer -->
+    </div><!-- /crr-footer-container -->
+    <!-- /crr-footer-container -->
+</footer>
+

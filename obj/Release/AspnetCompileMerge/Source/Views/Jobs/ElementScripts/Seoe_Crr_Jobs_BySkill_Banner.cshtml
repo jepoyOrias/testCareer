@@ -1,0 +1,14 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-industry-landing-img">
+        <img src="~/Images/Banner/skillLanding_IMG.png" />
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Jobs_BySkill_Banner.cshtml", ex);
+}

@@ -1,0 +1,20 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "Data Subscription Agreement | Legal";
+    ViewBag.MetaDescription = "This Data Subscription Agreement (DSA) is entered into between Salary.com and the customer who has purchased a Service from Career.com.";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="crr-layout-container">
+    @RenderPage("~/Views/Legal/DSA/ElementScripts/Seoe_Crr_Legal_DSA.cshtml")
+</div>

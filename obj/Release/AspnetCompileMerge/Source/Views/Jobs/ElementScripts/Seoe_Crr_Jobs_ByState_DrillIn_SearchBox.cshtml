@@ -1,0 +1,38 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <hr class="crr-hr margin-top40 margin-bottom40" />
+
+    <div class="crr-title-border text-size20 text-black font-bold">
+        Search 238 Job Listings in Alaska
+    </div>
+
+    <div class="crr-find-job-wrapper crr-find-job-wrapper-listing bg-white padding-top20 padding-bottom20">
+        <div>
+            <form id="form_findjob" class="crr-joblisting-search padding-top0 padding-bottom0" name="findjob_form" action="~/jobs">
+                <div class="input-group form-group crr-joblisting-in">
+                    <div class="crr-searchinput crr-job-searchinput margin-right30">
+                        <input type="search" class="crr-findjob-typeahead-hint" readonly="">
+                        <input type="search" name="q" id="txt_typeahead_findjob"
+                               class="crr-findjob-typeahead-input font-italic tt-input"
+                               placeholder="Enter title, company, skill or keyword" autocomplete="off" value="">
+                        <span class="icon-search text-bluebright text-size22" onclick="document.getElementById('form_findjob').submit()"></span>
+                        <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                        <img class="crr-findjob-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                        <div class="crr-findjob-typeahead-menu"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default crr-bg-primary crr-joblisting-search-btn">Search Jobs</button>
+            </form>
+        </div>
+    </div>
+
+    <hr class="crr-hr margin-bottom30" />
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Jobs_ByState_DrillIn_SearchBox.cshtml", ex);
+}

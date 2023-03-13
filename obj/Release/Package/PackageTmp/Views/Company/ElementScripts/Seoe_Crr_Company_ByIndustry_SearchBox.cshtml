@@ -1,0 +1,44 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+     <div class="crr-find-job-wrapper crr-find-job-wrapper-listing bg-white padding-top20">
+        <div class="padding-top20">
+            <h1 class="crr-h1-title">Best Companies to Work For</h1>
+            <form id="form_findjob" name="findjob_form" action="~/jobs">
+                <div class="input-group form-group">
+                    <div class="crr-searchinput crr-job-searchinput">
+                        <input type="search" class="crr-findjob-typeahead-hint" readonly="">
+                        <input type="search" name="q" id="txt_typeahead_findjob"
+                               class="crr-findjob-typeahead-input font-italic tt-input"
+                               placeholder="Enter company name" autocomplete="off" value="">
+                        <span class="icon-search text-bluebright text-size22" onclick="document.getElementById('form_findjob').submit()"></span>
+                        <span class="icon-remove text-bluebright text-size22 collapse" onclick="javascript: emptyTypeaheadInputText(this);"></span>
+                        <img class="crr-findjob-typeahead-spinner" src="@Url.Content("~/Images/spinner-typeahead.gif")">
+                        <div class="crr-findjob-typeahead-menu"></div>
+                        <div class="dropdown crr-dropdown-search">
+                            <button class="btn btn-default dropdown-toggle font-semibold" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                All Industries
+                                <span class="caret padding-left5 padding-right5"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default crr-bg-primary">Search Companies</button>
+            </form>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Company_ByIndustry_SearchBox.cshtml", ex);
+}

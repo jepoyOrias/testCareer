@@ -1,0 +1,15 @@
+<svg id="b0c45e40-381e-418e-b636-91b9b360a0c3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .c6e4ef7e-c144-4af7-81f8-447edd2b9988 {
+        fill: #212221;
+      }
+    </style>
+  </defs>
+  <title>dots</title>
+  <g>
+    <circle class="c6e4ef7e-c144-4af7-81f8-447edd2b9988" cx="3.26" cy="9.44" r="1.85"/>
+    <circle class="c6e4ef7e-c144-4af7-81f8-447edd2b9988" cx="9.91" cy="9.44" r="1.85"/>
+    <circle class="c6e4ef7e-c144-4af7-81f8-447edd2b9988" cx="16.56" cy="9.44" r="1.85"/>
+  </g>
+</svg>

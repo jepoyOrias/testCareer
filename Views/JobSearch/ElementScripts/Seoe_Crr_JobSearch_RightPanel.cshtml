@@ -1,0 +1,26 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+
+<div class="crr-layout-section padding0">
+    @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_RightPanel_Header.cshtml")
+    <div class="crr-layout-section border-none crr-sr-job-title-content">
+        @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_RightPanel_JobDetail.cshtml")
+        <hr class="margin-top20 margin-bottom20" />
+        @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_RightPanel_JobDetail_CompanyOverview.cshtml")
+          
+       @Html.Partial("~/Views/JobSearch/ElementScripts/Seoe_Crr_JobSearch_RightPanel_Skills.cshtml")
+    </div>
+</div>
+   
+   
+
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_RightPanel.cshtml", ex);
+}

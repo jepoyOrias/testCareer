@@ -1,0 +1,1004 @@
+﻿
+@media screen and (min-width: 1100px) {
+    .crr-user-logged-in-layout {
+        display: flex;
+        gap: 10px;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .crr-user-profile-layout {
+        flex: 1 0 350px;
+        padding: 20px 20px 0 20px;
+    }
+
+    .crr-user-profile-layout {
+        width: 100%;
+        background-color: #ffffff;
+        border-top: 3px solid #17bd64;
+        border-radius: 3px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+    }
+
+    .crr-user-basic-info {
+        list-style-type: none;
+        padding-left: 0;
+        margin: 50px 30px 0 30px;
+    }
+
+        .crr-user-basic-info .list-group-item {
+            padding: 35px 0;
+        }
+
+        .crr-user-basic-info .divider {
+            height: 1px;
+            padding: 0;
+            overflow: hidden;
+            background-color: #e6e7e8;
+            margin: 30px 0;
+        }
+}
+
+.crr-user-profile-img img {
+    max-width: 160px;
+    clip-path: circle();
+}
+
+.crr-user-profile-mobile-img img {
+    max-width: 80px;
+    clip-path: circle();
+}
+
+.crr-user-tabs .nav-tabs {
+    border-bottom: 0 !important;
+}
+
+    .crr-user-tabs .nav-tabs > li.active > a, .crr-user-tabs .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+        border: 0;
+        color: #318ad0;
+        font-weight: 600;
+    }
+
+    .crr-user-tabs .nav-tabs > li > a {
+        color: #4e4e4e;
+        font-size: 18px;
+    }
+
+        .crr-user-tabs .nav-tabs > li > a:hover, .crr-user-tabs .nav-tabs > li > a:focus {
+            border: none;
+            background-color: transparent;
+        }
+
+    .crr-user-tabs .nav-tabs > li.active > a::after {
+        content: '';
+        width: 80%;
+        position: absolute;
+        left: 13px;
+        border-bottom: 3px solid #17bd64;
+        bottom: 0;
+    }
+
+.bg-none {
+    background: none !important;
+}
+
+.btn-cta {
+    background: #17bd64;
+}
+
+
+
+.crr-user-profile-layout {
+    height: 100%;
+    flex: 1 0 330px;
+    padding: 20px 20px 0px;
+}
+
+@media (max-width: 768px) {
+    .crr-modal-gray-horizontal-div {
+        display: none;
+    }
+
+    .crr-modal-gray-vertical-div {
+        display: block;
+    }
+
+    .crr-margin-none {
+        margin: 0 !important;
+    }
+
+    .crr-display-block {
+        display: block !important;
+    }
+
+    .crr-display-none {
+        display: none !important;
+    }
+
+    .crr-flex-wrap-modal {
+        flex-wrap: wrap;
+    }
+
+    .crr-media-max-width {
+        width: 100%;
+    }
+
+    .crr-modal-header-media {
+        padding-top: 10px !important;
+    }
+}
+
+
+.crr-change-password {
+    max-width: 940px;
+    margin: 23px auto;
+    cursor: default;
+    margin-bottom: 120px;
+}
+
+.crr-change-password-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.crr-account-management {
+    margin: 20px 0;
+    font-family: Source Sans Pro;
+    font-weight: 700;
+    color: #212221;
+    font-size: 36px;
+}
+
+.crr-global-header-icon {
+    font-size: 2.3rem;
+    color: #0773c8;
+    margin-right: 20px;
+}
+
+.font-size3 {
+    font-size: 3rem;
+}
+
+.crr-account-management-hr {
+    display: none;
+}
+
+.crr-container-left {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 19px;
+    min-width: 580px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.crr-container-font {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 3px;
+    flex-direction: column;
+}
+
+.crr-container-title {
+    font-family: Source Sans Pro;
+    font-weight: 600;
+    color: #003e8b;
+    font-size: 22px;
+}
+
+.crr-container-warn {
+    margin-top: 12px;
+    font-family: Source Sans Pro;
+    color: #011c45;
+    font-size: 14px;
+}
+
+.crr-change-password-main {
+    display: none;
+}
+
+.crr-change-password-main-flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    min-height: 232px;
+    margin-right: 40px;
+}
+
+.crr-show-passwords {
+    margin-left: 415px;
+    font-family: Source Sans Pro;
+    color: #0773c8;
+    font-size: 15px;
+    line-height: 27.72px;
+}
+
+.crr-change-password-item > input {
+    min-width: 326px;
+    min-height: 32px;
+    border: none;
+    background: #f8f8f9;
+    border-radius: 4px;
+}
+
+.crr-change-password-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    min-width: 520px;
+}
+
+.crr-item-font {
+    color: #0773c8;
+    font-weight: 500;
+}
+
+.crr-mobile-show-passwords {
+    display: none;
+}
+
+.crr-save-new-password {
+    margin-left: 15px;
+}
+
+.align-self-center {
+    align-self: center
+}
+
+.align-self-end {
+    align-self: flex-end;
+}
+
+.crr-container-right {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-end;
+    align-content: flex-start;
+}
+
+.crr-container-delete-account {
+    font-family: Source Sans Pro;
+    color: #011c45;
+    font-size: 16px;
+}
+
+.crr-container-click-here {
+    margin: 6px 0;
+    font-family: Source Sans Pro;
+    color: #0773c8;
+    font-size: 16px;
+}
+
+.crr-delete-account-query {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    min-height: 85px;
+    margin-bottom: 18px;
+    font-family: Source Sans Pro;
+    color: #212221;
+    font-size: 16px;
+}
+
+.crr-delete-account-select {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    min-height: 116px;
+}
+
+.crr-container-click-here-button {
+    margin: 37px 0;
+}
+
+.crr-container-click-here-cancel {
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #003e8b;
+    border-radius: 100px;
+    font-family: Source Sans Pro;
+    font-weight: 600;
+    color: #003e8b;
+    font-size: 16px;
+    text-align: center;
+}
+
+.crr-account-delete {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    min-height: 254px;
+}
+
+.crr-delete-account-notice {
+    display: none;
+}
+
+.crr-create-account {
+    color: #0773c8;
+}
+
+.crr-delete-account-thankful {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    max-width: 750px;
+    margin: 40px auto;
+    min-height: 226px;
+}
+
+.crr-delete-account-closed-account {
+    font-weight: 700;
+}
+
+.boder-style {
+    border: 4px solid #0773c8;
+}
+
+@media(max-width:992px) {
+
+    .crr-account-management-hr {
+        display: block !important;
+        margin: 30px 0;
+    }
+
+    .crr-container-left {
+        min-width: 364px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+        margin-bottom: 110px;
+        border: none !important;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .crr-item-font {
+        font-family: Source Sans Pro;
+        color: #003e8b;
+        font-size: 16px;
+    }
+
+    .crr-change-password {
+        margin-bottom: 0;
+    }
+
+    .crr-change-password-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-content: flex-start;
+        min-width: 0px;
+        margin-top: 10px;
+    }
+
+    .crr-show-passwords {
+        display: none;
+    }
+
+    .crr-change-password-main {
+        margin-top: 15px;
+    }
+
+    .crr-mobile-show-passwords {
+        display: block !important;
+        color: red;
+        font-family: Source Sans Pro;
+        color: #0773c8;
+        font-size: 15px;
+        line-height: 27.72px;
+    }
+
+    .crr-container-right {
+        align-items: flex-start;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .crr-container-click-here {
+        margin: 0;
+        padding-left: 102px;
+    }
+
+    .crr-change-password-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+
+    .crr-change-password-item > input {
+        min-width: 326px;
+        min-height: 32px;
+        border: none;
+        background-color: #f6f6f9;
+        border-radius: 4px;
+    }
+
+    .crr-change-password-main-flex {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: flex-start;
+        margin-right: 0px;
+        min-height: 400px;
+    }
+
+    .crr-change-password-btn {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        align-content: flex-start;
+        width: 95%;
+    }
+
+        .crr-change-password-btn > button {
+            width: 100%;
+            margin-top: 25px;
+            margin-left: 0;
+        }
+
+    .crr-account-management {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        margin: 19px 10px;
+    }
+
+    .crr-account-management-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+
+    .crr-container-click-here-button {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+    }
+
+    .crr-container-click-here-cancel,
+    .crr-container-delete-account-btn {
+        width: 100%;
+    }
+
+    .crr-container-click-here-cancel {
+        margin-bottom: 20px;
+    }
+}
+
+.crr-my-settings-item,
+.crr-change-password {
+    min-width: 73%;
+}
+
+.crr-change-boder-style {
+    max-width: 750px;
+    border-radius: 3px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.crr-on-button,
+crr-off-button {
+    max-width: 100px;
+}
+
+.crr-privacy-security-title {
+    min-width: 710px;
+}
+
+.crr-show-password {
+    line-height: 28px;
+}
+
+.crr-change-password-item {
+    max-width: 600px;
+}
+
+.crr-job-match-item {
+    min-width: 250px;
+}
+
+.crr-container-item,
+.crr-date-posted-item {
+    width: 90%;
+}
+
+.crr-main-item-left {
+    max-width: 370px;
+}
+
+.crr-mobile-item > input,
+.crr-change-password-item > input {
+    min-width: 400px;
+    line-height: 40px;
+    background-color: #f8f8f9;
+}
+
+.crr-container-click-here-cancel {
+    border-color: #003e8b;
+    font-size: 16px;
+}
+
+.boder-style {
+    border: 4px solid #0773c8;
+}
+
+.crr-reset-all {
+    background-color: #ddf4fc;
+}
+
+.crr-my-settings {
+    width: 100%;
+    background-color: #e7f1f6;
+}
+
+.crr-setting-updated {
+    color: #17bd64;
+}
+
+
+@media(max-width:992px) {
+
+    .crr-container-item,
+    .crr-date-posted-item,
+    .crr-change-password,
+    .crr-container,
+    .crr-container-foot,
+    .crr-change-boder-style,
+    .crr-my-settings-container,
+    .crr-my-settings-item {
+        width: 100%;
+    }
+
+    .crr-change-boder-style {
+        margin: auto;
+    }
+
+    .crr-my-settings-title,
+    .crr-container-foot {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .crr-my-settings-item {
+        justify-content: space-around;
+    }
+
+    .crr-my-settings-container,
+    .crr-container-foot,
+    .crr-my-settings-title {
+        margin: 0 15px;
+    }
+
+    .crr-mobile-item > input,
+    .crr-change-password-item > input,
+    .crr-privacy-security-title {
+        min-width: 300px;
+    }
+
+    .crr-job-match-item,
+    .crr-automatically-filter {
+        margin-top: 20px;
+    }
+
+    .crr-user-name {
+        font-size: 18px !important;
+    }
+
+    .crr-container-foot {
+        margin-top: 40px;
+    }
+
+    .crr-back-to-profile {
+        margin-right: 0px !important;
+    }
+}
+
+.crr-job-alert-container {
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100%;
+}
+
+.crr-job-alert-set-container {
+    flex-basis: 0 !important;
+}
+
+.crr-job-alert-item-title {
+    max-width: 180px;
+}
+
+.crr-job-alerts-list-container {
+    padding: 15px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+}
+
+.crr-job-alert-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Source Sans Pro;
+    font-weight: 600;
+    color: #003e8b;
+    font-size: 22px;
+    line-height: 30px;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.crr-add-another-alert {
+    display: flex;
+    align-items: center;
+    border: 1px solid #003e8b !important;
+    color: #003e8b !important;
+}
+
+.crr-display-none {
+    display: none;
+}
+
+.crr-disabled {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+    cursor: not-allowed;
+}
+
+.crr-recommended-jobs-layout {
+    overflow-y: hidden;
+    max-height: 100%;
+}
+
+.crr-flex-evenly {
+    justify-content: space-evenly;
+}
+
+.crr-edit-profile-text-area-wrapper {
+    max-width: 100% !important;
+}
+
+.crr-edit-profile-text-area {
+    resize: none;
+    background-color: #f6f6f9;
+}
+
+.crr-hover-none {
+    background: unset !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.crr-user-change-profile-btn {
+    position: absolute;
+}
+
+    .crr-user-change-profile-btn span {
+        position: relative;
+        left: 175px;
+        bottom: 25px;
+        border-radius: 50%;
+        background: white;
+    }
+
+.crr-user-basic-info {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0px auto;
+}
+
+    .crr-user-basic-info .list-group-item {
+        display: flex;
+        margin: 0px 0px 0px 35px;
+        padding: 12px !important;
+    }
+
+    .crr-user-basic-info .divider {
+        padding: 0px !important;
+    }
+
+.crr-caret-blue::before {
+    color: #0773c8 !important;
+}
+
+.crr-edit-profile-wrapper {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 95%;
+}
+
+    .crr-edit-profile-wrapper .form-group {
+        max-width: 345px;
+    }
+
+.crr-border-primary {
+    border-color: rgb(0, 62, 139);
+}
+
+.crr-job-details-container {
+    box-shadow: none;
+}
+
+.crr-save-bookmark {
+    display: flex;
+    box-shadow: 0px 0px 2px rgb(0 0 0 / 16%);
+    background-color: #f8f8f9;
+    margin: 20px;
+    padding: 10px;
+}
+
+.crr-job-detail-list-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+}
+
+.crr-job-detail-img {
+    max-width: 287px;
+    max-height: 187px;
+}
+
+.crr-job-detail-line-height {
+    line-height: 1.5 !important;
+}
+
+.crr-job-detail-bottom-border {
+    border-bottom: 1px solid #dddddd;
+    padding: 0;
+    margin: 0 20px 0 20px;
+}
+
+.crr-job-details-overview-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.crr-job-details-overview-list {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 15px;
+}
+
+.crr-job-details-overview-left {
+    width: 15%;
+    align-self: center;
+}
+
+.crr-job-detail-layout {
+    width: 100%;
+    max-width: 1014px;
+}
+
+.crr-job-details-overview-right {
+    width: 80%;
+}
+
+.crr-job-detail-related-comp {
+    flex-wrap: wrap;
+    width: 75%;
+}
+
+.crr-user-basic-info {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0px auto;
+}
+
+    .crr-user-basic-info .list-group-item {
+        display: flex;
+        margin: 0px 0px 0px 35px;
+        padding: 12px !important;
+    }
+
+
+    .crr-user-basic-info .divider {
+        padding: 0px !important;
+    }
+
+.crr-caret-blue::before {
+    color: #0773c8 !important;
+}
+
+.crr-edit-profile-wrapper {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 95%;
+}
+
+    .crr-edit-profile-wrapper .form-group {
+        max-width: 345px;
+    }
+
+.crr-border-primary {
+    border-color: rgb(0, 62, 139);
+}
+
+.crr-job-details-container {
+    box-shadow: none;
+}
+
+.crr-save-bookmark {
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.16);
+}
+
+.crr-no-job-alert-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+    .crr-no-job-alert-wrapper .form-group {
+        width: 100%;
+        max-width: 355px;
+        margin: 0 45px 10px 0;
+    }
+
+
+@media (max-width: 768px) {
+    .crr-job-alert-item-title {
+        max-width: 100%;
+    }
+
+    .crr-display-none-mobile {
+        display: none !important;
+    }
+
+    .crr-display-none {
+        display: inline-flex;
+    }
+
+    .crr-job-alerts-list-desc, .crr-job-alerts-list-actions {
+        flex-basis: 100%;
+        padding: 15px 24px;
+    }
+
+    .crr-job-alerts-list-container {
+        padding: 0;
+    }
+
+    .crr-job-alerts-list-actions {
+        background-color: #f8f8f9;
+    }
+
+        .crr-job-alerts-list-actions > div {
+            justify-content: flex-end !important;
+        }
+
+    .crr-wrap-center-media {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .crr-user-profile-img {
+        position: relative;
+        left: 10px;
+    }
+
+        .crr-user-profile-img img {
+            max-width: 150px;
+        }
+
+    .crr-user-change-profile-btn span {
+        left: 98px;
+    }
+
+    .crr-user-basic-info .list-group-item {
+        margin: 0px 0px 0px 10px;
+    }
+
+    .crr-flex-start-mobile,
+    .crr-flex-start-mobile > div {
+        justify-content: flex-start !important;
+    }
+
+    .crr-flex-space-betweent-mobile {
+        justify-content: space-between !important;
+    }
+
+    .crr-edit-profile-wrapper {
+        max-width: 100%;
+    }
+
+    .crr-margin-none-mobile {
+        margin: 0 !important;
+    }
+
+    .crr-job-detail-layout,
+    .crr-job-details-overview-wrapper,
+    .crr-job-details-overview-list,
+    .crr-job-details-overview-left,
+    .crr-job-details-overview-right,
+    .crr-job-detail-related-comp,
+    .crr-job-details-other-job-container {
+        width: 100% !important;
+    }
+
+    .crr-job-details-other-job-container {
+        margin-right: 0;
+    }
+
+    .crr-no-job-alert-wrapper .form-group {
+        max-width: 100%;
+        margin: 0 0 10px 0;
+    }
+
+    .crr-job-detail-list-actions {
+        height: 100%;
+    }
+
+    .crr-job-detail-list-actions,
+    .crr-job-detail-list-desc {
+        padding: 0;
+    }
+
+    .crr-text-left-mobile {
+        text-align: left;
+    }
+
+    .crr-save-bookmark {
+        margin: 0 -20px 0 -20px !important;
+    }
+
+    .crr-job-details-other-job-wrapper {
+        flex-wrap: wrap;
+    }
+}

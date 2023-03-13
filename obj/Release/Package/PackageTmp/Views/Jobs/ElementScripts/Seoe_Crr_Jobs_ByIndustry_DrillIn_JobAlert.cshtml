@@ -1,0 +1,31 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-create-job-alert display-flex">
+        <div class="crr-job-alert-item">
+            <div class="display-flex">
+                <span class="icon-crr-ring text-size28 crr-text-blue"></span>
+                <div class="padding-left20">
+                    <h3 class="font-bold margin-top0 margin-bottom15 text-size20">Create a Job Alert for Construction</h3>
+                    <p class="crr-black text-size18">Get notified when new Construction jobs are posted</p>
+                </div>
+            </div>
+        </div>
+        <div class="crr-job-alert-item">
+            <div class="crr-create-job-alert-email">
+                <div class="form-group crr-email-form">
+                    <p class="crr-email-address">Email Address</p>
+                    <input id="crr-industry-job-alert-email" name="crr-industry-job-alert-email" type="email" class="form-control bg-grayfill border-none" placeholder="">
+                </div>
+                <button type="button" class="btn crr-btn-green text-size18 font-semibold">Create Job Alert</button>
+            </div>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Jobs_ByIndustry_DrillIn_JobAlert.cshtml", ex);
+}

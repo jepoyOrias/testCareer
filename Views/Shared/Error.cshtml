@@ -1,0 +1,155 @@
+﻿@using System.Configuration
+@model HandleErrorInfo
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageTitle = "Page Not found";
+    ViewBag.PrimaryCategoryNameForAdobeTracking = "homepage";
+    ViewBag.PageNameForAdobeTracking = "homepage:career_404";
+    var e = Model.Exception;
+}
+
+<link href="~/Styles/ElementStyles/CSS/ElementStyles.css" rel="stylesheet" />
+<link href="~/Styles/ElementStyles/CSS/cookieconsent-3.0.3.min.css" rel="stylesheet" />
+
+@if (ViewBag.IsDebugMode == true)
+{
+    <style>
+        pre {
+            font-size: 13px;
+            border: 2px solid grey;
+            border-left: 12px solid green;
+            border-radius: 5px;
+            padding: 14px;
+            margin-top: 15px;
+            line-height: 24px;
+            background-image: repeating-linear-gradient( 180deg, #eee 0px, #eee 24px, #fff 24px, #fff 48px);
+            background-position: 0 14px;
+        }
+    </style>
+    <div style="margin-top:3em;padding-left:2em; padding-right:2em;">
+        @if (e.InnerException != null)
+        {
+            <b>Exception:</b> @e.InnerException.Message <br />
+            <b>Controller:</b> @Model.ControllerName <br />
+            <b>Action:</b> @Model.ActionName <br />
+            <div>
+                <pre class="carr-pre">
+                <code>
+                    @e.PrintAllInnerException()
+                </code>
+            </pre>
+            </div>
+        }
+        else
+        {
+            <b>Exception:</b> @e.Message <br />
+            <b>Controller:</b> @Model.ControllerName <br />
+            <b>Action:</b> @Model.ActionName <br />
+            <div>
+                <pre class="carr-pre">
+                <code>
+                    @e.StackTrace
+                </code>
+            </pre>
+            </div>
+        }
+
+    </div>
+}
+else
+{
+    <style>
+
+        .crr-404-content {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .crr-btn-backtomainpage {
+            font-size: 18px;
+            height: 53px;
+            line-height: 53px;
+            background-color: #17bd64 !important;
+            color: #fff !important;
+        }
+
+        .crr-404-content {
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            display: inline-grid;
+            grid-template-columns: max-content 1fr;
+            gap: 3.5vw;
+        }
+
+        .crr-404-img img {
+            max-width: 100%;
+        }
+
+        .crr-404-title {
+            font-size: 42px;
+            font-weight: 700;
+
+        }
+
+        a.crr-btn-backtomainpage:hover {
+            background-color: #84EE5E !important;
+            border: none !important;
+        }
+
+        .crr-404-column-right p {
+            margin-top: 30px;
+            margin-bottom: 35px;
+            font-size: 18px !important;
+        }
+
+        @@media(max-width:991.98px) {
+            .crr-404-content {
+                display: flex;
+            }
+
+            .crr-404-title {
+                font-size: 40px;
+            }
+
+            .crr-btn-size.crr-btn-backtomainpage {
+                font-size: 18px;
+            }
+
+            .crr-404-img {
+                display: none;
+            }
+
+            h1.crr-404-title {
+                margin-top: 0;
+            }
+
+            .crr-btn-backtomainpage {
+                line-height: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+    <div class="crr-layout-container">
+        <div class="crr-layout">
+            <div class="crr-404-content">
+                <div class="crr-404-img crr-404-column-left">
+                    <img src="~/Images/Navigation/404.svg" />
+                </div>
+                <div class="crr-404-column-right">
+                    <h1 class="crr-404-title font-bold">This page can't be found.</h1>
+                    <p>You may have mistyped the address or the page may have moved.</p>
+                    <a class="btn crr-btn crr-btn-size crr-btn-backtomainpage" href="@Url.Content("~")">Back to Homepage</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/UtilityScripts/lib/jquery-3.3.1.min.js"></script>
+<script src="~/Styles/Career/js/bootstrap-career-web.js"></script>
+<script src="~/UtilityScripts/Career/Seou_Crr_Common.js"></script>

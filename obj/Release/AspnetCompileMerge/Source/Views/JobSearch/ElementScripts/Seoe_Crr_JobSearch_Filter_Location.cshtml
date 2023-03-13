@@ -1,0 +1,107 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    <div class="crr-filter-group flex-div flex-justify-content-between flex-nowrap collapse-on-mobile">
+        <div class="btn-group crr-distance-filter flex-div flex-nowrap" role="group" aria-label="...">
+            <button type="button" class="btn btn-default border-blue">All</button>
+            <button type="button" class="btn btn-default border-blue">2 mi</button>
+            <button type="button" class="btn btn-default border-blue">5 mi</button>
+            <button type="button" class="btn btn-default border-blue">15 mi</button>
+            <button type="button" class="btn btn-default border-blue">30 mi</button>
+            <button type="button" class="btn btn-default border-blue">120 mi</button>
+            <button type="button" class="btn btn-default border-blue">200 mi</button>
+            <button type="button" class="btn btn-default border-blue">300 mi</button>
+        </div>
+        <div class="crr-location-divider"></div>
+        <div class="padding-left10 padding-right10 crr-filter-buttons">
+            @for (var i = 0; i <= 0; i++)
+            {
+                <button class="btn btn-default border-blue">All</button>
+                <button class="btn btn-default border-blue">Asia</button>
+                <button class="btn btn-default border-blue">USA</button>
+                <button class="btn btn-default border-blue">China</button>
+                <button class="btn btn-default border-blue">Philippines</button>
+                <button class="btn btn-default border-blue">Boston, Ma</button>
+            }
+
+        </div>
+    </div>
+
+    // for Mobile
+    <div class="crr-sub-menu">
+        <div class="crr-job-filter collapse-on-desktop border-none">
+            <a class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0 text-gray" role="button"
+               data-toggle="collapse" data-target="#crr-place" aria-expanded="false" aria-controls="crr-place">
+                Neighbor
+                <span class="caret"></span>
+            </a>
+            <div class="collapse sa-collapse  padding-top10" id="crr-place">
+                <div class="display-flex flex-justify-content-between">
+                    <div class="crr-filter-buttons">
+                        @{
+                            var count = 1;
+                            var isMobile = true;
+                            if (!isMobile)
+                            {
+                                count = 5;
+                            }
+                        }
+                        @for (var i = 1; i <= count; i++)
+                        {
+                            <button class="btn btn-default border-blue">All</button>
+                            <button class="btn btn-default border-blue">Asia</button>
+                            <button class="btn btn-default border-blue">USA</button>
+                            <button class="btn btn-default border-blue">China</button>
+                            <button class="btn btn-default border-blue">Philippines</button>
+                            <button class="btn btn-default border-blue">Boston, Ma</button>
+                        }
+
+                    </div>
+                    <div class="crr-view-more-filter-btn collapse-on-desktop">
+                        <a href="#" class="crr-text-blue">view more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="crr-job-filter collapse-on-desktop border-none">
+            <a class="btn btn-link sa-btn-collapse crr-header-nav-link padding-left0 padding-right0 text-gray" role="button"
+               data-toggle="collapse" data-target="#crr-distance" aria-expanded="false" aria-controls="crr-distance">
+                Distance
+                <span class="caret"></span>
+            </a>
+            <div class="collapse sa-collapse  padding-top10" id="crr-distance">
+                <div class="display-flex flex-justify-content-between">
+                    <div class="crr-filter-buttons">
+
+                        @for (var i = 1; i <= count; i++)
+                        {
+                            <button type="button" class="btn btn-default border-blue">All</button>
+                            <button type="button" class="btn btn-default border-blue">2 mi</button>
+                            <button type="button" class="btn btn-default border-blue">5 mi</button>
+                            <button type="button" class="btn btn-default border-blue">15 mi</button>
+                            <button type="button" class="btn btn-default border-blue">30 mi</button>
+                            <button type="button" class="btn btn-default border-blue">120 mi</button>
+                            <button type="button" class="btn btn-default border-blue">200 mi</button>
+                            <button type="button" class="btn btn-default border-blue">300 mi</button>
+                        }
+
+                    </div>
+                    <div class="crr-view-more-filter-btn collapse-on-desktop">
+                        <a href="#" class="crr-text-blue">view more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Search_FilterV2_DatePosted.cshtml", ex);
+}

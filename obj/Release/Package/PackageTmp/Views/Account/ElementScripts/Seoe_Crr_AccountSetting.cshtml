@@ -1,0 +1,53 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{  
+    <div class="crr-my-settings">
+        <div class="crr-emp-global-gradient">
+            <nav class="crr-my-settings-item display-flex flex-align-item-center padding-top20 padding-bottom20">
+                <button class="crr-back-to-profile btn btn-default font-semibold crr-text-blue text-size16 margin-right30" type="button">
+                    <span class="icon-arrow-left"></span>
+                    Back to Profile
+                </button>
+                <div class="flex-div flex-justify-content-between flex-justify-content-center flex-align-item-center">
+                    <img class="crr-user-name text-size32 margin-right30" src="~/Images/profile-image.png" />
+                    <span class="crr-user-name text-size32">Lisa Clark</span>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="crr-change-password margin-top40 margin-bottom40 margin-auto ">
+        <div class="crr-my-settings-title margin-top20 margin-bottom20 font-bold crr-title-h3 color-212221">
+            <span class="text-size32 margin-right20">My Settings</span>
+            <span class="icon-gear crr-text-blue text-size32 crr-icon-gear"></span>
+        </div>
+        <div class="crr-container flex-div flex-justify-content-between">
+            <div class="crr-my-settings-container">
+                <div class="crr-my-settings-container-item">
+                    @RenderPage("~/Views/Account/ElementScripts/Seoe_Crr_AccountSetting_ChangePassword.cshtml")
+                </div>
+                <div class="crr-my-settings-container-item">
+                    @RenderPage("~/Views/Account/ElementScripts/Seoe_Crr_AccountSetting_EmailSettings.cshtml")
+                </div>
+                <div class="crr-my-settings-container-item">
+                    @RenderPage("~/Views/Account/ElementScripts/Seoe_Crr_AccountSetting_JobMatchPreferences.cshtml")
+                </div>
+                <div class="crr-my-settings-container-item">
+                    @RenderPage("~/Views/Account/ElementScripts/Seoe_Crr_AccountSetting_PrivacyAndSecurity.cshtml")
+                </div>
+            </div>
+            <div class="crr-container-foot">
+                <div class="crr-text-primarydark text-size16">Want to delete your accunt?</div>
+                <div class="display-flex flex-justify-content-end">
+                    <div class="crr-text-blue text-size16" data-toggle="modal" data-target="#crr-change-password-click-here">Click here</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_AccountSetting.cshtml", ex);
+}

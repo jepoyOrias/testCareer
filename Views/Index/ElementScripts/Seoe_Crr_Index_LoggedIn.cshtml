@@ -1,0 +1,43 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_SearchFilters.cshtml")
+
+    <hr class="crr-user-hr-divider collapse-on-mobile margin-top40" />
+
+    <div class="crr-user-logged-in-layout margin-top40">
+        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_LoggedIn_Profile.cshtml")
+
+        <div class="crr-user-tabs margin-top30">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                    <a href="javascript:void(0);" aria-controls="crr-recommended-jobs" role="tab" data-toggle="tab">Recommended Jobs</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" aria-controls="crr-recently-search" role="tab" data-toggle="tab">Recent Searches</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="crr-recommended-jobs">
+                        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_LoggedIn_RecommendedJobs.cshtml")
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="crr-recently-search">
+                        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_LoggedIn_RecentSearches.cshtml")
+                    </div>
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_LoggedIn_TopCompanies.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_LoggedIn_SignUpJobAlert.cshtml")
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index_LoggedIn.cshtml", ex);
+}

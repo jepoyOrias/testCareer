@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g id="icon-tab-similarjobs-selected" transform="translate(-898.053 -777.239)">
+    <circle id="Ellipse_4" data-name="Ellipse 4" cx="14" cy="14" r="14" transform="translate(898.053 777.239)" fill="#007dbc"/>
+    <g id="Group_4" data-name="Group 4">
+      <path id="Path_23" data-name="Path 23" d="M917.871,787.192H906.235a1.182,1.182,0,0,0-1.182,1.182v7.7a1.182,1.182,0,0,0,1.182,1.182h11.636a1.182,1.182,0,0,0,1.182-1.182v-7.7A1.182,1.182,0,0,0,917.871,787.192Zm.276,8.949a.3.3,0,0,1-.3.3H906.259a.3.3,0,0,1-.3-.3v-7.835a.3.3,0,0,1,.3-.3h11.588a.3.3,0,0,1,.3.3Z" fill="#fff"/>
+      <path id="Path_24" data-name="Path 24" d="M912.486,785.224h-.775a1.8,1.8,0,0,0-1.8,1.8v.168h.711v-.122a1.262,1.262,0,0,1,1.263-1.263h.427a1.262,1.262,0,0,1,1.263,1.263v.122h.711v-.168A1.8,1.8,0,0,0,912.486,785.224Z" fill="#fff"/>
+      <path id="Path_25" data-name="Path 25" d="M911.028,790v1.509a.494.494,0,0,0,.494.494h1.135a.494.494,0,0,0,.494-.494V790a.494.494,0,0,0-.494-.494h-1.135A.494.494,0,0,0,911.028,790Zm1.6,1.466H911.57v-1.423h1.057Z" fill="#fff"/>
+      <rect id="Rectangle_13" data-name="Rectangle 13" width="5.396" height="0.705" transform="translate(905.905 790.421)" fill="#fff"/>
+      <rect id="Rectangle_14" data-name="Rectangle 14" width="5.396" height="0.705" transform="translate(913.003 790.421)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

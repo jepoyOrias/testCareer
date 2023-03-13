@@ -1,0 +1,58 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    <div class="crr-sr-main-header-wrapper">
+        <div class="crr-sr-main-header padding-top20 padding-bottom20 margin-top30">
+            <div class="crr-sr-haeader-left">
+                <div class="crr-sr-header-title">
+                    <div class="crr-search-item-title text-size24 crr-text-primary font-bold collapse-on-mobile padding-left10">Graphic Designer, Jr</div>
+                    <div class="crr-sr-job-info margin-top10">
+                        <div>
+                            <a href="#">
+                                <img class="crr-company-logo" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xODFjY2ZjZDMwMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE4MWNjZmNkMzAxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzE4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true">
+                            </a>
+                        </div>
+                        <div class="crr-company-desc flex-grow-1">
+                            <div class="crr-search-item-title text-size18 crr-text-primary font-bold collapse-on-desktop">Graphic Designer, Jr</div>
+                            <div class="crr-text-blue crr-search-info text-size18 margin-bottom10 margin-top10">Microsoft</div>
+                            <div class="text-size18 crr-search-info">Redmond, WA | Full Time</div>
+                        </div>
+                        <div class="collapse-on-desktop">
+                            <div class="text-size11 text-gray">25 applicants</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapsable-on-scroll flex-basis-fill crr-sr-other-info margin-top10">
+                <div class="crr-sr-job-title-info">
+                    <div class="crr-sr-main-header-info">
+                        <div>
+                            <div class="text-size16 margin-top5">$45k-58k  | $35k-48k (estimate) <span class="icon-crr-info text-bluebright margin-left10 vertical-align-middle"></span></div>
+                            <div class="margin-top5">Full Time | Entry Level | Multimedia Arts</div>
+                        </div>
+                    </div>
+                    <div class="text-size13 text-gray margin-top10 margin-bottom10">
+                        Posted 2 days ago
+                    </div>
+                </div>
+            </div>
+            <div class="crr-sr-haeader-right flex-column flex-justify-content-between flex-align-item-end">
+                <div class="crr-sr-header-actions padding-left5 padding-right5">
+                    <button class="btn btn-default btn-lg border-blue bg-white crr-text-primarydark">Send Me Jobs Like This <span class="icon-crr-ring crr-text-primary margin-left10"></span></button>
+                    <button class="btn  btn-lg crr-btn-blue ">Apply <span class="icon-report-check collapse-on-desktop margin-left10"></span></button>
+                </div>
+            </div>
+            <div class="crr-sr-header-save bg-grayfill collapsable-on-scroll flex-basis-fill">
+                <a href="javascript:void(0)" class="text-size18"><span class="icon-crr-bookmark margin-right10"></span>Save</a>
+            </div>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_RightPanel_Header.cshtml", ex);
+}

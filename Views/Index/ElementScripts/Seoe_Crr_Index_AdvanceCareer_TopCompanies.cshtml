@@ -1,0 +1,55 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="bg-grayfill crr-adv-card">
+        <div class="crr-adv-header">
+            <div class="crr-adv-image">
+                <img class="media-object" src="~/Images/top-company.svg">
+            </div>
+            <div class="crr-adv-title margin-top20">
+                <h4 class="crr-title-h4">
+                    Top Companies to Work For
+                </h4>
+                <button class="btn btn-default crr-btn-blue margin-top30" type="submit">See More Companies</button>
+            </div>
+        </div>
+        <div class="crr-seemore-mobile collapse-on-desktop" onclick="javascript: toggleSeeMoreMobile(this)">
+            <div class="font-bold crr-text-blue">See Top Companies</div>
+            <span class="icon-chevron-right crr-text-blue font-bold rotate180"></span>
+        </div>
+        <hr class="crr-adv-hr collapse-on-mobile" />
+
+        <div class="crr-jobs-list-wrapper collapse-on-mobile">
+            <div class="crr-text-primarydark font-bold text-center text-size13">Top Companies</div>
+            <div class="crr-adv-jobs-lists margin-top30">
+                @for (var count = 0; count <= 4; count++)
+                {
+                    <div class="crr-adv-job-list cursor-pointer">
+                        <div>
+                            <a href="#">
+                                <img class="crr-company-logo" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xODFjY2ZjZDMwMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE4MWNjZmNkMzAxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzE4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true">
+                            </a>
+                        </div>
+                        <div class="crr-adv-desc crr-adv-flex-col flex-grow-1">
+                            <div class="crr-item-title crr-text-blue font-bold text-size17">Account Coordinator</div>
+                            <div class="crr-text-blue text-size15">University of Something</div>
+                            <div><span class="text-charcoal margin-right5 text-size14">INDUSTRY</span>Advertising/Marketing/PR</div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="display-flex flex-justify-content-center margin-top30">
+                <button class="btn btn-default  text-blue font-bold show-more-btn collapse-on-desktop" type="submit">Show more <span class="icon-crr-expandArrow text-blue text-size12 margin-left20 "></span></button>
+                <button class="btn btn-default border-crr-blue text-blue font-bold collapse-on-mobile " type="submit">See More Companies</button>
+            </div>
+        </div>
+
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index_AdvanceCareer_TopCompanies.cshtml", ex);
+}

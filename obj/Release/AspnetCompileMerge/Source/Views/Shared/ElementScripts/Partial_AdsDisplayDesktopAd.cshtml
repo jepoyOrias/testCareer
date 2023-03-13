@@ -1,0 +1,151 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+    Seom_Crr_CareerJob objModel = new Seom_Crr_CareerJob();
+    Seom_Crr_CareerJob objJob = new Seom_Crr_CareerJob();
+
+    AdsUnit objNeedToRenderAdsUnit = Model as AdsUnit;
+    ConcurrentDictionary<string, AdsUnit> objAllAds = ViewBag.AllAds as ConcurrentDictionary<string, AdsUnit>;
+
+    DataSet dstPopularSearches = null, dstPopularCompany = null, dstPopularLocation = null, dstPoupularSkills = null, dstPopularCareerPath = null;
+}
+
+@try
+{
+    if (!Request.Browser.IsMobileDevice)
+    {
+        dstPopularSearches = objModel.SalGetPopularSearches();
+        dstPopularCompany = objModel.SalGetPopularCompany();
+        dstPopularLocation = objModel.SalGetPopularLocation();
+        dstPoupularSkills = objModel.SalGetPopularSkill();
+        dstPopularCareerPath = objModel.SalGetPopularSearches();
+        if (!objData.SalIsEmptyDataSet(dstPoupularSkills))
+        {
+            DataView dataView = dstPoupularSkills.Tables[0].DefaultView;
+            DataTable dtbDistinct = dataView.ToTable(true, "CareerSkillCode", "CareerSkillName");
+            <div class="crr-right-link-wrapper">
+                <div class="crr-right-link-wrapper-title">Popular Job Skills</div>
+                @foreach (DataRow drwPopularSkill in dtbDistinct.AsEnumerable().Take(10))
+                {
+                    string strSkillName = drwPopularSkill["CareerSkillName"] as string;
+                    <div class="crr-right-link">
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strCareerSkillCodes:drwPopularSkill["CareerSkillCode"].ToString(),searchType:SearchKeywordType.Skill)">@strSkillName</a>
+                    </div>
+                }
+            </div>
+        }
+        if (!objData.SalIsEmptyDataSet(dstPopularCareerPath))
+        {
+            <div class="crr-right-link-wrapper">
+                <div class="crr-right-link-wrapper-title">Popular Searches by Career Path</div>
+                @foreach (DataRow drwPopularCareerPath in dstPopularCareerPath.Tables[0].AsEnumerable().Take(10))
+                {
+                    string strCareerPath = drwPopularCareerPath["JobPostingTitle"] as string;
+                    <div class="crr-right-link">
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strCareerPath,searchType:SearchKeywordType.JobTitle)">@strCareerPath</a>
+                    </div>
+                }
+            </div>
+        }
+        if (!objData.SalIsEmptyDataSet(dstPopularSearches))
+        {
+            <div class="crr-right-link-wrapper">
+                <div class="crr-right-link-wrapper-title">Popular Searches</div>
+                @foreach (DataRow drwPopularSearches in dstPopularSearches.Tables[0].AsEnumerable().Skip(10).Take(10))
+                {
+                    string strJobTitle = drwPopularSearches["JobPostingTitle"] as string;
+                    <div class="crr-right-link">
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strJobTitle,searchType:SearchKeywordType.JobTitle)">@strJobTitle</a>
+                    </div>
+                }
+            </div>
+        }
+        if (!objData.SalIsEmptyDataSet(dstPopularCompany))
+        {
+            <div class="crr-right-link-wrapper">
+                <div class="crr-right-link-wrapper-title">Popular Companies</div>
+                @foreach (DataRow drwPopularSearches in dstPopularCompany.Tables[0].Rows)
+                {
+                    string strCompanyName = drwPopularSearches["CompanyName"] as string;
+                    string strCompanyID = drwPopularSearches["CompanyID"] as string;
+                    <div class="crr-right-link">
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strKeyword:strCompanyName,strCompanyID: strCompanyID,searchType:SearchKeywordType.Company)">@drwPopularSearches["CompanyName"]</a>
+                    </div>
+                }
+            </div>
+        }
+        if (!objData.SalIsEmptyDataSet(dstPopularLocation))
+        {
+            <div class="crr-right-link-wrapper">
+                <div class="crr-right-link-wrapper-title">Popular Locations</div>
+                @foreach (DataRow @drwPopularSearches in dstPopularLocation.Tables[0].Rows)
+                {
+                    string strLocation = string.Join(", ", @drwPopularSearches["City"], @drwPopularSearches["StateCode"]);
+                    <div class="crr-right-link">
+                        <a href="@objJob.SalGenerateCareerJobSearchUrl(strLocation:strLocation)">@strLocation</a>
+                    </div>
+                }
+            </div>
+        }
+
+
+        if (AdsPositionType.RightNavAd != objNeedToRenderAdsUnit.AdsPositionType) // TopAd or BottomAd or InContentAd
+        {
+            AdsUnit objAd;
+            if (objAllAds.TryGetValue(objNeedToRenderAdsUnit.ID, out objAd))
+            {
+                switch (objAd.AdsType)
+                {
+                    case AdsType.GoogleAd:
+                    case AdsType.MediaNetAd:
+                        <div id="@objAd.ID"></div>
+                        break;
+                    case AdsType.Ad:
+                        <div id="@objAd.ID" class="@objAd.CssClass"></div>
+                        break;
+                    case AdsType.WidgetAd:
+                        <div id="@objAd.ID" class="@objAd.CssClass">
+                            @Html.Raw(objAd.HtmlString)
+                        </div>
+                        break;
+                }
+            }
+
+        }
+        else // RightNavAd
+        {
+            foreach (AdsUnit objAd in objAllAds.Values.Where(q => q.AdsPositionType == AdsPositionType.RightNavAd).OrderBy(q => q.Order))
+            {
+                switch (objAd.AdsType)
+                {
+                    case AdsType.GoogleAd:
+                    case AdsType.MediaNetAd:
+                        <div id="@objAd.ID"></div>
+                        break;
+                    case AdsType.Ad:
+                        <div class="crr-adunit">
+                            <div id="@objAd.ID" class="@objAd.CssClass"></div>
+                        </div>
+                        break;
+                    case AdsType.WidgetAd:
+                        <div class="crr-adunit">
+                            <div id="@objAd.ID" class="@objAd.CssClass">
+                                @Html.Raw(objAd.HtmlString)
+                            </div>
+                        </div>
+                        break;
+                }
+            }
+
+        }
+
+    }
+}
+catch (Exception ex)
+{
+    objLog.SalError("Partial_AdsDisplayDesktopAd.cshtml", ex);
+}
+finally
+{
+    objLog = null;
+}

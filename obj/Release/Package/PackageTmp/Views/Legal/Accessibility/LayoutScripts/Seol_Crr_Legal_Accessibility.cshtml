@@ -1,0 +1,20 @@
+﻿@using System.Configuration
+
+@{
+    ViewBag.PageTitle = "accessability | Legal";
+    ViewBag.MetaDescription = "Your privacy is extremely important to Career.com, LLC and its affiliates (&quot;Career&quot;).";
+}
+
+@if (ViewBag.IsEnableDebugMode == "1")
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/ElementStyles.css?RelNum={ViewBag.ReleaseNum}")
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal_Accessibility.css?RelNum={ViewBag.ReleaseNum}")
+}
+else
+{
+    @Styles.Render($"~/Styles/ElementStyles/CSS/Seos_Crr_Legal_Accessibility.min.css?RelNum={ViewBag.ReleaseNum}")
+}
+
+<div class="crr-layout-container">
+    @RenderPage("~/Views/Legal/Accessibility/ElementScripts/Seoe_Crr_Legal_Accessibility.cshtml")
+</div>

@@ -1,0 +1,45 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-layout-section border-none padding0">
+        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_GlobalSearch.cshtml")
+    </div>
+
+    @*<div class="crr-layout-section border-none padding-top40">
+            @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_AdvanceCareer.cshtml")
+        </div>*@
+
+    <div class="crr-layout-section border-none">
+        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_LoggedIn.cshtml")
+    </div>
+
+    @*<div class="crr-layout-section border-none padding0">
+            @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_PopularSection.cshtml")
+        </div>
+
+        <div class="crr-layout-section border-none padding0">
+            @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_RecommendedJobs.cshtml")
+        </div>
+
+        <div class="crr-layout-section border-none padding0">
+            @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_RecentSearches.cshtml")
+        </div>
+
+        <div class="crr-layout-section border-none padding0">
+            @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_SignUpJobAlert.cshtml")
+        </div>
+
+        <div class="crr-layout-section border-none padding0">
+            @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_FeaturedJob.cshtml")
+        </div>*@
+
+    <span class="crr-scrolltotop-icon collapse" onclick="document.documentElement.scrollTop = 0;"><img src="~/Images/icon-to_top.svg" /></span>
+
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index.cshtml", ex);
+}

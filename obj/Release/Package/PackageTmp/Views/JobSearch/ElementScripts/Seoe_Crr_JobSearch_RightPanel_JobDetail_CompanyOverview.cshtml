@@ -1,0 +1,115 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+
+<div class="crr-overview-wrapper  padding-bottom20">
+    <a id="crr-jobs-dropdown " class="btn btn-link sa-btn-collapse text-size20 font-bold crr-sr-collapse  text-black" role="button" data-toggle="collapse" data-target="#crr-sr-overview" aria-expanded="false" aria-controls="crr-sr-overview">
+        Overview of University of Something
+        <img src="/Images/icon-arrow-down-circle.svg" width="20" height="20">
+    </a>
+ 
+    <div class="collapse sa-collapse" id="crr-sr-overview">
+        <div class="crr-overview">
+            <div class="crr-sr-overview">
+
+                <div class="crr-sr-overview-info margin-top30">
+                    <div class="crr-sr-info">
+                        <div>WEBSITE</div>
+                        <div>Something.com</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>HEADQUARTERS</div>
+                        <div>Boston, MA</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>SIZE</div>
+                        <div>>50,000</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>FOUNDED</div>
+                        <div>1999</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>TYPE</div>
+                        <div>Private</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>CEO</div>
+                        <div>Lawrence Bellino</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>REVENUE</div>
+                        <div>$1B - $3B</div>
+                    </div>
+                    <div class="crr-sr-info">
+                        <div>INDUSTRY</div>
+                        <div>Education</div>
+                    </div>
+                </div>
+            </div>
+            <div class="crr-sr-related-company margin-top30">
+                <div class="font-semibold text-size14">Related Companies</div>
+                <div class="display-flex flex-justify-content-between margin-top10 text-size14">
+                    <a href="" class="crr-text-blue">University of Something Else</a>
+                    <a href="" class="crr-text-blue">University of Something Else</a>
+                    <a href="" class="crr-text-blue">University of Something Else</a>
+                </div>
+            </div>
+            <div class="crr-sr-about margin-top30">
+                <div class="font-semibold text-size14">About University of Something</div>
+                <p class="text-size14 margin-top20">Founded in Marseille in 1966 by Pierre Bellon, Sodexo is the global leader in services that improve Quality of Life, an essential factor in individual and organizational performance. Operating in 64 countries, Sodexo serves 100 million consumers each day through its unique combination of On-site Services, Benefits and Rewards Services and Personal and Home Services. Through its more than 100 services, Sodexo provides clients an integrated offering developed over 50 years of experience: from foodservices, reception, maintenance and cleaning more...</p>
+            </div>
+
+            @* See More *@
+            <div class="collapse-on-desktop">
+                <div class="display-flex flex-justify-content-center margin-top30">
+                    <button class="btn btn-default  text-blue font-bold show-more-btn collapse-on-desktop" type="submit">Show more <span class="icon-crr-expandArrow text-blue text-size12 margin-left20 "></span></button>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="margin-top40 margin-bottom30" />
+        <div class="crr-sr-other-jobs">
+            <div class="font-bold text-size20">Other Jobs Posted at This Company</div>
+            <div class="crr-other-jobs-card margin-top20">
+                @for (var count = 1; count <= 3; count++)
+                {
+                    var jobtitle = "Job-Title" + count;
+
+                    <div class="crr-sr-job-card margin-top15 " data-title="@jobtitle">
+                        <div class="display-flex flex-justify-content-between">
+                            <div class="crr-sr-job-info">
+                                <div class="crr-company-desc flex-grow-1">
+                                    <div class="crr-search-item-title text-size18 crr-text-primary font-bold">Graphic Designer, Jr</div>
+                                    <div class="crr-text-blue margin-bottom10 margin-top20">Microsoft</div>
+                                    <div>Redmond, WA | Full Time</div>
+                                    <div class="text-size14 margin-top5">$45k-58k (estimate)</div>
+                                </div>
+                            </div>
+                            <div class="crr-job-info-action flex-column flex-justify-content-between">
+                                <span class="icon-crr-bookmark"></span>
+                                <span>2d</span>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   
+
+
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_RightPanel_JobDetail_CompanyOverview.cshtml", ex);
+}

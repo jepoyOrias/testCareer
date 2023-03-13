@@ -1,0 +1,13 @@
+<svg id="077ad890-335c-4db2-85e5-505507e4ec45" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .b82c96df-0fb2-47e3-952c-d744a15eb46c {
+        fill: #231f20;
+      }
+    </style>
+  </defs>
+  <title>slot</title>
+  <path class="b82c96df-0fb2-47e3-952c-d744a15eb46c" d="M5.2,15a.5.5,0,0,0-.5.5v3a.5.5,0,0,0,.5.5h9.6a.5.5,0,0,0,.5-.5v-3a.5.5,0,0,0-.5-.5Zm9.1,3H5.7V16h8.6Z"/>
+  <path class="b82c96df-0fb2-47e3-952c-d744a15eb46c" d="M5.2,5h9.6a.5.5,0,0,0,.5-.5v-3a.5.5,0,0,0-.5-.5H5.2a.5.5,0,0,0-.5.5v3A.5.5,0,0,0,5.2,5Zm.5-3h8.6V4H5.7Z"/>
+  <path class="b82c96df-0fb2-47e3-952c-d744a15eb46c" d="M2.24,13.5H17.76a.5.5,0,0,0,.5-.5V7a.5.5,0,0,0-.5-.5H2.24a.5.5,0,0,0-.5.5v6A.5.5,0,0,0,2.24,13.5Zm.5-6H17.26v5H2.74Z"/>
+</svg>

@@ -1,0 +1,37 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+}
+
+@try
+{
+    <div class="crr-layout-section border-none crr-adv-wrapper">
+
+        <div class="display-flex flex-justify-content-center">
+            <div class="crr-alert margin-top20 alert-dismissible bg-grayfill" role="alert">
+                <button type="button" class="close crr-close-alert" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="crr-personalize-recomm">Don't want to search? <a href="#" class="crr-text-blue" data-toggle="modal" data-target="#crr-job-alert-setup-modal">Let us send personalized recommendations to you</a></span>
+            </div>
+        </div>
+
+        @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_SearchFilters.cshtml")
+
+        <div class="margin-top30">
+            <h2 class="crr-title-h2 text-center">Advance Your Career</h2>
+            <div class="crr-advance-career-jobs margin-top40">
+                @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_AdvanceCareer_RecommendedJobs.cshtml")
+                @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_AdvanceCareer_TopCompanies.cshtml")
+                @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_AdvanceCareer_JobPostings.cshtml")
+
+            </div>
+        </div>
+
+    </div>
+
+
+    @Html.Partial("~/Views/Index/ElementScripts/Seoe_Crr_Index_JobAlertSetupModal.cshtml")
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Index_AdvanceCareer.cshtml", ex);
+}
+

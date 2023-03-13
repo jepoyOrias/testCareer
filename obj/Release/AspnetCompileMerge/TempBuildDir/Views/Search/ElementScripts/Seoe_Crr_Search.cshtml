@@ -1,0 +1,74 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    Hashtable hshPageParams = (Hashtable)ViewBag.PageParams;
+    string strJobPostingID = hshPageParams["CareerJobPostingID"]?.ToString();
+    int intSearchResultCount = Convert.ToInt32(hshPageParams["SearchResultCount"]);
+
+    <div id="crr-filter-params">
+        <input type="hidden" name="hd_t" id="hd_t" value="@hshPageParams["DatePostedType"]" />
+        <input type="hidden" name="hd_et" id="hd_et" value="@hshPageParams["EmploymentType"]" />
+        <input type="hidden" name="hd_qt" id="hd_qt" value="@hshPageParams["SearchKeywordType"]" />
+
+        <input type="hidden" name="hd_sk" id="hd_sk" value="@hshPageParams["CareerSkillCodes"]" />
+        <input type="hidden" name="hd_in" id="hd_in" value="@hshPageParams["IndustryFamilyCode"]" />
+        <input type="hidden" name="hd_r" id="hd_r" value="@hshPageParams["WorkForHome"]" />
+        <input type="hidden" name="hd_q" id="hd_q" value="@hshPageParams["Keyword"]" />
+        <input type="hidden" name="hd_ci" id="hd_ci" value="@hshPageParams["CompanyID"]" />
+        <input type="hidden" name="hd_l" id="hd_l" value="@hshPageParams["Location"]" />
+        <input type="hidden" name="hd_p" id="hd_p" value="@hshPageParams["Page"]" />
+        <input type="hidden" name="hd_i" id="hd_i" />
+        <input type="hidden" name="hd_pid" id="hd_pid" value="@Request["pid"]" />
+        <input type="hidden" name="hd_BenchmarkJobCode" id="hd_BenchmarkJobCode" value="@hshPageParams["BenchmarkJobCode"]" />
+        <input type="hidden" name="hd_SkillCodesFromJobDesc" id="hd_SkillCodesFromJobDesc" value="@hshPageParams["SkillCodesFromJobDesc"]" />
+        <input type="hidden" name="hd_CleanJobPostingTitle" id="hd_CleanJobPostingTitle" value="@hshPageParams["CleanJobPostingTitle"]" />
+    </div>
+    <div class="crr-layout-section border-none padding0">
+        <div class="crr-content-container">
+            @if (intSearchResultCount > 0)
+            {
+                <div class="crr-column-left">
+                    @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_LeftColumn_JobListing_HttpGet.cshtml")
+                </div>
+                if (!Request.Browser.IsMobileDevice)
+                {
+                    <div class="crr-column-right">
+                        @*<div class="crr-updatejob-arrow">
+                                <span class="left">
+                                    <img src="~/Images/prev-arrow.svg" />
+                                </span>
+                                <span class="right">
+                                    <img src="~/Images/next-arrow.svg" />
+                                </span>
+                            </div>*@
+                        @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_RightColumn.cshtml")
+                    </div>
+                }
+                <span class="crr-scrolltotop-icon collapse" onclick="document.documentElement.scrollTop = 0;">
+                    <img src="~/Images/icon-to_top.svg" />
+                </span>
+            }
+            else
+            {
+                @Html.Partial("~/Views/Search/ElementScripts/Seoe_Crr_Search_NoResults.cshtml")
+            }
+        </div>
+    </div>
+
+}
+catch (Exception ex)
+{
+    var errorInfo = $"Error is caused by calling the view file:{((RazorView)ViewContext.View).ViewPath}.";
+    objLog.SalError($"{errorInfo}", ex);
+    if (ViewBag.IsDebugMode == "1")
+    {
+        throw new Exception($"{errorInfo}", ex);
+    }
+}
+finally
+{
+}

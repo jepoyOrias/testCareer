@@ -1,0 +1,175 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+    Seom_Crr_GPTAdsLibrary objAdsLibrary = ViewBag.ObjAds as Seom_Crr_GPTAdsLibrary;
+    ConcurrentDictionary<string, AdsUnit> objAllAds = ViewBag.AllAds as ConcurrentDictionary<string, AdsUnit>;
+    var allGptAdsList = objAllAds.Values.Where(q => q.AdsType == AdsType.Ad);
+}
+
+
+@functions{
+    public string SalGetAmazonSlotName(string adsSize, string pos)
+    {
+        var rstSlotName = "";
+        var tSlotName = "";
+        var arrAdsSize = adsSize.Replace(" ", "").Split(new string[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
+        for (int intIndex = 0; intIndex < arrAdsSize.Length; intIndex++)
+        {
+            tSlotName = arrAdsSize[intIndex].Replace("[", "").Replace("]", "").Replace(",", "x");
+            if (intIndex != arrAdsSize.Length - 1)
+                rstSlotName += tSlotName + "_";
+            else
+                rstSlotName += tSlotName;
+        }
+
+        return $"{rstSlotName}{pos.ToLower()}";
+    }
+
+}
+
+@try
+{
+    if (objAdsLibrary == null)
+    {
+        objAdsLibrary = new Seom_Crr_GPTAdsLibrary();
+    }
+
+    <script type="text/javascript">
+                let allPwtSlotIdFromConfig = [];
+                let amazonSlots = [];
+                 @if (allGptAdsList.Any())
+                 {
+                     int intCount = allGptAdsList.Count();
+                     foreach (var objAdsUnit in allGptAdsList)
+                     {
+                        @:allPwtSlotIdFromConfig.push('@objAdsUnit.ID');
+                     }
+
+                     @: amazonSlots = [@foreach (var objAdsUnit in allGptAdsList)
+                                        {
+                                            intCount--;
+                                            if (objAdsUnit.Size.Replace(" ", "").IndexOf("1,1") < 0 && objAdsUnit.Size.Replace(" ", "").IndexOf("300,350") < 0)
+                                            {
+                                                <text>{
+                                                    slotID: '@objAdsUnit.ID',
+                                                    slotName:'@SalGetAmazonSlotName(objAdsUnit.Size, objAdsUnit.Pos)',
+                                                    sizes:@objAdsUnit.Size
+                                                }@if (intCount > 0) {@Html.Raw(",")}</text>
+                                            }
+                                        }
+                                <text>];</text>
+                 }
+
+        (function () {
+            var bidders = ['a9', 'openwrap'];
+            var requestManager = {};
+            bidders.forEach(function (bidder) {
+                requestManager[bidder] = false;
+            })
+
+            function allBiddersBack() {
+                var allBiddersBack = bidders
+                    .map(function (bidder) { return requestManager[bidder]; })
+                    .filter(function (bool) { return bool; })
+                    .length === bidders.length;
+                return allBiddersBack;
+            }
+
+            // handler for header bidder responses
+            function headerBidderBack(bidder) {
+                // return early if request to adserver is already sent
+                if (requestManager.adserverRequestSent) return;
+
+                // flip the boolean associated with the bidder in the request manager
+                requestManager[bidder] = true;
+                if (allBiddersBack()) { // checks whether both APS and openwrap have returned
+                    sendAdserverRequest();   // when both APS and openwrap have returned, initiate ad request
+                }
+                return;
+            }
+
+            // sends adserver request
+            function sendAdserverRequest(a) {
+                if (requestManager.adserverRequestSent) return;
+                requestManager.adserverRequestSent = true;
+                googletag.cmd.push(function () {
+                    googletag.pubads().refresh();
+                });
+            }
+
+            // sends bid request to APS and openwrap
+            function requestHeaderBids() {
+                // APS request
+                apstag.fetchBids({
+                    slots: amazonSlots,
+                    timeout: 1000  // Make Sure this timeout is less than or equal to OpenWrap TimeOut
+                }, function (bids) {
+                    googletag.cmd.push(function () {
+                        apstag.setDisplayBids();
+                        /*
+                        window.OWT.notifyExternalBiddingComplete(notifyId); // This will tell OpenWrap that all the external bidders have reIDurned bid.
+                        // googletag.pubads().refresh(); No need to call refresh in callback as OpenWrap takes care of display.
+                        */
+                        headerBidderBack(bidders[0]);
+                    });
+                });
+
+                // put openwrap request here
+                googletag.cmd.push(function () {
+                    if (typeof PWT.requestBids === 'function') {
+                        let allGptSlots = googletag.pubads().getSlots();
+                        let passedPwtSlots = [];
+                        if (typeof Array.isArray === 'undefined') {
+                            Array.isArray = function (obj) {
+                                return Object.prototype.toString.call(obj) === '[object Array]';
+                            }
+                        };
+                        if (Array.isArray(allGptSlots)) {
+                            let isObject = function (value) {
+                                const type = typeof value;
+                                return value != null && (type === 'obIDect' || type === 'function');
+                            };
+                            let isFunction = function (value) {
+                                return typeof value === 'function'
+                            };
+                            passedPwtSlots = allGptSlots.filter(function (e, i) {
+                                let divId = "";
+                                if (isFunction(e.getSlotId)) {
+                                    let d = e.getSlotId();
+                                    divId = d.getDomId();
+                                }
+                                return allPwtSlotIdFromConfig.indexOf(divId) != -1;
+                            });
+                        }
+                        PWT.requestBids(
+                            PWT.generateConfForGPT(passedPwtSlots),
+                            function (adUnitsArray) {
+                                PWT.addKeyValuePairsToGPTSlots(adUnitsArray);
+                                headerBidderBack(bidders[1]);
+                            }
+                        );
+                    }
+                });// No need to handle "else" part as we have A9 wrapper on page
+
+            } // function requestHeaderBids()
+
+            // initiate bid request
+            requestHeaderBids();
+            // This failsafe is here so we proceed with GPT execution if OpenWrap does not return for some reason
+            var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap timeout
+            window.setTimeout(function () {
+                sendAdserverRequest();
+            }, FAILSAFE_TIMEOUT);
+        })();
+    </script>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Partial_AdsHeaderBidding.cshtml: ", ex);
+}
+finally
+{
+    objAdsLibrary = null;
+    objLog = null;
+    allGptAdsList = null;
+}

@@ -1,0 +1,38 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+
+}
+
+@try
+{
+    <div class="crr-title-border text-size20 text-black font-bold">
+        Browse Job Listings in Honolulu (<span class="crr-text-blue">238 jobs</span>)
+    </div>
+    <div class="display-flex flex-justify-content-center margin-top30">
+        <div class="crr-search-results">
+            @for (var count = 0; count <= 20; count++)
+            {
+                <div class="crr-search-result-div  crr-search-result-drill-in">
+                    <div class="display-flex flex-justify-content-between">
+                        <div class="crr-job-info">
+                            <div class="crr-search-item-title">Graphic Designer, Jr</div>
+                            <div class="crr-text-blue margin-bottom10 margin-top20">Microsoft</div>
+                            <div>Redmond, WA | Full Time</div>
+                            <div class="text-size14 margin-top5">$45k-58k  | $35k-48k (estimate) <span class="icon-crr-info text-bluebright margin-left10 vertical-align-middle"></span></div>
+                        </div>
+                        <div class="crr-job-info-action">
+                            <span class="icon-crr-heart"></span>
+                            <div class="text-size14">2d</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default crr-btn-blue margin-top30">View All Jobs</button>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_Jobs_ByCity_DrillIn_SearchResults.cshtml", ex);
+}

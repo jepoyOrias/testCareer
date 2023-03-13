@@ -1,0 +1,50 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+    Seog_Crr_Data objData = new Seog_Crr_Data();
+}
+
+@try
+{
+    <div class="crr-sr-job-detail">
+        <div class="float-right  margin-lef10 margin-rght10 crr-sr-content-img collapse-on-mobile">
+            <img src="~/Images/Banner/industryDetail_IMG.png" width="360" height="360" />
+        </div>
+        <div class="crr-short-desc ">
+            <p>
+                At Workday, we help the world’s largest organizations adapt to what’s next by bringing finance, HR, and planning into a single enterprise cloud. We work hard, and we’re serious about what we do. But we like to have fun, too. We put people first, celebrate diversity, drive innovation, and do good in the communities where we live and work.
+
+            </p>
+        </div>
+        <div>
+            <p><strong>Job Description</strong></p>
+            <p>
+                As a SMB Executive for our Planning First organization, you will use your extensive experience, domain expertise and consultative selling skills to initiate and support sales of Workday's planning suite with SMB prospects. If you want to be part of something exciting, please read on!
+                Role & Responsibilities
+            </p>
+        </div>
+        <div class="crr-roles">
+            <p><strong>Role & Responsibilities</strong></p>
+            <p>
+                You will be passionate, enthusiastic and a successful new business sales person who wants to be part of one of the most disruptive cloud companies on the planet!
+                You will be a key player in Workday’s field sales team to drive net new business sales into strategic named accounts
+                You will drive complex sales cycles orchestrating internal teams of pre-sales, value management, bid management, inside sales, marketing and sales support.
+                You will implement value-selling processes leveraging a wealth of knowledge of Workday’s products and portfolio
+                You will use your experience and consultative selling skills to initiate long-standing relationships with prospective customers and executive sponsors exciting, please read on!
+            </p>
+
+        </div>
+    </div>
+    <div class="collapse-on-desktop">
+        <div class="display-flex flex-justify-content-center margin-top30">
+            <button class="btn btn-default  text-blue font-bold show-more-btn collapse-on-desktop" type="submit">Show more <span class="icon-crr-expandArrow text-blue text-size12 margin-left20 "></span></button>
+        </div>
+        <hr class="margin-top20" />
+        <div class="margin-lef10 margin-rght10 crr-sr-content-img">
+            <img src="~/Images/Banner/industryDetail_IMG.png" width="360" height="360" />
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_RightPanel_JobDetail.cshtml", ex);
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68.981" height="20" viewBox="0 0 68.981 20">
+  <g id="组_49" data-name="组 49" transform="translate(-274.631 -561)">
+    <g id="Group_62027" data-name="Group 62027" transform="translate(303.326 562)">
+      <rect id="路径" width="40.286" height="18" fill="none"/>
+      <rect id="Rectangle_824" data-name="Rectangle 824" width="40.286" height="18" rx="9" fill="#0773c8"/>
+      <path id="路径-2" data-name="路径" d="M7.286,0a7.286,7.286,0,1,0,7.286,7.286A7.291,7.291,0,0,0,7.286,0Z" transform="translate(23.143 1.714)" fill="#fff"/>
+    </g>
+    <text id="Job_Alerts_are_ON" data-name="Job Alerts are  ON" transform="translate(274.631 575)" fill="#0773c8" font-size="14" font-family="SourceSansPro-Semibold, Source Sans Pro" font-weight="600"><tspan x="0" y="0">ON</tspan></text>
+  </g>
+</svg>

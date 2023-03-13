@@ -1,0 +1,33 @@
+﻿@{
+    Seog_Crr_Log objLog = new Seog_Crr_Log();
+
+}
+
+@try
+{
+    @*<div class="crr-searchinput">
+        <input type="search" class="crr-skill-search-bar padding-left40" placeholder="Search">
+        <span class="icon-search crr-text-primarydark text-size20"></span>
+        <span class="icon-remove  text-size16 crr-skill-remove"></span>
+    </div>*@
+
+    <div class="display-flex flex-justify-content-between flex-wrap">
+        <div class="padding-left10 padding-right10  crr-filter-buttons">
+            <button class="btn btn-default border-blue">All</button>
+            <button class="btn btn-default border-blue">Photoshop</button>
+            <button class="btn btn-default border-blue">Ledger</button>
+            <button class="btn btn-default border-blue">Accounting</button>
+            <button class="btn btn-default border-blue">Web Design</button>
+            <button class="btn btn-default border-blue">Related Skill</button>
+            <button class="btn btn-default border-blue">Related Skill 2</button>
+            <a href="javascript:void(0)" class="crr-text-blue font-bold text-size14 crr-learn-more-skills">Learn more about skills</a>
+        </div>
+        <div class="crr-view-more-filter-btn collapse-on-desktop">
+            <a href="#" class="crr-text-blue">view more</a>
+        </div>
+    </div>
+}
+catch (Exception ex)
+{
+    objLog.SalError("Seoe_Crr_JobSearch_Filter_Skill.cshtml", ex);
+}
